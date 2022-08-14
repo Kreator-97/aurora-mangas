@@ -5,7 +5,9 @@
 
 :root {
   box-sizing: border-box;
-  --bg-color: #00263B;
+  --bg-color: #001E31;
+  --bg-color2: #00474F;
+  --stroke-color: #07695b70;
   --dark: #333;
   --light: #eee;
   --header-height: 88px;
@@ -18,4 +20,33 @@
 
 html {
   color: var(--light);
+  background-image: linear-gradient( var(--bg-color), var(--bg-color2));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.main {
+  min-height: calc(100vh -var(--header-height));
+  max-width: var(--xl);
+  margin: var(--header-height) auto 0;
+}
+
+.title {
+  @apply text-xl md:text-2xl lg:text-3xl text-center py-2;
+}
+
+.btn {
+  @apply px-2 py-1 font-normal text-light bg-accent rounded transition-colors border border-solid border-light;
+}
+
+.btn:hover {
+  @apply bg-accentDark border border-solid;
+}
+
+@media screen and (min-width: 720px) {
+  .main {
+    padding: 0 .5rem;
+  }
 }
