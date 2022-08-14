@@ -6,8 +6,11 @@
   background-size: cover;
   background-attachment: fixed;
   height: var(--header-height);
-  /* display: flex;
-  align-items: center; */
+  border-bottom: 1px solid var(--stroke-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 .content {

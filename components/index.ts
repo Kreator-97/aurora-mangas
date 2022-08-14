@@ -1,2 +1,6 @@
+export * from './cardGrid'
+export * from './cardManga'
+export * from './cardSuscribe'
+export * from './footer'
 export * from './navbar'
-
+export * from './pagination'

@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { Navbar } from '../components'
+
+import { Navbar, Footer } from '../components'
 
 interface Props {
   title: string;
@@ -15,14 +16,13 @@ export const AppLayout: NextPage<Props> = ({ title, children}) => {
       </Head>
       <Navbar />
       <main
-        style={{
-          minHeight: 'calc(100vh - var(--header-height))',
-          backgroundColor: 'var(--bg-color)'
-        }}>
+        className='main'
+      >
         {
           children
         }
       </main>
+      <Footer />
     </>
   )
 }

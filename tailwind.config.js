@@ -13,10 +13,15 @@ module.exports = {
       max: '1440px',
     },
     colors: {
-      primary: '#21C728',
-      accent: '#35BEEA',
+      accent: 'hsl(200, 100%, 40%)',
+      accentDark: 'hsl(200, 100%, 35%)',
+      accentLight: 'hsl(200, 100%, 45%)',
+      success: '#21C728',
+      alert: '#ff922b',
       dark: '#333',
-      light: '#eee'
+      light: '#eee',
+      white: '#fff',
+      stroke: '#0068584f'
     },
     extend: {},
     fontFamily: {
