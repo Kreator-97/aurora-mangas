@@ -46,7 +46,7 @@ export const Pagination: FC<Props> = ({totalPages}) => {
           minPage++
           return (
             <button
-              className={`text-xl py-1 rounded bg-accent ${p === currentPage ? 'bg-success' : ''}`}
+              className={`text-xl py-1 rounded bg-accent ${p === currentPage ? 'active' : ''}`}
               key={`page-${page}`}
               onClick={ () => setCurrentPage(page === 1 ? 1 : page) }
             >

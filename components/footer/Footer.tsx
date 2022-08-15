@@ -6,20 +6,20 @@ export const Footer = () => {
       className="min-h-[150px] border-t border-solid border-stroke"
     >
       <h2
-        className="text-2xl md:text-3xl text-center p-4">
-        Siguenos en nuestras redes sociales
+        className="text-xl md:text-3xl text-center p-4 mt-8">
+        Síguenos en nuestras redes sociales
       </h2>
       <div className='flex justify-center gap-8'>
         <Image
           src="/images/social/facebook.svg"
-          width={60}
-          height={60}
+          width={32}
+          height={32}
           layout="fixed"
         />
         <Image
           src="/images/social/twitter.svg"
-          width={64}
-          height={64}
+          width={36}
+          height={36}
           layout="fixed"
         />
       </div>
