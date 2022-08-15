@@ -15,7 +15,7 @@ export const CardManga = () => {
       <div className='p-2 flex flex-col items-center'>
         <h2 className='text-dark text-xl text-center'>Hunter x Hunter</h2>
         <p className='text-dark text-lg'>$ 99.00</p>
-        <button className='btn text-dark w-full'>Agregar al carrito</button>
+        <button className='btn bg-accent text-dark w-full'>Agregar al carrito</button>
       </div>
       <div className='p-1 bg-light absolute top-4 right-2 rounded-full'>
         <HiOutlineHeart color='var(--dark)' className='' size={36}/>

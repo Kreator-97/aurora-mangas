@@ -8,6 +8,8 @@
   --bg-color: #001E31;
   --bg-color2: #00474F;
   --stroke-color: #07695b70;
+  --success: #21C728;
+  --success-dark: #118A16;
   --dark: #333;
   --light: #eee;
   --header-height: 88px;
@@ -29,7 +31,7 @@ html {
 
 .main {
   min-height: calc(100vh -var(--header-height));
-  max-width: var(--xl);
+  /* max-width: var(--xl); */
   margin: var(--header-height) auto 0;
 }
 
@@ -38,11 +40,27 @@ html {
 }
 
 .btn {
-  @apply px-2 py-1 font-normal text-light bg-accent rounded transition-colors border border-solid border-light;
+  @apply px-2 py-1 font-normal text-light rounded transition-colors border border-solid border-light;
 }
 
 .btn:hover {
   @apply bg-accentDark border border-solid;
+}
+
+.btn.ghost {
+  @apply text-accent bg-opacity-0 border-accent;
+}
+
+.bg-success-gradient {
+  background-image: linear-gradient( var(--success), var(--success-dark))!important;
+}
+
+.btn.ghost:hover {
+  @apply bg-light;
+}
+
+.active {
+  @apply bg-success;
 }
 
 @media screen and (min-width: 720px) {

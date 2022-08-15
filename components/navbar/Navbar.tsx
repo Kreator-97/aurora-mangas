@@ -1,13 +1,25 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { HiMenu, HiOutlineShoppingCart, HiOutlineSearchCircle } from 'react-icons/hi'
-
+import { useAppDispatch } from '../../app/hooks'
+import { open } from '../../app/slices/uiSlice'
 import styles from './Navbar.module.css'
 
 export const Navbar = () => {
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+  
+  const openMenu = () => {
+    dispatch( open() )
+  }
+
+  const navigateTo = (url:string) => {
+    router.push(url)
+  } 
+
   return (
     <nav className={ styles.container }>
       <div className={ styles.content }>
-
         <Image
           src="/images/logo.png"
           alt="Aurora Mangas Logo"
@@ -15,6 +27,7 @@ export const Navbar = () => {
           height={30}
           layout="fixed"
           className='cursor-pointer'
+          onClick={ () => navigateTo('/') }
         />
         <HiOutlineShoppingCart
           color='white'
@@ -24,6 +37,7 @@ export const Navbar = () => {
           color='white'
           size={32}
           cursor="pointer"
+          onClick={ () => openMenu() }
         />
         <input
           type="search"

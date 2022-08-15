@@ -19,12 +19,10 @@ export const CardGrid: FC<Props> = ({ series, children, gridCols }) => {
   return (
     <div className={ `grid gap-2 ${gridDefault}` }>
       {
-        series?.map(({ name, periodicy, imgURL }) =>(
+        series?.map((serie) =>(
           <CardSuscribe
-            key={name}
-            imgURL={imgURL}
-            periodicy={periodicy}
-            serie={name}
+            key={serie.name}
+            serie={serie}
           />
         ))
       }

@@ -8,7 +8,7 @@ export interface Manga {
   serie : string;
   number: string;
   price : number;
-  author: Author; 
+  author: Author;
 }
 
 type Genre = 'adventure' | 'fantasy' | 'romance' | 'horror' | 'thriller' | 'mystery' | 'martial arts' | 'gore' | 'action' | 'sobrenatural'
@@ -23,5 +23,7 @@ export interface Serie {
   demography: Demography[];
   finished  : boolean;
   periodicy : 'mensual' | 'bimestral';
-  sipnosis? : string; 
+  sipnosis? : string;
+  unitPrice : number;
+  author    : Author;
 }
