@@ -4,11 +4,13 @@ export interface Author {
 }
 
 export interface Manga {
-  title : string;
   serie : string;
   number: string;
   price : number;
-  author: Author;
+  author: string;
+  imgURL: string;
+  published: string;
+  title?: string;
 }
 
 type Genre = 'adventure' | 'fantasy' | 'romance' | 'horror' | 'thriller' | 'mystery' | 'martial arts' | 'gore' | 'action' | 'sobrenatural'
@@ -16,14 +18,14 @@ type Genre = 'adventure' | 'fantasy' | 'romance' | 'horror' | 'thriller' | 'myst
 type Demography = 'shonnen' | 'seinen' | 'shojo' | 'josei' | 'isekai'
 
 export interface Serie {
-  name      : string;
-  volumes   : Manga[];
-  imgURL    : string;
-  genre     : Genre[];
+  author    : Author;
   demography: Demography[];
   finished  : boolean;
+  genre     : Genre[];
+  imgURL    : string;
+  name      : string;
   periodicy : 'mensual' | 'bimestral';
-  sipnosis? : string;
+  sinopsis? : string;
   unitPrice : number;
-  author    : Author;
+  volumes   : Manga[];
 }
