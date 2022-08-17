@@ -1,23 +1,21 @@
-import { NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage  } from 'next'
 import Image from 'next/image'
-import { FaCcPaypal } from 'react-icons/fa'
 
-import { Serie } from '../../interfaces'
 import { AppLayout } from '../../layouts'
+import { Serie } from '../../interfaces'
 import { series } from '../../data/seed'
+import { CardGrid, CardManga } from '../../components'
 
 interface Props {
-  serie: Serie;
+  serie: Serie
 }
 
-const serie = series[0]
-
-const SuscribeSeriePage: NextPage<Props> = () => {
+const SeriePage: NextPage<Props> = ({serie}) => {
   return (
-    <AppLayout title={ `${serie.name} | subscripción` } maxWidth='lg'>
-      <h1 className='text-xl text-center py-2'>{ serie.name }</h1>
+    <AppLayout title={ serie.name } maxWidth='md'>
+      <h1 className='text-center text-2xl py-4'>{ serie.name }</h1>
       <Image
-        src={serie.imgURL }
+        src={ serie.imgURL }
         width={360}
         height={180}
         layout="responsive"
@@ -51,23 +49,46 @@ const SuscribeSeriePage: NextPage<Props> = () => {
           <p className='border border-strokeLight border-solid px-2'>Periodicidad</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.periodicy}</p>
         </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+        <div className='grid grid-cols-2 hover:bg-accent mb-4'>
           <p className='border border-strokeLight border-solid px-2'>Géneros</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.genre.join(', ')}</p>
         </div>
+        <h2 className='text-center text-2xl mb-4'>Lista de volúmenes</h2>
+        {
+          <CardGrid gridCols='sm:grid-cols-1 md:grid-cols-2'>
+            <CardManga />
+            <CardManga />
+            <CardManga />
+            <CardManga />
+          </CardGrid>
+        }
       </div>
-      
-      <section className='p-4 flex flex-col gap-y-2 items-center max-w-screen-sm mx-auto'>
-        <h2 className='text-center text-2xl text-success'>Suscripción</h2>
-        <p className='text-base text-success text-center'>
-        Suscríbete y obtén todos los volúmenes en su fecha de publicación sin costo por envío + 5% de descuento
-        </p>
-        <button className='btn bg-success-gradient w-full text-lg'>Suscríbete por $3698</button>
-        <p className='text-center'>Pago seguro procesado a través de:</p>
-        <FaCcPaypal size={64}/>
-      </section>
     </AppLayout>
   )
 }
 
-export default SuscribeSeriePage
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+
+  return {
+    paths: [
+      {
+        params: {
+          name: ''
+        }
+      }
+    ],
+    fallback: 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const serie = series[0]
+
+  return {
+    props: {
+      serie
+    }
+  }
+}
+
+export default SeriePage
