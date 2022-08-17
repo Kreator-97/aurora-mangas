@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,12 +10,12 @@ datasource db {
 }
 
 model User {
-  id         String @id @default(uuid())
-  email      String @unique
-  image      String?
-  role       Role @default(USER)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(uuid())
+  email     String   @unique
+  image     String?
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {
@@ -24,3 +23,61 @@ enum Role {
   USER
 }
 
+model Serie {
+  author     Author     @relation(fields: [authorId], references: [id])
+  authorId   String     @unique
+  demography Demography
+  finished   Boolean
+  genre      Genre
+  id         String     @id @default(uuid())
+  imgURL     String
+  name       String
+  periodicy  Periodicy  @default(MENSUAL)
+  sipnosis   String
+  unitPrice  Int
+  volumes    Manga[]
+}
+
+model Author {
+  id        String @id @default(uuid())
+  name      String
+  birthDate String
+  Serie     Serie[]
+}
+
+model Manga {
+  id        String  @id @default(uuid())
+  serie     Serie   @relation(fields: [serieId], references: [id])
+  serieId   String  @unique
+  number    String
+  price     Int
+  imgUrl    String
+  published String
+  title     String?
+}
+
+enum Periodicy {
+  MENSUAL
+  BIMESTRAL
+}
+
+enum Genre {
+  ACTION
+  ADVENTURE
+  FANTASY
+  GORE
+  HORROR
+  MARTIAL_ARTS
+  MYSTERY
+  ROMANCE
+  SOBRENATURAL
+  THRILLER
+}
+
+enum Demography {
+  SHONEN
+  SEINEN
+  SHOJO
+  JOSEI
+  ISEKAI
+}
