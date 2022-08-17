@@ -1,7 +1,14 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { HiOutlineHeart } from 'react-icons/hi'
 
 export const CardManga = () => {
+  const router = useRouter()
+
+  const navigateTo = (url:string) => {
+    router.push(url)
+  }
   
   return (
     <div className="bg-white relative">
@@ -10,10 +17,13 @@ export const CardManga = () => {
         layout="responsive"
         width={ 170 }
         height={ 255 }
-        className="object-contain"
+        className="object-contain cursor-pointer"
+        onClick={ () => navigateTo('/serie/hunter-x-hunter/01') }
       />
       <div className='p-2 flex flex-col items-center'>
-        <h2 className='text-dark text-xl text-center'>Hunter x Hunter</h2>
+        <Link passHref href='/serie/hunter-x-hunter'>
+          <a className='text-dark text-xl text-center'>Hunter x Hunter</a>
+        </Link>
         <p className='text-dark text-lg'>$ 99.00</p>
         <button className='btn bg-accent text-dark w-full'>Agregar al carrito</button>
       </div>
