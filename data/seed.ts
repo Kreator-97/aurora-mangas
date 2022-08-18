@@ -4,7 +4,7 @@ export const series:Serie[] = [
   {
     name: 'Hunter x Hunter',
     imgURL: 'https://res.cloudinary.com/kreator/image/upload/v1660751856/aurora-manga/covers/hunterxhunter_jufvvz.jpg',
-    periodicy: 'mensual',
+    periodicy: 'MENSUAL',
     volumes: [
       {
         author: 'Yoshihiro Tagashi',
@@ -15,8 +15,7 @@ export const series:Serie[] = [
         published: '2020/01/01',
       }
     ],
-    genre: ['adventure', 'fantasy', 'martial arts'],
-    demography: ['shonnen'],
+    genre: ['ADVENTURE', 'FANTASY', 'MARTIAL_ARTS'],
     finished: false,
     unitPrice: 99,
     sinopsis: 'Gon se entera de que su padre, Ging, es un legendario cazador, un individuo que ha demostrado su valía, un miembro de elite de la humanidad y que se especializa en la búsqueda de criaturas raras, tesoros secretos y otras personas. A pesar de que Ging dejo su hijo a cuidado de sus familiares con el fin de perseguir sus propios sueños, Gon está decidido a seguir los pasos de su padre, aprobar el examen riguroso de Hunter, y finalmente, encontrar a su padre para convertirse en un cazador en su propio derecho.',
@@ -31,11 +30,10 @@ export const series:Serie[] = [
       name: 'Rumiko Takahashi',
       birthDate: '1957/10/10'
     },
-    demography: ['shojo', 'shonnen'],
     finished: true,
-    genre: ['adventure', 'romance'],
+    genre: ['ADVENTURE', 'ROMANCE'],
     imgURL: 'https://res.cloudinary.com/kreator/image/upload/v1660751783/aurora-manga/covers/inuyasha_h295x9.jpg',
-    periodicy: 'bimestral',
+    periodicy: 'BIMESTRAL',
     volumes: [],
     unitPrice: 139,
     sinopsis: 'Durante el periodo Sengoku, un hanyo llamado InuYasha había robado la perla de las cuatro almas (la Perla de Shikon) con el objetivo de convertirse en un yokai completo, sin embargo, su plan es frustrado debido a que una sacerdotisa llamada Kikyo, utilizando sus últimas fuerzas, le disparó una flecha sagrada, clavándolo en el árbol Goshinboku (de las eras), dejándolo paralizado y dormido por los posteriores cincuenta años mientras que la sacerdotisa, antes de morir, había pedido que su cuerpo fuera quemado junto con la joya.'
@@ -43,10 +41,9 @@ export const series:Serie[] = [
   {
     name: 'One Piece',
     imgURL: 'https://res.cloudinary.com/kreator/image/upload/v1660751788/aurora-manga/covers/one-piece_thiagp.jpg',
-    periodicy: 'mensual',
+    periodicy: 'MENSUAL',
     volumes: [],
-    genre: ['adventure', 'action'],
-    demography: ['shonnen'],
+    genre: ['ADVENTURE', 'ACTION'],
     finished: false,
     unitPrice: 99,
     author: {

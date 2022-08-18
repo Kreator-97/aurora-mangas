@@ -13,18 +13,15 @@ export interface Manga {
   title?: string;
 }
 
-type Genre = 'adventure' | 'fantasy' | 'romance' | 'horror' | 'thriller' | 'mystery' | 'martial arts' | 'gore' | 'action' | 'sobrenatural'
-
-type Demography = 'shonnen' | 'seinen' | 'shojo' | 'josei' | 'isekai'
+type Genre = 'ACTION' | 'ADVENTURE' | 'FANTASY' | 'GORE' | 'HORROR' |  'MARTIAL_ARTS' | 'MYSTERY' | 'ROMANCE' | 'SOBRENATURAL' | 'THRILLER'
 
 export interface Serie {
   author    : Author;
-  demography: Demography[];
   finished  : boolean;
   genre     : Genre[];
   imgURL    : string;
   name      : string;
-  periodicy : 'mensual' | 'bimestral';
+  periodicy : 'MENSUAL' | 'BIMESTRAL';
   sinopsis? : string;
   unitPrice : number;
   volumes   : Manga[];

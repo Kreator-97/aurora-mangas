@@ -23,32 +23,30 @@ enum Role {
   USER
 }
 
-model Serie {
-  author     Author     @relation(fields: [authorId], references: [id])
-  authorId   String     @unique
-  demography Demography
-  finished   Boolean
-  genre      Genre
-  id         String     @id @default(uuid())
-  imgURL     String
-  name       String
-  periodicy  Periodicy  @default(MENSUAL)
-  sipnosis   String
-  unitPrice  Int
-  volumes    Manga[]
-}
-
 model Author {
   id        String @id @default(uuid())
   name      String
-  birthDate String
-  Serie     Serie[]
+  serie     Serie[]
+}
+
+model Serie {
+  id         String     @id @default(uuid())
+  author     Author     @relation(fields: [authorId], references: [id])
+  authorId   String
+  finished   Boolean
+  genre      String
+  imgURL     String
+  name       String
+  periodicy  Periodicy  @default(MENSUAL)
+  sinopsis   String     @db.MediumText
+  unitPrice  Int
+  volumes    Manga[]
 }
 
 model Manga {
   id        String  @id @default(uuid())
   serie     Serie   @relation(fields: [serieId], references: [id])
-  serieId   String  @unique
+  serieId   String
   number    String
   price     Int
   imgUrl    String
@@ -61,23 +59,15 @@ enum Periodicy {
   BIMESTRAL
 }
 
-enum Genre {
-  ACTION
-  ADVENTURE
-  FANTASY
-  GORE
-  HORROR
-  MARTIAL_ARTS
-  MYSTERY
-  ROMANCE
-  SOBRENATURAL
-  THRILLER
-}
-
-enum Demography {
-  SHONEN
-  SEINEN
-  SHOJO
-  JOSEI
-  ISEKAI
-}
+// enum Genre {
+//   ACTION
+//   ADVENTURE
+//   FANTASY
+//   GORE
+//   HORROR
+//   MARTIAL_ARTS
+//   MYSTERY
+//   ROMANCE
+//   SOBRENATURAL
+//   THRILLER
+// }
