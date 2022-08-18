@@ -1,17 +1,13 @@
 -- CreateTable
-CREATE TABLE `Serie` (
-    `authorId` VARCHAR(191) NOT NULL,
-    `demography` ENUM('SHONEN', 'SEINEN', 'SHOJO', 'JOSEI', 'ISEKAI') NOT NULL,
-    `finished` BOOLEAN NOT NULL,
-    `genre` ENUM('ACTION', 'ADVENTURE', 'FANTASY', 'GORE', 'HORROR', 'MARTIAL_ARTS', 'MYSTERY', 'ROMANCE', 'SOBRENATURAL', 'THRILLER') NOT NULL,
+CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
-    `imgURL` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-    `periodicy` ENUM('MENSUAL', 'BIMESTRAL') NOT NULL DEFAULT 'MENSUAL',
-    `sipnosis` VARCHAR(191) NOT NULL,
-    `unitPrice` INTEGER NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `image` VARCHAR(191) NULL,
+    `role` ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Serie_authorId_key`(`authorId`),
+    UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -19,7 +15,21 @@ CREATE TABLE `Serie` (
 CREATE TABLE `Author` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `birthDate` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Serie` (
+    `id` VARCHAR(191) NOT NULL,
+    `authorId` VARCHAR(191) NOT NULL,
+    `finished` BOOLEAN NOT NULL,
+    `genre` VARCHAR(191) NOT NULL,
+    `imgURL` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `periodicy` ENUM('MENSUAL', 'BIMESTRAL') NOT NULL DEFAULT 'MENSUAL',
+    `sinopsis` MEDIUMTEXT NOT NULL,
+    `unitPrice` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -34,7 +44,6 @@ CREATE TABLE `Manga` (
     `published` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NULL,
 
-    UNIQUE INDEX `Manga_serieId_key`(`serieId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

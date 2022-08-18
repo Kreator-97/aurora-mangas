@@ -11,6 +11,11 @@
   "dependencies": {
     "@prisma/client": "4.2.1",
     "@reduxjs/toolkit": "^1.8.4",
+    "apollo-server-micro": "^3.10.1",
+    "graphql": "^16.6.0",
+    "install": "^0.13.0",
+    "micro": "^9.4.1",
+    "micro-cors": "^0.1.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -18,6 +23,7 @@
     "react-redux": "^8.0.2"
   },
   "devDependencies": {
+    "@types/micro-cors": "^0.1.2",
     "@types/node": "18.7.3",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
