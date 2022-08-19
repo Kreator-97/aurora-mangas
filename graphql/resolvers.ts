@@ -16,11 +16,23 @@ export const resolvers = {
         newAuthors.push({...a, series})
       }
       return newAuthors
+    },
+    volumes: async(parent:any, args: any) => {
+      const { serieId } = args
+      const mangas = await prisma.manga.findMany({
+        where: {
+          serieId: serieId
+        },
+        include: {
+          serie: true
+        }
+      })
+      return mangas
     }
   },
   Mutation: {
     createSerie: async (root:any, args:any ) => {
-      const { genre, imgURL, finished, name, unitPrice, sinopsis,periodicy, author } = args.serie
+      const { genre, imgURL, finished, name, sinopsis,periodicy, author } = args.serie
 
       try {
         const result = await prisma.serie.create({data: {
@@ -29,7 +41,6 @@ export const resolvers = {
           imgURL,
           name,
           sinopsis,
-          unitPrice,
           author: {
             connect: {
               id: author
@@ -42,7 +53,6 @@ export const resolvers = {
         console.log(error)
         return null
       }
-
     },
     createAuthor: async(parent:any, args:any) => {
       const { name } = args
@@ -51,6 +61,37 @@ export const resolvers = {
         return result
       } catch (error) {
         return null
+      }
+    },
+    createManga: async(parent: any, args: any) => {
+      const { serieId, number, price, imgURL, published, title } = args
+
+      const isValidDate = new Date(published)
+      if ( isValidDate.toString() === 'Invalid Date') {
+        return {
+          message: 'Manga was not created',
+          error: 'Date is not valid',
+          ok: false,
+        }
+      }
+
+      const mangaInput = {
+        imgURL, number, price, published, title
+      }
+
+      const serie = await prisma.serie.update({
+        where: {
+          id: serieId
+        },
+        data: {
+          volumes: {
+            create: mangaInput
+          }
+        }, include: { author: true }})
+
+      return {
+        ok: true,
+        message: 'Manga agregado a la serie ' + serie.name
       }
     }
   }

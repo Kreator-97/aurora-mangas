@@ -21,19 +21,17 @@ export const typeDefs = gql`
     name      : String!
     periodicy : Periodicy
     sinopsis  : String
-    unitPrice : Int!
     volumes   : [Manga]
   }
 
   type Manga {
     id        : ID
-    author    : Author!
-    imgURL    : String!
+    serie     : Serie!
     number    : String!
     price     : Int!
+    imgURL    : String!
     published : String!
-    serie     : Serie!
-    title     : String!
+    title     : String
   }
 
   input SerieInput {
@@ -48,12 +46,27 @@ export const typeDefs = gql`
   }
 
   type Query {
-    series: [Serie!]!
-    authors: [Author!]!
+    series: [Serie!]
+    authors: [Author!]
+    volumes(serieId: String): [Manga!]
+  }
+
+  type Response {
+    ok: Boolean!
+    error: String
+    message: String!
   }
 
   type Mutation {
     createAuthor(name:String): Author
     createSerie( serie:SerieInput ): Serie
+    createManga(
+      serieId:String!,
+      number: String!,
+      price: Int!,
+      imgURL: String!,
+      published: String!,
+      title: String
+    ):Response!
   }
 `

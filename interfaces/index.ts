@@ -9,20 +9,20 @@ export interface Manga {
   price : number;
   author: string;
   imgURL: string;
-  published: string;
+  published: Date;
   title?: string;
 }
 
-type Genre = 'ACTION' | 'ADVENTURE' | 'FANTASY' | 'GORE' | 'HORROR' |  'MARTIAL_ARTS' | 'MYSTERY' | 'ROMANCE' | 'SOBRENATURAL' | 'THRILLER'
+// type Genre = 'ACTION' | 'ADVENTURE' | 'FANTASY' | 'GORE' | 'HORROR' |  'MARTIAL_ARTS' | 'MYSTERY' | 'ROMANCE' | 'SOBRENATURAL' | 'THRILLER'
 
 export interface Serie {
   author    : Author;
   finished  : boolean;
-  genre     : Genre[];
+  genre     : string;
   imgURL    : string;
   name      : string;
   periodicy : 'MENSUAL' | 'BIMESTRAL';
   sinopsis? : string;
-  unitPrice : number;
+  // unitPrice : number;
   volumes   : Manga[];
 }

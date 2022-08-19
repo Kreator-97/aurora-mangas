@@ -39,7 +39,6 @@ model Serie {
   name       String
   periodicy  Periodicy  @default(MENSUAL)
   sinopsis   String     @db.MediumText
-  unitPrice  Int
   volumes    Manga[]
 }
 
@@ -49,7 +48,7 @@ model Manga {
   serieId   String
   number    String
   price     Int
-  imgUrl    String
+  imgURL    String
   published String
   title     String?
 }
