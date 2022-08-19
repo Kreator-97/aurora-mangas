@@ -31,7 +31,6 @@ html {
 
 .main {
   min-height: calc(100vh -var(--header-height));
-  /* max-width: var(--xl); */
   margin: var(--header-height) auto 0;
 }
 
@@ -41,10 +40,6 @@ html {
 
 .btn {
   @apply px-2 py-1 font-normal text-light rounded transition-colors border border-solid border-light;
-}
-
-.btn:hover {
-  @apply bg-accentDark border border-solid;
 }
 
 .btn.ghost {
