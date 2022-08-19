@@ -4,13 +4,13 @@ import { FaCcPaypal } from 'react-icons/fa'
 
 import { Serie } from '../../interfaces'
 import { AppLayout } from '../../layouts'
-import { seedData } from '../../database'
+import { series } from '../../database/seed'
 
 interface Props {
   serie: Serie;
 }
 
-const serie = seedData.series[0]
+const serie = series[0]
 
 const SuscribeSeriePage: NextPage<Props> = () => {
   return (

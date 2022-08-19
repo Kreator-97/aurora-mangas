@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 import { CardGrid, CardManga, Pagination } from '../components'
 import { AppLayout } from '../layouts'
-import { seedData } from '../database'
+import { series } from '../database/seed'
 
 const Home: NextPage = () => {
 
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       <h1 className='title'>
         Series nuevas
       </h1>
-      <CardGrid series={ seedData.series } />
+      <CardGrid series={ series } />
       <h1 className='title'>
         Últimos lanzamientos 
       </h1>
