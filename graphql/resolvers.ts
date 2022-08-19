@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { dbUsers } from '../database'
 
 const prisma = new PrismaClient()
 
@@ -28,6 +29,10 @@ export const resolvers = {
         }
       })
       return mangas
+    },
+    users: async() => {
+      const users = await prisma.user.findMany()
+      return users
     }
   },
   Mutation: {
@@ -92,6 +97,28 @@ export const resolvers = {
       return {
         ok: true,
         message: 'Manga agregado a la serie ' + serie.name
+      }
+    },
+    async createUser(parent: any, args: any) {
+      console.log({args})
+      const { fullname, email, password } = args
+
+      try {
+        const user = await dbUsers.registerUser({email, password, fullname})
+        return {
+          user: user,
+          ok: true,
+          message: 'User created successfully',
+          error: null,
+        }
+
+      } catch(error) {
+        return {
+          user: null,
+          ok: false,
+          message: 'User was not created',
+          error,
+        }
       }
     }
   }

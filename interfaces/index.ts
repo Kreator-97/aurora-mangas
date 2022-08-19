@@ -9,7 +9,7 @@ export interface Manga {
   price : number;
   author: string;
   imgURL: string;
-  published: Date;
+  published: string
   title?: string;
 }
 
@@ -23,6 +23,7 @@ export interface Serie {
   name      : string;
   periodicy : 'MENSUAL' | 'BIMESTRAL';
   sinopsis? : string;
-  // unitPrice : number;
   volumes   : Manga[];
 }
+
+export * from './user'

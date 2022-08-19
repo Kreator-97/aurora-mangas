@@ -15,9 +15,8 @@ export const series:Serie[] = [
         published: '2020/01/01',
       }
     ],
-    genre: ['ADVENTURE', 'FANTASY', 'MARTIAL_ARTS'],
+    genre: ['ADVENTURE', 'FANTASY', 'MARTIAL_ARTS'].join(', '),
     finished: false,
-    unitPrice: 99,
     sinopsis: 'Gon se entera de que su padre, Ging, es un legendario cazador, un individuo que ha demostrado su valía, un miembro de elite de la humanidad y que se especializa en la búsqueda de criaturas raras, tesoros secretos y otras personas. A pesar de que Ging dejo su hijo a cuidado de sus familiares con el fin de perseguir sus propios sueños, Gon está decidido a seguir los pasos de su padre, aprobar el examen riguroso de Hunter, y finalmente, encontrar a su padre para convertirse en un cazador en su propio derecho.',
     author: {
       name: 'Yoshihiro Togashi',
@@ -31,11 +30,10 @@ export const series:Serie[] = [
       birthDate: '1957/10/10'
     },
     finished: true,
-    genre: ['ADVENTURE', 'ROMANCE'],
+    genre: ['ADVENTURE', 'ROMANCE'].join(', '),
     imgURL: 'https://res.cloudinary.com/kreator/image/upload/v1660751783/aurora-manga/covers/inuyasha_h295x9.jpg',
     periodicy: 'BIMESTRAL',
     volumes: [],
-    unitPrice: 139,
     sinopsis: 'Durante el periodo Sengoku, un hanyo llamado InuYasha había robado la perla de las cuatro almas (la Perla de Shikon) con el objetivo de convertirse en un yokai completo, sin embargo, su plan es frustrado debido a que una sacerdotisa llamada Kikyo, utilizando sus últimas fuerzas, le disparó una flecha sagrada, clavándolo en el árbol Goshinboku (de las eras), dejándolo paralizado y dormido por los posteriores cincuenta años mientras que la sacerdotisa, antes de morir, había pedido que su cuerpo fuera quemado junto con la joya.'
   },
   {
@@ -43,9 +41,8 @@ export const series:Serie[] = [
     imgURL: 'https://res.cloudinary.com/kreator/image/upload/v1660751788/aurora-manga/covers/one-piece_thiagp.jpg',
     periodicy: 'MENSUAL',
     volumes: [],
-    genre: ['ADVENTURE', 'ACTION'],
+    genre: ['ADVENTURE', 'ACTION'].join(', '),
     finished: false,
-    unitPrice: 99,
     author: {
       name: 'Eichiro Oda',
       birthDate: '1975/1/1'
