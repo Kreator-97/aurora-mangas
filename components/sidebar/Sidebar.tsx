@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { HiX } from 'react-icons/hi'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
@@ -6,10 +7,16 @@ import { close } from '../../app/slices/uiSlice'
 export const Sidebar = () => {
   const isSidebarOpen = useAppSelector( (state) => state.ui.isSidebarOpen)
   const dispatch = useAppDispatch()
+  const router = useRouter()
 
   const closeSideBar = () => {
     dispatch(close())
   }
+
+  const navigateTo = (url:string) => {
+    router.push(url)
+  }
+
   return (
     <div className={`min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform ${ isSidebarOpen ? '' : '-translate-x-full'}`}>
       <div className='flex justify-between items-center'>
@@ -23,8 +30,8 @@ export const Sidebar = () => {
       </div>
       <p className='text-center mb-2'>Ingresa para gestionar tu cuenta</p>
       <div className='flex gap-2 mb-4'>
-        <button className='btn bg-accent w-full'>Ingresar</button>
-        <button className='btn ghost w-full'>Crear cuenta</button>
+        <button className='btn bg-accent w-full' onClick={ () => navigateTo('/auth/login') }>Ingresar</button>
+        <button className='btn ghost w-full' onClick={() => navigateTo('/auth/register')}>Crear cuenta</button>
       </div>
       <hr />
       <section>
