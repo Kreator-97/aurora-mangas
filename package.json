@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev -p 3000",
+    "build": "next build" ,
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,17 +12,20 @@
     "@prisma/client": "4.2.1",
     "@reduxjs/toolkit": "^1.8.4",
     "apollo-server-micro": "^3.10.1",
+    "bcrypt": "^5.0.1",
     "graphql": "^16.6.0",
     "install": "^0.13.0",
     "micro": "^9.4.1",
     "micro-cors": "^0.1.1",
     "next": "12.2.5",
+    "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/micro-cors": "^0.1.2",
     "@types/node": "18.7.3",
     "@types/react": "18.0.17",

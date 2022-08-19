@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { AppLayout } from '../../layouts'
 import { Serie } from '../../interfaces'
-import { series } from '../../data/seed'
+import { series } from '../../database/seed'
 import { CardGrid, CardManga } from '../../components'
 
 interface Props {
@@ -24,7 +24,7 @@ const SeriePage: NextPage<Props> = ({serie}) => {
       <h2 className='text-xl text-center mt-4'>Sipnosis</h2>
       <p className='text-lg m-4'>
         {
-          serie.sipnosis
+          serie.sinopsis
         }
       </p>
       <h2 className='text-xl text-center mt-4 mb-2'>Información</h2>
@@ -41,17 +41,17 @@ const SeriePage: NextPage<Props> = ({serie}) => {
           <p className='border border-strokeLight border-solid px-2'>Volumenes</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.volumes.length}</p>
         </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+        {/* <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
           <p className='border border-strokeLight border-solid px-2'>Precio unitario</p>
           <p className='border border-strokeLight border-solid px-2'>$ {serie.unitPrice}</p>
-        </div>
+        </div> */}
         <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
           <p className='border border-strokeLight border-solid px-2'>Periodicidad</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.periodicy}</p>
         </div>
         <div className='grid grid-cols-2 hover:bg-accent mb-4'>
           <p className='border border-strokeLight border-solid px-2'>Géneros</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.genre.join(', ')}</p>
+          <p className='border border-strokeLight border-solid px-2'>{serie.genre}</p>
         </div>
         <h2 className='text-center text-2xl mb-4'>Lista de volúmenes</h2>
         {

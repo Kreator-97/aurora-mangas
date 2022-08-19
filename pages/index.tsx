@@ -2,15 +2,16 @@ import type { NextPage } from 'next'
 
 import { CardGrid, CardManga, Pagination } from '../components'
 import { AppLayout } from '../layouts'
-import { series } from '../data/seed'
+import { seedData } from '../database'
 
 const Home: NextPage = () => {
+
   return (
     <AppLayout title='Aurora Mangas | Página de inicio'>
       <h1 className='title'>
         Series nuevas
       </h1>
-      <CardGrid series={ series } />
+      <CardGrid series={ seedData.series } />
       <h1 className='title'>
         Últimos lanzamientos 
       </h1>

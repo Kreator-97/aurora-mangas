@@ -4,13 +4,13 @@ import { FaCcPaypal } from 'react-icons/fa'
 
 import { Serie } from '../../interfaces'
 import { AppLayout } from '../../layouts'
-import { series } from '../../data/seed'
+import { seedData } from '../../database'
 
 interface Props {
   serie: Serie;
 }
 
-const serie = series[0]
+const serie = seedData.series[0]
 
 const SuscribeSeriePage: NextPage<Props> = () => {
   return (
@@ -26,7 +26,7 @@ const SuscribeSeriePage: NextPage<Props> = () => {
       <h2 className='text-xl text-center mt-4'>Sipnosis</h2>
       <p className='text-lg m-4'>
         {
-          serie.sipnosis
+          serie.sinopsis
         }
       </p>
       <h2 className='text-xl text-center mt-4 mb-2'>Información</h2>
@@ -43,17 +43,17 @@ const SuscribeSeriePage: NextPage<Props> = () => {
           <p className='border border-strokeLight border-solid px-2'>Volumenes</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.volumes.length}</p>
         </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+        {/* <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
           <p className='border border-strokeLight border-solid px-2'>Precio unitario</p>
           <p className='border border-strokeLight border-solid px-2'>$ {serie.unitPrice}</p>
-        </div>
+        </div> */}
         <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
           <p className='border border-strokeLight border-solid px-2'>Periodicidad</p>
           <p className='border border-strokeLight border-solid px-2'>{serie.periodicy}</p>
         </div>
         <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
           <p className='border border-strokeLight border-solid px-2'>Géneros</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.genre.join(', ')}</p>
+          <p className='border border-strokeLight border-solid px-2'>{serie.genre}</p>
         </div>
       </div>
       

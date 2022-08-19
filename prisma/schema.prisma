@@ -12,10 +12,18 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  image     String?
+  fullname  String
+  password  String
+  imgURL    String?
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  provider  Provider @default(CREDENTIALS)
+}
+
+enum Provider {
+  GOOGLE
+  CREDENTIALS
 }
 
 enum Role {
