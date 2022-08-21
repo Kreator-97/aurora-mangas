@@ -77,3 +77,12 @@ export const oAuthToDBUser = async (oAuthEmail:string, oAuthName: string, oAuthI
     return Promise.reject((error as {message:string}).message)
   }
 }
+
+export const validateRole = async ( userId: string,expectedRoles: string[] ):Promise<boolean> => {
+  const user = await prisma.user.findUnique({where: { id: userId }})
+  if( !user ) return false
+
+  if( expectedRoles.includes(user.role) ) return true
+  
+  return false
+}

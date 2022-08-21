@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: .25rem;
+  overflow-x: scroll;
+  background-color: var(--background);
+  border-radius: .25rem;
+}
+
+.table tr:nth-child(odd) {
+  background-color: var(--background-alt);
+}
+
+.table td, .table th {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-family: var(--font-regular);
+  border: 1px solid var(--stroke-color);
+  color: var(--text-primary);
+  max-width: 250px;
+  word-break: break-word;
+}
+
+.table th {
+  background-color: var(--primary);
+  color: #eee;
+}
+
+.table td {
+  text-align: center;
+}

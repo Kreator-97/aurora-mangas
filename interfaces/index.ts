@@ -1,9 +1,10 @@
 export interface Author {
-  name      : string;
-  birthDate : string;
+  name: string;
+  id  : string;
 }
 
 export interface Manga {
+  id    : string;
   serie : string;
   number: string;
   price : number;
@@ -16,6 +17,7 @@ export interface Manga {
 // type Genre = 'ACTION' | 'ADVENTURE' | 'FANTASY' | 'GORE' | 'HORROR' |  'MARTIAL_ARTS' | 'MYSTERY' | 'ROMANCE' | 'SOBRENATURAL' | 'THRILLER'
 
 export interface Serie {
+  id        : string;
   author    : Author;
   finished  : boolean;
   genre     : string;
@@ -26,4 +28,5 @@ export interface Serie {
   volumes   : Manga[];
 }
 
+export * from './orders'
 export * from './user'
