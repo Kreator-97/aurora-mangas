@@ -17,6 +17,7 @@ export const Sidebar = () => {
   }
 
   const navigateTo = (url:string) => {
+    closeSideBar()
     router.push(url)
   }
 
@@ -85,6 +86,28 @@ export const Sidebar = () => {
               </button>
             </section>
           </>)
+      }
+      {
+        auth.user?.role === 'ADMIN' && (
+          <>
+            <hr />
+            <section>
+              <p className='text-xl text-center pt-2'>Administrador</p>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/orders') }
+              >
+                Ver pedidos realizados
+              </button>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/series') }
+              >
+                Series
+              </button>
+            </section>
+          </>
+        )
       }
     </div>
   )

@@ -13,6 +13,7 @@
   --dark: #333;
   --light: #eee;
   --header-height: 88px;
+  --footer-height: 150px;
   --sm: 480px;
   --md: 720px;
   --lg: 960px;
@@ -30,12 +31,20 @@ html {
 }
 
 .main {
-  min-height: calc(100vh -var(--header-height));
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: var(--header-height) auto 0;
 }
 
 .title {
   @apply text-xl md:text-2xl lg:text-3xl text-center py-2;
+}
+
+.input {
+  @apply p-2 text-dark rounded;
+}
+
+.input::placeholder {
+  color: #666;
 }
 
 .btn {
