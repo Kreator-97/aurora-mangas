@@ -2,18 +2,17 @@ import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { dbUsers } from '../../../database'
+import { dbSeries, dbUsers } from '../../../database'
 import { Serie } from '../../../interfaces'
 import { AppLayout } from '../../../layouts'
 import { Table } from '../../../components'
 
 interface Props {
-  products: Serie[]
+  series: Serie[]
 }
 
-import { series as products } from '../../../database/seed'
-
-const AdminProductPage: NextPage<Props> = ({}) => {
+const AdminProductPage: NextPage<Props> = ({series}) => {
+  console.log({series})
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>
@@ -25,7 +24,7 @@ const AdminProductPage: NextPage<Props> = ({}) => {
           </Link>
         </div>
         {
-          products.length === 0 
+          series.length === 0 
             ? (
               <h2 className='text-lg text-center'>No existen datos de Series</h2>
             )
@@ -34,9 +33,9 @@ const AdminProductPage: NextPage<Props> = ({}) => {
                 columns={['Id', 'Nombre', 'Autor', 'Generos']}
               >
                 {
-                  products.map((p) => {
+                  series.map((p) => {
                     return (
-                      <tr>
+                      <tr key={p.id}>
                         <td>{p.id}</td>
                         <td>{p.name}</td>
                         <td>{p.author.name}</td>
@@ -69,9 +68,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
+  const series = await dbSeries.getSeries()
+
   return {
     props: {
-      products: [],
+      series,
     }
   }
 }
