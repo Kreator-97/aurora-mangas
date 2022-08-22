@@ -1,10 +1,15 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 
 import { CardGrid, CardManga, Pagination } from '../components'
+import { dbSeries } from '../database'
+import { Serie } from '../interfaces'
 import { AppLayout } from '../layouts'
-import { series } from '../database/seed'
 
-const Home: NextPage = () => {
+interface Props {
+  series: Serie[]
+}
+
+const Home: NextPage<Props> = ({series}) => {
 
   return (
     <AppLayout title='Aurora Mangas | Página de inicio'>
@@ -36,3 +41,13 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const series = await dbSeries.getSeries()
+
+  return {
+    props: {
+      series,
+    }
+  }
+}

@@ -1,11 +1,14 @@
 import { FormEvent, useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
+import { useMutation } from '@apollo/client'
+import { toast, Toaster } from 'react-hot-toast'
 
 import { AppLayout } from '../../../layouts'
 import { dbAuthors, dbUsers } from '../../../database'
 import { useForm } from '../../../hooks'
 import { Author } from '../../../interfaces'
+import { CREATE_SERIE } from '../../../graphql/client/mutations'
 
 const CLOUDINARY_DOMAIN = 'https://res.cloudinary.com'
 
@@ -38,7 +41,8 @@ interface Props {
 
 const AdminCreateSerie:NextPage<Props> = ({authors}) => {
   const [showErrors, setShowErrors] = useState(false)
-  const { imgURL, name, sinopsis, genre, finished, author, periodicy, errors ,onInputChange, formState} = useForm({
+  const [ createSerie ] = useMutation(CREATE_SERIE)
+  const { imgURL, name, sinopsis, genre, finished, author, periodicy, errors ,onInputChange, formState, onResetForm } = useForm({
     name: '',
     author: '',
     imgURL: '',
@@ -50,7 +54,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
 
   const [ genres, setGenres ] = useState<string[]>([])
 
-  const onSave = (e:FormEvent) => {
+  const onSave = async (e:FormEvent) => {
     e.preventDefault()
     const genre = genres.map( g => g.toUpperCase()).join(', ')
 
@@ -62,9 +66,18 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
       setShowErrors(true)
       return
     }
-    console.log({...formState, genre: genres})
-    console.log('Hay que realizar la inserción')
-    console.log('formulario valido')
+
+    const serie = {
+      ...formState, genre, finished: finished === 'true'
+    }
+    try {
+      const { data } = await createSerie({variables: { serie }})
+      toast.success('Serie agregada ' + data.createSerie.name )
+      onResetForm()
+      setGenres([])
+    } catch (error) {
+      console.log(error) 
+    }
   }
 
   const addGenre = () => {
@@ -160,9 +173,16 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
                 onChange={ onInputChange }
               >
                 <option value="" defaultChecked disabled >Selecciona una opción</option>
-                <option value="ACCION" >Acción</option>
-                <option value="ROMANCE" >Romance</option>
-                <option value="FANTASY" >Fantasia</option>
+                <option value="ACTION">Acción</option>
+                <option value="ADVENTURE">Aventuras</option>
+                <option value="FANTASY">Fantasia</option>
+                <option value="GORE">Gore</option>
+                <option value="HORROR">Terror</option>
+                <option value="MARTIAL_ARTS">Artes Marciales</option>
+                <option value="MYSTERY">Misterio</option>
+                <option value="ROMANCE">Romance</option>
+                <option value="SOBRENATURAL">Sobrenatural</option>
+                <option value="THRILLER">Thriller</option>
               </select>
               <button
                 className='btn bg-accent'
@@ -204,7 +224,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
             >
               <option value="" defaultChecked disabled >Selecciona una opción</option>
               <option value="MENSUAL" >Mensual</option>
-              <option value="BIMESTRUAL" >Bimestral</option>
+              <option value="BIMESTRAL" >Bimestral</option>
             </select>
             { (errors.periodicy && showErrors) && (<p className='text-error'>{errors.periodicy}</p>) }
           </div>
@@ -242,6 +262,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
 
         </div>
         <button className='btn bg-accent w-full'>Guardar</button>
+        <Toaster position='top-center'/>
       </form>
     </AppLayout>
   )
