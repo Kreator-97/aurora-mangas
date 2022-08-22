@@ -58,7 +58,6 @@ export const typeDefs = gql`
     name      : String!
     periodicy : Periodicy
     sinopsis  : String
-    unitPrice : Int!
   }
 
   type Query {

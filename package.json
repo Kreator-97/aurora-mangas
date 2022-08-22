@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build" ,
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "@prisma/client": "4.2.1",
     "@reduxjs/toolkit": "^1.8.4",
     "apollo-server-micro": "^3.10.1",
@@ -21,6 +22,7 @@
     "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.3.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2"
   },
