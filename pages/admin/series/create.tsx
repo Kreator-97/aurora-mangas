@@ -7,12 +7,38 @@ import { dbAuthors, dbUsers } from '../../../database'
 import { useForm } from '../../../hooks'
 import { Author } from '../../../interfaces'
 
+const CLOUDINARY_DOMAIN = 'https://res.cloudinary.com'
+
+const formValidations = {
+  name: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo no puede estar vacio',
+  },
+  author: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo no puede estar vacio',
+  },
+  periodicy: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo no puede estar vacio',
+  },
+  finished: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo no puede estar vacio',
+  },
+  imgURL: {
+    validation: (value:string) => value.trim() !== '' && value.startsWith(CLOUDINARY_DOMAIN) ,
+    message: 'Este campo debe de ser una URL de Cloudinary válida',
+  },
+}
+
 interface Props {
   authors: Author[];
 }
 
 const AdminCreateSerie:NextPage<Props> = ({authors}) => {
-  const { imgURL, name, sinopsis, genre, finished, author, periodicy ,onInputChange, formState} = useForm({
+  const [showErrors, setShowErrors] = useState(false)
+  const { imgURL, name, sinopsis, genre, finished, author, periodicy, errors ,onInputChange, formState} = useForm({
     name: '',
     author: '',
     imgURL: '',
@@ -20,19 +46,25 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
     genre: '',
     periodicy: '',
     finished: '',
-  })
+  }, formValidations)
 
   const [ genres, setGenres ] = useState<string[]>([])
 
   const onSave = (e:FormEvent) => {
     e.preventDefault()
-    console.log('Hay que realizar la inserción')
-    console.log({...formState, genre: genres})
     const genre = genres.map( g => g.toUpperCase()).join(', ')
-    const required = [name, author, imgURL, genre, periodicy, finished ]
-    if( required.some(value => value.trim() === '' || !value)) {
-      console.log('Por favor corrigue los campos requeridos')
+
+    if( !genre ) {
+      setShowErrors(true)
+      return
     }
+    if( Object.values(errors).some( value => value !== null) ) {
+      setShowErrors(true)
+      return
+    }
+    console.log({...formState, genre: genres})
+    console.log('Hay que realizar la inserción')
+    console.log('formulario valido')
   }
 
   const addGenre = () => {
@@ -46,7 +78,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
   }
 
   return (
-    <AppLayout title="Crear producto | Admin" maxWidth='md'>
+    <AppLayout title="Crear serie | Admin" maxWidth='md'>
       <h1 className='title'>Agregar nueva serie</h1>
       <form className='mx-auto mb-4 max-w-lg' onSubmit={onSave}>
         <div className='flex flex-col gap-4 mb-4'>
@@ -63,8 +95,8 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               placeholder='Elige el nombre de la serie'
               value={ name }
               onChange={ onInputChange }
-              required
             />
+            { (errors.name && showErrors) && (<p className='text-error'>{errors.name}</p>) }
           </div>
           
           <div className='flex flex-col gap-2'>
@@ -75,6 +107,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               name="author"
               id="author"
               className='input bg-white'
+              value={ author }
               onChange={ onInputChange }
             >
               <option
@@ -90,6 +123,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
                 })
               }
             </select>
+            { (errors.author && showErrors) && (<p className='text-error'>{errors.author}</p>) }
           </div>
 
           <div className='flex flex-col gap-2'>
@@ -107,6 +141,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               <option value="true">Finalizado</option>
               <option value="false">En progreso</option>
             </select>
+            { (errors.finished && showErrors) && (<p className='text-error'>{errors.finished}</p>) }
           </div>
 
           <div className='flex flex-col gap-2'>
@@ -133,13 +168,16 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
                 className='btn bg-accent'
                 type='button'
                 onClick={ () => addGenre() }
-              >Agregar</button>
+              >
+                Agregar
+              </button>
             </div>
             <div className='flex gap-2'>
               {
                 genres.map((g) => {
                   return (
                     <button
+                      key={g}
                       className='btn text-sm'
                       type='button'
                       onClick={() => removeGenre(g) }
@@ -150,6 +188,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
                 })
               }
             </div>
+            { (genres.length === 0 && showErrors) && (<p className='text-error'>Debes agregar un genero</p>)  }
           </div>
 
           <div className='flex flex-col gap-2'>
@@ -167,7 +206,9 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               <option value="MENSUAL" >Mensual</option>
               <option value="BIMESTRUAL" >Bimestral</option>
             </select>
+            { (errors.periodicy && showErrors) && (<p className='text-error'>{errors.periodicy}</p>) }
           </div>
+
           <div className='flex flex-col gap-2'>
             <label htmlFor="imgURL" className='text-lg'>
               Coloca la URL de la serie (cloudinary)
@@ -181,6 +222,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               value={ imgURL }
               onChange={ onInputChange }
             />
+            { (errors.imgURL && showErrors) && (<p className='text-error'>{errors.imgURL}</p>) }
           </div>
 
           <div className='flex flex-col gap-2'>
@@ -197,6 +239,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
               onChange={ onInputChange }
             />
           </div>
+
         </div>
         <button className='btn bg-accent w-full'>Guardar</button>
       </form>
