@@ -105,6 +105,12 @@ export const Sidebar = () => {
               >
                 Series
               </button>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/mangas') }
+              >
+                Mangas
+              </button>
             </section>
           </>
         )
