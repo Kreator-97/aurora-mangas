@@ -38,16 +38,17 @@ model Author {
 }
 
 model Serie {
-  id         String     @id @default(uuid())
-  author     Author     @relation(fields: [authorId], references: [id])
-  authorId   String
-  finished   Boolean
-  genre      String
-  imgURL     String
-  name       String
-  periodicy  Periodicy  @default(MENSUAL)
-  sinopsis   String     @db.MediumText
-  volumes    Manga[]
+  id            String     @id @default(uuid())
+  author        Author     @relation(fields: [authorId], references: [id])
+  authorId      String
+  finished      Boolean
+  genre         String
+  imgURL        String
+  name          String
+  periodicy     Periodicy  @default(MENSUAL)
+  sinopsis      String     @db.MediumText
+  volumes       Manga[]
+  isNewRelease  Boolean?
 }
 
 model Manga {

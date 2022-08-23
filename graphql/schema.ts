@@ -29,15 +29,16 @@ export const typeDefs = gql`
   }
 
   type Serie {
-    id        : ID
-    author    : Author
-    finished  : Boolean!
-    genre     : String!
-    imgURL    : String!
-    name      : String!
-    periodicy : Periodicy
-    sinopsis  : String
-    volumes   : [Manga]
+    id          : ID
+    author      : Author
+    finished    : Boolean!
+    genre       : String!
+    imgURL      : String!
+    name        : String!
+    periodicy   : Periodicy
+    isNewRelease: Boolean
+    sinopsis    : String
+    volumes     : [Manga]
   }
 
   type Manga {
