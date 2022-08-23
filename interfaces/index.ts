@@ -5,10 +5,10 @@ export interface Author {
 
 export interface Manga {
   id    : string;
-  serie : string;
+  serie : Serie;
   number: string;
   price : number;
-  author: string;
+  author: Author;
   imgURL: string;
   published: string
   title?: string;

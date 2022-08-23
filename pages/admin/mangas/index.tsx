@@ -2,18 +2,16 @@ import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { dbUsers } from '../../../database'
+import { dbMangas, dbUsers } from '../../../database'
 import { Manga } from '../../../interfaces'
 import { AppLayout } from '../../../layouts'
 import { Table } from '../../../components'
 
 interface Props {
-  products: Manga[]
+  mangas: Manga[]
 }
 
-import { series as products } from '../../../database/seed'
-
-const AdminProductPage: NextPage<Props> = ({}) => {
+const AdminProductPage: NextPage<Props> = ({mangas}) => {
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>
@@ -25,22 +23,23 @@ const AdminProductPage: NextPage<Props> = ({}) => {
           </Link>
         </div>
         {
-          products.length === 0 
+          mangas.length === 0 
             ? (
               <h2 className='text-lg text-center'>No existen datos de Mangas</h2>
             )
             : (
               <Table
-                columns={['Id', 'Nombre', 'Autor', 'Generos']}
+                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación']}
               >
                 {
-                  products.map((p) => {
+                  mangas.map((manga) => {
                     return (
-                      <tr key={p.id}>
-                        <td>{p.id}</td>
-                        <td>{p.name}</td>
-                        <td>{p.author.name}</td>
-                        <td>{p.genre}</td>
+                      <tr key={manga.id}>
+                        <td>{manga.id}</td>
+                        <td>{manga.serie.name}</td>
+                        <td>{manga.number}</td>
+                        <td>{manga.price}</td>
+                        <td>{manga.published}</td>
                       </tr>
                     )
                   })
@@ -68,11 +67,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   }
-  
+
+  const mangas = await dbMangas.getAllMangas()
 
   return {
     props: {
-      products: [],
+      mangas,
     }
   }
 }
