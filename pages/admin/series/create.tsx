@@ -74,6 +74,7 @@ const AdminCreateSerie:NextPage<Props> = ({authors}) => {
       const { data } = await createSerie({variables: { serie }})
       toast.success('Serie agregada ' + data.createSerie.name )
       onResetForm()
+      setShowErrors(false)
       setGenres([])
     } catch (error) {
       console.log(error) 

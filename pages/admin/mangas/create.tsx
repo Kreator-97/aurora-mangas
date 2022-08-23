@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import toast, { Toaster } from 'react-hot-toast'
@@ -72,6 +72,7 @@ const AdminCreateSerie:NextPage<Props> = ({series}) => {
         serieId: serie, title, number, imgURL, price: Number(price), published
       }})
       toast.success(data.createManga.message)
+      setShowErrors(false)
       onResetForm()
     } catch (error) {
       console.log(error)
