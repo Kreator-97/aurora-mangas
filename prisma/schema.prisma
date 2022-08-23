@@ -49,6 +49,7 @@ model Serie {
   sinopsis      String     @db.MediumText
   volumes       Manga[]
   isNewRelease  Boolean?
+  slug          String     @unique
 }
 
 model Manga {

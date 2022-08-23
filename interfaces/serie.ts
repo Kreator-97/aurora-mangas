@@ -11,5 +11,6 @@ export interface Serie {
   periodicy     : 'MENSUAL' | 'BIMESTRAL';
   sinopsis?     : string;
   volumes       : Manga[];
-  isNewRelease? : boolean
+  isNewRelease? : boolean;
+  slug          : string;
 }

@@ -39,6 +39,7 @@ export const typeDefs = gql`
     isNewRelease: Boolean
     sinopsis    : String
     volumes     : [Manga]
+    slug        : String!
   }
 
   type Manga {
@@ -59,6 +60,7 @@ export const typeDefs = gql`
     name      : String!
     periodicy : Periodicy
     sinopsis  : String
+    slug      : String!
   }
 
   type Query {
