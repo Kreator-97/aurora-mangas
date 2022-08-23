@@ -7,3 +7,16 @@ export const getSeries = async () => {
   }})
   return series
 }
+
+export const getNewReleaseSeries = async () => {
+  const series = await prisma.serie.findMany({
+    where: {
+      isNewRelease: true,
+    },  
+    include: {
+      author: true,
+    }
+  })
+
+  return series
+}
