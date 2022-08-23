@@ -13,7 +13,7 @@ export const CardSuscribe: FC<Props> = ({ serie }) => {
   const router = useRouter()
   
   const goToSucribePage = () => {
-    router.push(`/suscribe/${serie.name}`)
+    router.push(`/suscribe/${serie.slug}`)
   }
 
   return (
