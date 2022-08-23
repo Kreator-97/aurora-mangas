@@ -17,3 +17,13 @@ export const CREATE_AUTHOR = gql`
     }
   }
 `
+
+export const CREATE_MANGA = gql`
+  mutation CreateManga($serieId: String!, $number: String!, $price: Int!, $imgURL: String!, $published: String!, $title: String) {
+    createManga(serieId: $serieId, number: $number, price: $price, imgURL: $imgURL, published: $published, title: $title) {
+      ok
+      error
+      message
+    }
+  }
+` 
