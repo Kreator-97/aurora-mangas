@@ -20,3 +20,14 @@ export const getNewReleaseSeries = async () => {
 
   return series
 }
+
+export const getSerieBySlug = async (slug:string) => {
+  const serie = await prisma.serie.findFirst({
+    where: { slug },
+    include: {
+      author: true,
+      volumes: true
+    }
+  })
+  return serie
+}
