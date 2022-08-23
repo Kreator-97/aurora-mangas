@@ -1,15 +1,16 @@
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { CardGrid, CardManga, Pagination } from '../components'
-import { dbSeries } from '../database'
-import { Serie } from '../interfaces'
+import { dbMangas, dbSeries } from '../database'
+import { Manga, Serie } from '../interfaces'
 import { AppLayout } from '../layouts'
 
 interface Props {
   series: Serie[]
+  mangas: Manga[]
 }
 
-const Home: NextPage<Props> = ({series}) => {
+const Home: NextPage<Props> = ({series, mangas}) => {
 
   return (
     <AppLayout title='Aurora Mangas | Página de inicio'>
@@ -22,18 +23,13 @@ const Home: NextPage<Props> = ({series}) => {
       </h1>
 
       <CardGrid gridCols='grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' >
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
-        <CardManga />
+        {
+          mangas.map((manga) => {
+            return (
+              <CardManga manga={manga} key={manga.id}/>
+            )
+          })
+        }
       </CardGrid>
       <Pagination totalPages={20}/>
     </AppLayout>
@@ -43,11 +39,15 @@ const Home: NextPage<Props> = ({series}) => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const series = await dbSeries.getSeries()
+  const [ series, mangas ] = await Promise.all([
+    await dbSeries.getNewReleaseSeries(),
+    await dbMangas.getAllMangasPublished(),
+  ])
 
   return {
     props: {
       series,
+      mangas
     }
   }
 }
