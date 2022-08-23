@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { dbUsers } from '../database'
+import { suggestSlug } from '../util'
 
 const prisma = new PrismaClient()
 
@@ -39,6 +40,9 @@ export const resolvers = {
     createSerie: async (root:any, args:any ) => {
       const { genre, imgURL, finished, name, sinopsis,periodicy, author } = args.serie
 
+      // we generate a slug automatically
+      const slug = suggestSlug(name)
+      
       try {
         const result = await prisma.serie.create({data: {
           finished,
@@ -52,6 +56,7 @@ export const resolvers = {
             }
           },
           periodicy,
+          slug,
         }, include: { author: true }})
         return result
       } catch (error) {
