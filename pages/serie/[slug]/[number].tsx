@@ -18,8 +18,7 @@ const MangaPage:FC<Props> = ({manga}) => {
   const title = `${manga.serie.name} #${manga.number}`
 
   return (
-    <AppLayout title='' maxWidth='md'>
-      {/* // TODO: Agregar animación de entrada en la imagen */}
+    <AppLayout title={title} maxWidth='md'>
       <div className='grid grid-cols-1 sm:grid-cols-2 py-4'>
         <Image
           src={manga.imgURL}
@@ -27,7 +26,7 @@ const MangaPage:FC<Props> = ({manga}) => {
           layout="responsive"
           width={ 170 }
           height={ 255 }
-          className="object-contain cursor-pointer"
+          className="object-contain cursor-pointer animate__animated animate__backInLeft"
         />
         <div className='px-4 py-2'>
           <h1 className='text-3xl mb-4'><Link href={`/serie/${manga.serie.slug}`} >{title}</Link></h1>
