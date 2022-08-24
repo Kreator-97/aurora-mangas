@@ -1,4 +1,3 @@
-import { Author } from './author'
 import { Serie } from './serie'
 
 export interface Manga {
@@ -6,7 +5,6 @@ export interface Manga {
   serie : Serie;
   number: string;
   price : number;
-  author: Author;
   imgURL: string;
   published: string
   title?: string;

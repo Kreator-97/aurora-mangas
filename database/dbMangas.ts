@@ -28,3 +28,15 @@ export const getAllMangasPublished = async () => {
   return filteredMangas
 }
 
+export const getMangaBySerieAndNumber = async (serieName: string, number: string ) => {
+  const manga = await prisma.manga.findFirst({ where: {
+    serie: {slug: serieName}, AND: { number }
+  },
+  include: {
+    serie: {
+      include: { author: true }
+    },
+  }})
+
+  return manga
+}
