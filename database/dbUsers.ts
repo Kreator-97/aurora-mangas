@@ -9,6 +9,14 @@ interface RegisterUserProps {
   fullname: string;
 }
 
+export const isEmailAvailible = async (email:string):Promise<boolean> => {
+  const user = await prisma.user.findUnique({where: { email }})
+  if( user ) {
+    await Promise.reject('This email already has been registered. Use other one')
+  }
+  return true
+}
+
 export const registerUser = async ({fullname, password, email}:RegisterUserProps) => {
 
   const hash = bcrypt.hashSync(password, 10)

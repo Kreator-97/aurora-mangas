@@ -26,4 +26,14 @@ export const CREATE_MANGA = gql`
       message
     }
   }
-` 
+`
+
+export const CREATE_USER = gql`
+  mutation CreateUser($email: String!, $fullname: String!, $password: String!) {
+    createUser(email: $email, fullname: $fullname, password: $password) {
+      ok
+      error
+      message
+    }
+  }
+`

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { HiOutlineHeart } from 'react-icons/hi'
 
 import { Manga } from '../../interfaces'
@@ -10,18 +11,18 @@ interface Props {
 }
 
 export const CardManga:FC<Props> = ({manga}) => {
+  const router = useRouter()
 
   return (
     <div className="bg-white relative">
-      <Link href={`/serie/${manga.serie.slug}/${manga.number}`}>
-        <Image
-          src={manga.imgURL}
-          layout="responsive"
-          width={ 170 }
-          height={ 255 }
-          className="object-contain cursor-pointer"
-        />
-      </Link>
+      <Image
+        src={manga.imgURL}
+        layout="responsive"
+        width={ 170 }
+        height={ 255 }
+        className="object-contain cursor-pointer"
+        onClick={ () => router.push(`/serie/${manga.serie.slug}/${manga.number}`) }
+      />
       <div className='p-2 flex flex-col items-center'>
         <Link passHref href={`/serie/${manga.serie.slug}`}>
           <a className='text-dark text-xl text-center hover:underline'>{ manga.serie.name } #{manga.number}</a>
