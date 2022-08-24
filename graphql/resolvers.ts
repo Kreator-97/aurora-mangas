@@ -105,10 +105,10 @@ export const resolvers = {
       }
     },
     async createUser(parent: any, args: any) {
-      console.log({args})
       const { fullname, email, password } = args
 
       try {
+        await dbUsers.isEmailAvailible(email)
         const user = await dbUsers.registerUser({email, password, fullname})
         return {
           user: user,
@@ -118,10 +118,11 @@ export const resolvers = {
         }
 
       } catch(error) {
+        console.log(error)
         return {
           user: null,
           ok: false,
-          message: 'User was not created',
+          message: (error as string),
           error,
         }
       }

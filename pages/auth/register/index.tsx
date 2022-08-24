@@ -1,20 +1,41 @@
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { getSession, signIn } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import { HiArrowSmLeft } from 'react-icons/hi'
+import toast, { Toaster } from 'react-hot-toast'
+import { useMutation } from '@apollo/client'
+
 import { useForm } from '../../../hooks'
+import { CREATE_USER } from '../../../graphql/client'
+
+const validations = {
+  email: {
+    validation: (value:string) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(value),
+    message: 'Este campo es requerido'
+  },
+  password: {
+    validation: (value:string) => value.length > 5,
+    message: 'La contraseña debe de tener 6 o más caracteres'
+  },
+  name: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo es requerido'
+  }
+}
 
 const RegisterPage = () => {
   const router = useRouter()
-  const { email, password, name, onInputChange } = useForm({
+  const { email, password, name, onInputChange, errors } = useForm({
     email: '',
     password: '',
     name: '',
-  })
+  }, validations)
 
+  const [ showErrors, setShowErrors] = useState(false)
+  const [ createUser ] = useMutation(CREATE_USER)
 
   const onGoogleSignIn = async () => {
     console.log('Hay que realizar el signin con google')
@@ -25,12 +46,29 @@ const RegisterPage = () => {
     } 
   }
 
-  const onSubmit = (e:FormEvent) => {
+  const onSubmit = async (e:FormEvent) => {
     e.preventDefault()
-    // TODO: send request to graphql endpoint to crete user 
-    const required = [email, password, name]
-    if( required.some( value => value.trim() === '' || !value) ) return
-    console.log('Hay que realizar el logueo')
+
+    if ( Object.values( errors).some( (value) => value !== null ) ) {
+      setShowErrors(true)
+      return
+    }
+
+    try {
+      const { data } = await createUser({ variables: {
+        email, password, fullname: name,
+      }})
+
+      if( !data.createUser.ok ) {
+        throw new Error(data.createUser.message)
+      }
+
+      toast.success(data.createUser.message)
+      await signIn('credentials', { email, password } )
+    } catch(error) {
+      console.error(error)
+      toast.error((error as {message: string}).message)
+    }
   }
 
   return (
@@ -59,6 +97,7 @@ const RegisterPage = () => {
               onChange={ onInputChange }
             />
           </label>
+          { (errors.name && showErrors) && (<p className='text-error text-sm'>{errors.name}</p>)}
         </div>
 
         <div className='mb-2'>
@@ -73,6 +112,7 @@ const RegisterPage = () => {
               onChange={ onInputChange }
             />
           </label>
+          { (errors.email && showErrors)&& (<p className='text-error text-sm'>{errors.email}</p>)}
         </div>
 
         <div className='mb-2'>
@@ -87,6 +127,7 @@ const RegisterPage = () => {
               onChange={ onInputChange }
             />
           </label>
+          { (errors.password && showErrors) && (<p className='text-error text-sm'>{errors.password}</p>)}
         </div>
         <button
           className='btn bg-accent hover:bg-accentDark w-full mb-2'
@@ -105,6 +146,7 @@ const RegisterPage = () => {
           ¿Ya tienes cuenta?, Inicia sesión
           </a>
         </Link>
+        <Toaster position='top-center'/>
       </form>
     </div>
   )
