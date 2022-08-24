@@ -1,8 +1,8 @@
+import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { FC } from 'react'
 import { HiOutlineHeart } from 'react-icons/hi'
+
 import { Manga } from '../../interfaces'
 
 interface Props {
@@ -10,25 +10,21 @@ interface Props {
 }
 
 export const CardManga:FC<Props> = ({manga}) => {
-  const router = useRouter()
 
-  const navigateTo = (url:string) => {
-    router.push(url)
-  }
-  
   return (
     <div className="bg-white relative">
-      <Image
-        src={manga.imgURL}
-        layout="responsive"
-        width={ 170 }
-        height={ 255 }
-        className="object-contain cursor-pointer"
-        onClick={ () => navigateTo('/serie/hunter-x-hunter/01') }
-      />
+      <Link href={`/serie/${manga.serie.slug}/${manga.number}`}>
+        <Image
+          src={manga.imgURL}
+          layout="responsive"
+          width={ 170 }
+          height={ 255 }
+          className="object-contain cursor-pointer"
+        />
+      </Link>
       <div className='p-2 flex flex-col items-center'>
-        <Link passHref href={`/serie/${manga.serie.name}`}>
-          <a className='text-dark text-xl text-center'>{ manga.serie.name } #{manga.number}</a>
+        <Link passHref href={`/serie/${manga.serie.slug}`}>
+          <a className='text-dark text-xl text-center hover:underline'>{ manga.serie.name } #{manga.number}</a>
         </Link>
         <p className='text-dark text-lg'>$ { manga.price }</p>
         <button className='btn bg-accent text-dark w-full'>Agregar al carrito</button>
