@@ -1,7 +1,20 @@
 import { ShoppingCart, ShoppingItem } from '../interfaces'
 
 export const addItemInLocal = (prevCart: ShoppingCart, newItem: ShoppingItem) => {
-  const cart: ShoppingCart = {...prevCart, items: [...prevCart.items, newItem], total: (newItem.amount * newItem.product.price) + prevCart.total }
+
+  const cart: ShoppingCart = {
+    ...prevCart,
+    items: prevCart.items.map((item => {
+      if( item.product.id === newItem.product.id ) {
+        return {
+          product: item.product,
+          amount: item.amount + newItem.amount
+        }
+      }
+      return item
+    })),
+    total: (newItem.amount * newItem.product.price) + prevCart.total
+  }
   updateItemsInLocal(cart)
 }
 

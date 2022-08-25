@@ -22,7 +22,7 @@ export const shoppingCartSlice = createSlice({
         return
       }
       
-      item.amount++
+      item.amount += amount
       state.total = state.total + (product.price * amount )
     },
     removeItem: (state, action: PayloadAction<{ id: string}>) => {
