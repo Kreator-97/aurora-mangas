@@ -7,6 +7,8 @@ import { login } from '../app/slices/authSlice'
 import { Navbar, Footer, ShoppingCart } from '../components'
 import { Sidebar } from '../components'
 import { useAppDispatch } from '../app/hooks'
+import { loadShoppingCart } from '../database/dbLocal'
+import { setShoppingCart } from '../app/slices/shoppingCartSlice'
 
 interface Props {
   title     : string;
@@ -17,11 +19,19 @@ interface Props {
 export const AppLayout: NextPage<Props> = ({ title, children, maxWidth = 'xl' }) => {
   const { status, data } = useSession()
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     if( status === 'authenticated' ) {
       dispatch(login({user: data?.user}))
     }
   }, [status])
+
+  useEffect(() => {
+    const cart = loadShoppingCart()
+    if( cart ) {
+      dispatch( setShoppingCart(cart) )
+    }
+  }, [])
 
   return (
     <>

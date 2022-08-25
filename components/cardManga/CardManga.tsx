@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,7 +8,8 @@ import toast, { Toaster } from 'react-hot-toast'
 import { addItem } from '../../app/slices/shoppingCartSlice'
 import { formatPrice } from '../../util'
 import { Manga } from '../../interfaces'
-import { useAppDispatch } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { addItemInLocal } from '../../database/dbLocal'
 
 interface Props {
   manga: Manga;
@@ -16,14 +17,15 @@ interface Props {
 
 export const CardManga:FC<Props> = ({manga}) => {
   const router = useRouter()
+  const { cart } = useAppSelector(state => state)
   const dispatch = useAppDispatch()
 
   const onAddToCart = () => {
     dispatch( addItem({
       amount: 1,
       product: manga,
-    }))
-
+    }), )
+    addItemInLocal(cart, {amount: 1, product: manga})
     toast.success('Producto agregado al carrito')
   }
 
@@ -44,7 +46,7 @@ export const CardManga:FC<Props> = ({manga}) => {
         <p className='text-dark text-lg'>{ formatPrice(manga.price) }</p>
         <button
           className='btn bg-accent text-dark w-full'
-          onClick={ () => onAddToCart( )}
+          onClick={ () => onAddToCart()}
         >
           Agregar al carrito
         </button>
