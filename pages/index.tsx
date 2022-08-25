@@ -43,7 +43,11 @@ const Home: NextPage<Props> = ({series, mangasInfo}) => {
           })
         }
       </CardGrid>
-      <Pagination totalPages={totalPages} initialPage={page} onPageChange={onPageChange} />
+      <Pagination
+        totalPages={totalPages}
+        initialPage={page}
+        onPageChange={onPageChange}
+      />
     </AppLayout>
   )
 }
