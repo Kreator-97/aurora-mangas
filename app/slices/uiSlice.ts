@@ -2,25 +2,33 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface State {
   isSidebarOpen: boolean;
+  isShoppingCartOpen: boolean;
 }
 
 const initialState: State = {
   isSidebarOpen: false,
+  isShoppingCartOpen: false,
 }
 
 const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    open: (state) => {
+    openSidebar: (state) => {
       state.isSidebarOpen = true
     },
-    close: (state) => {
+    closeSidebar: (state) => {
       state.isSidebarOpen = false
+    },
+    closeShoppingCart: (state) => {
+      state.isShoppingCartOpen = false
+    },
+    openShoppingCart: (state) => {
+      state.isShoppingCartOpen = true
     }
   }
 })
 
-export const { close, open } = uiSlice.actions
+export const { closeSidebar, openSidebar, closeShoppingCart, openShoppingCart } = uiSlice.actions
 
 export default uiSlice.reducer
