@@ -1,10 +1,15 @@
 import { ShoppingCart, ShoppingItem } from '../interfaces'
 
 export const addItemInLocal = (prevCart: ShoppingCart, newItem: ShoppingItem) => {
+  const productIndex = prevCart.items.findIndex( (item) => item.product.id === newItem.product.id )
+  let items: ShoppingItem[] = []
 
-  const cart: ShoppingCart = {
-    ...prevCart,
-    items: prevCart.items.map((item => {
+  if( productIndex === -1 ) {
+    // product is not included in cart, we add it
+    items = [...prevCart.items, newItem]
+  } else {
+    // product is included in cart, we increment the amount
+    items = prevCart.items.map((item => {
       if( item.product.id === newItem.product.id ) {
         return {
           product: item.product,
@@ -12,7 +17,12 @@ export const addItemInLocal = (prevCart: ShoppingCart, newItem: ShoppingItem) =>
         }
       }
       return item
-    })),
+    }))
+  }
+
+  const cart: ShoppingCart = {
+    ...prevCart,
+    items,
     total: (newItem.amount * newItem.product.price) + prevCart.total
   }
   updateItemsInLocal(cart)
