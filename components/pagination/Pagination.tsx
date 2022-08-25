@@ -2,10 +2,12 @@ import { FC, useState } from 'react'
 
 interface Props {
   totalPages: number;
+  initialPage?: number;
+  onPageChange?: (page:number) => void;
 }
 
-export const Pagination: FC<Props> = ({totalPages}) => {
-  const [ currentPage, setCurrentPage] = useState<number>(1)
+export const Pagination: FC<Props> = ({totalPages, initialPage, onPageChange}) => {
+  const [ currentPage, setCurrentPage] = useState<number>(initialPage || 1)
   // page init to 1
 
   let minPage = 1
@@ -37,6 +39,12 @@ export const Pagination: FC<Props> = ({totalPages}) => {
     pages.push(i)
   }
 
+  const onPageChangeEvent = (page:number) => {
+    const newPage = page === 1 ? 1 : page 
+    setCurrentPage(newPage)
+    onPageChange && onPageChange(newPage)
+  }
+
   return (
     <div className='mx-auto my-2 flex gap-2 justify-center'>
       {
@@ -48,7 +56,7 @@ export const Pagination: FC<Props> = ({totalPages}) => {
             <button
               className={`text-xl py-1 rounded bg-accent ${p === currentPage ? 'active' : ''}`}
               key={`page-${page}`}
-              onClick={ () => setCurrentPage(page === 1 ? 1 : page) }
+              onClick={ () => onPageChangeEvent(page) }
             >
               <span className='w-9 block'>
                 {page}
