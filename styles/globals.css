@@ -8,6 +8,8 @@
   --bg-color: #001E31;
   --bg-color2: #00474F;
   --stroke-color: #07695b70;
+  --stroke-light: rgba(238, 238, 238, 0.5);
+  --accent : hsl(200, 100%, 40%);
   --success: #21C728;
   --success-dark: #118A16;
   --dark: #333;

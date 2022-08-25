@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { FormEvent, useState } from 'react'
 import { HiMenu, HiOutlineShoppingCart, HiOutlineSearchCircle } from 'react-icons/hi'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
@@ -11,7 +12,10 @@ export const Navbar = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const { items } = useAppSelector( state => state.cart)
-  
+
+  const q = router.query.q?.toString()
+  const [ searchInput, setSearchInput] = useState(q || '')
+
   const openMenu = () => {
     dispatch( openSidebar() )
   }
@@ -22,7 +26,12 @@ export const Navbar = () => {
 
   const navigateTo = (url:string) => {
     router.push(url)
-  } 
+  }
+
+  const onSearch = (e:FormEvent) => {
+    e.preventDefault()
+    navigateTo(`/search?q=${searchInput.replace('#', 'no.')}`)
+  }
 
   return (
     <nav className={ styles.container }>
@@ -53,11 +62,15 @@ export const Navbar = () => {
           />
           <span className='w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2'>{items.length}</span>
         </div>
-        <input
-          type="search"
-          placeholder='Encuentra tu manga favorito'
-          className='col-span-2 rounded border-cyan-400 border p-1 text-sm text-dark'
-        />
+        <form className='flex col-span-2' onSubmit={ onSearch }>
+          <input
+            type="search"
+            placeholder='Encuentra tu manga favorito. Ejemplo: one punch man #1'
+            className='w-full rounded border-cyan-400 border p-1 text-sm text-dark'
+            value={ searchInput }
+            onChange={ (e) => setSearchInput(e.target.value) }
+          />
+        </form>
         <HiOutlineSearchCircle
           color='white'
           size={32}
