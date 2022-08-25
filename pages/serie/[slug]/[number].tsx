@@ -3,14 +3,16 @@ import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
+import { useDispatch } from 'react-redux'
 
+import { addItem } from '../../../app/slices/shoppingCartSlice'
+import { addItemInLocal } from '../../../database/dbLocal'
 import { AppLayout } from '../../../layouts'
 import { dbMangas } from '../../../database'
 import { Manga } from '../../../interfaces'
-import { useCounter } from '../../../hooks'
-import { useDispatch } from 'react-redux'
-import { addItem } from '../../../app/slices/shoppingCartSlice'
 import { openShoppingCart } from '../../../app/slices/uiSlice'
+import { useAppSelector } from '../../../app/hooks'
+import { useCounter } from '../../../hooks'
 
 interface Props {
   manga: Manga;
@@ -18,6 +20,7 @@ interface Props {
 
 const MangaPage:FC<Props> = ({manga}) => {
   const dispatch = useDispatch()
+  const { cart } = useAppSelector(state => state)
 
   const { counter, increment, decrement } = useCounter({initial:1, minValue: 1})
   const title = `${manga.serie.name} #${manga.number}`
@@ -25,6 +28,7 @@ const MangaPage:FC<Props> = ({manga}) => {
   const onAddToCart = () => {
     dispatch( addItem({amount: counter, product: manga}))
     dispatch( openShoppingCart() )
+    addItemInLocal(cart, {amount: counter, product: manga})
   }
 
   return (
