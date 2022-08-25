@@ -44,3 +44,23 @@ export const getSerieBySlug = async (slug:string) => {
   })
   return serie
 }
+
+export const searchSeries = async (query:string) => {
+  if (query === '') return []
+
+  const results = await prisma.serie.findMany({
+    where: {
+      name: {
+        contains: query
+      }
+    },
+  })
+
+  return results
+  // const filteredMangas = results.filter((manga) => {
+  //   const publishedDate = new Date(manga.published)
+  //   return publishedDate.getTime() < Date.now()
+  // })
+
+  // return filteredMangas
+}

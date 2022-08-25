@@ -57,3 +57,30 @@ export const getMangaBySerieAndNumber = async (serieName: string, number: string
 
   return manga
 }
+
+export const searchMangas = async (query:string) => {
+
+  if (query === '') return []
+
+  const results = await prisma.manga.findMany({
+    where: {
+      title: {
+        contains: query
+      }
+      
+    },
+    orderBy: {
+      title: 'asc'
+    },
+    include: {
+      serie: true,
+    }
+  })
+
+  const filteredMangas = results.filter((manga) => {
+    const publishedDate = new Date(manga.published)
+    return publishedDate.getTime() < Date.now()
+  })
+
+  return filteredMangas
+}

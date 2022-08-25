@@ -29,7 +29,7 @@ export const CardManga:FC<Props> = ({manga}) => {
   }
 
   return (
-    <div className="bg-white relative">
+    <div className="bg-white relative min-w-[220px]">
       <Image
         src={manga.imgURL}
         layout="responsive"
