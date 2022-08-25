@@ -3,10 +3,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import { closeShoppingCart } from '../../app/slices/uiSlice'
-import { formatPrice } from '../../util'
+import { dbLocal, formatPrice } from '../../util'
 import { removeItem } from '../../app/slices/shoppingCartSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { removeItemInLocal } from '../../database/dbLocal'
 
 const headerHeight = '65px'
 const footerHeight = '108px'
@@ -23,7 +22,7 @@ export const ShoppingCart = () => {
 
   const onRemove = (id:string) => {
     dispatch(removeItem({ id }))
-    removeItemInLocal({items, total}, id)
+    dbLocal.removeItemInLocal({items, total}, id)
   }
 
   const goToCheckout = () => {

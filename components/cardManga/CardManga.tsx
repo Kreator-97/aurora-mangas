@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -6,10 +6,9 @@ import { HiOutlineHeart } from 'react-icons/hi'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { addItem } from '../../app/slices/shoppingCartSlice'
-import { formatPrice } from '../../util'
+import { dbLocal, formatPrice } from '../../util'
 import { Manga } from '../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { addItemInLocal } from '../../database/dbLocal'
 
 interface Props {
   manga: Manga;
@@ -25,7 +24,7 @@ export const CardManga:FC<Props> = ({manga}) => {
       amount: 1,
       product: manga,
     }), )
-    addItemInLocal(cart, {amount: 1, product: manga})
+    dbLocal.addItemInLocal(cart, {amount: 1, product: manga})
     toast.success('Producto agregado al carrito')
   }
 

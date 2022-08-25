@@ -4,9 +4,8 @@ import { getSession } from 'next-auth/react'
 import Image from 'next/image'
 
 import { AppLayout } from '../../layouts'
-import { formatPrice } from '../../util'
+import { dbLocal, formatPrice } from '../../util'
 import { removeItem, setAmount } from '../../app/slices/shoppingCartSlice'
-import { removeItemInLocal, setProductAmountInLocal } from '../../database/dbLocal'
 import { SelectAmount } from '../../components/selectAmount/SelectAmount'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
@@ -21,18 +20,18 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
   const onIncrement = (amount:number, id:string ) => {
     const newAmount = amount < 1 ? 1 : amount
     dispatch(setAmount({amount: newAmount, id}))
-    setProductAmountInLocal({items, total}, newAmount, id)
+    dbLocal.setProductAmountInLocal({items, total}, newAmount, id)
   }
   
   const onDecrement = (amount:number, id:string ) => {
     const newAmount = amount < 1 ? 1 : amount
     dispatch(setAmount({amount: amount < 1 ? 1 : amount, id}))
-    setProductAmountInLocal({items, total}, newAmount, id)
+    dbLocal.setProductAmountInLocal({items, total}, newAmount, id)
   }
 
   const onRemoveItem = (id:string) => {
     dispatch(removeItem({id}))
-    removeItemInLocal({items, total}, id)
+    dbLocal.removeItemInLocal({items, total}, id)
   }
 
   if ( items.length === 0) {
