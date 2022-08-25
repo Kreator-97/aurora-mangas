@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { Manga, PrismaClient, Serie } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export const getAllMangas = async () => {
@@ -12,12 +12,19 @@ export const getAllMangas = async () => {
   return mangas
 }
 
-export const getAllMangasPublished = async () => {
+export interface MangasWithPagination {
+  mangas:(Manga & { serie: Serie })[]
+  total: number;
+  totalPages: number;
+  page: number
+}
+
+export const getAllMangasPublished = async (limit=12, page=1):Promise<MangasWithPagination> => {
   const mangas = await prisma.manga.findMany({
     orderBy: {
       published: 'desc'
     },
-    include: { serie: true }
+    include: { serie: true },
   })
 
   const filteredMangas = mangas.filter((manga) => {
@@ -25,7 +32,17 @@ export const getAllMangasPublished = async () => {
     return publishedDate.getTime() < Date.now()
   })
 
-  return filteredMangas
+  const total = filteredMangas.length
+  const totalPages = Math.ceil(total / limit)
+
+  const offset = page > totalPages ? 0 : (page-1) * limit
+
+  return {
+    mangas: filteredMangas.splice(offset, limit),
+    total,
+    totalPages,
+    page: page > totalPages ? 1 : page,
+  }
 }
 
 export const getMangaBySerieAndNumber = async (serieName: string, number: string ) => {
