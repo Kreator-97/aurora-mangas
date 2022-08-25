@@ -6,8 +6,8 @@ import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
 import { useDispatch } from 'react-redux'
 
 import { addItem } from '../../../app/slices/shoppingCartSlice'
-import { addItemInLocal } from '../../../database/dbLocal'
 import { AppLayout } from '../../../layouts'
+import { dbLocal } from '../../../util'
 import { dbMangas } from '../../../database'
 import { Manga } from '../../../interfaces'
 import { openShoppingCart } from '../../../app/slices/uiSlice'
@@ -28,7 +28,7 @@ const MangaPage:FC<Props> = ({manga}) => {
   const onAddToCart = () => {
     dispatch( addItem({amount: counter, product: manga}))
     dispatch( openShoppingCart() )
-    addItemInLocal(cart, {amount: counter, product: manga})
+    dbLocal.addItemInLocal(cart, {amount: counter, product: manga})
   }
 
   return (

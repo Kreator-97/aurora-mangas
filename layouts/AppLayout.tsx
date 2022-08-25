@@ -3,12 +3,12 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 
+import { dbLocal } from '../util'
 import { login } from '../app/slices/authSlice'
 import { Navbar, Footer, ShoppingCart } from '../components'
+import { setShoppingCart } from '../app/slices/shoppingCartSlice'
 import { Sidebar } from '../components'
 import { useAppDispatch } from '../app/hooks'
-import { loadShoppingCart } from '../database/dbLocal'
-import { setShoppingCart } from '../app/slices/shoppingCartSlice'
 
 interface Props {
   title     : string;
@@ -27,7 +27,7 @@ export const AppLayout: NextPage<Props> = ({ title, children, maxWidth = 'xl' })
   }, [status])
 
   useEffect(() => {
-    const cart = loadShoppingCart()
+    const cart = dbLocal.loadShoppingCart()
     if( cart ) {
       dispatch( setShoppingCart(cart) )
     }
