@@ -51,6 +51,11 @@ html {
   @apply px-2 py-1 font-normal text-light rounded transition-colors border border-solid border-light;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  @apply bg-strokeLight
+}
+
 .btn.ghost {
   @apply text-accent bg-opacity-0 border-accent;
 }

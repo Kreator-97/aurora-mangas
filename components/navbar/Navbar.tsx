@@ -1,16 +1,23 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { HiMenu, HiOutlineShoppingCart, HiOutlineSearchCircle } from 'react-icons/hi'
-import { useAppDispatch } from '../../app/hooks'
-import { open } from '../../app/slices/uiSlice'
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { openSidebar, openShoppingCart } from '../../app/slices/uiSlice'
+
 import styles from './Navbar.module.css'
 
 export const Navbar = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
+  const { items } = useAppSelector( state => state.cart)
   
   const openMenu = () => {
-    dispatch( open() )
+    dispatch( openSidebar() )
+  }
+
+  const openShoppingCartMenu = () => {
+    dispatch( openShoppingCart())
   }
 
   const navigateTo = (url:string) => {
@@ -20,6 +27,12 @@ export const Navbar = () => {
   return (
     <nav className={ styles.container }>
       <div className={ styles.content }>
+        <HiMenu
+          color='white'
+          size={32}
+          cursor="pointer"
+          onClick={ () => openMenu() }
+        />
         <Image
           src="/images/logo.png"
           alt="Aurora Mangas Logo"
@@ -29,16 +42,17 @@ export const Navbar = () => {
           className='cursor-pointer'
           onClick={ () => navigateTo('/') }
         />
-        <HiOutlineShoppingCart
-          color='white'
-          size={32}
-          cursor="pointer"/>
-        <HiMenu
-          color='white'
-          size={32}
-          cursor="pointer"
-          onClick={ () => openMenu() }
-        />
+        <div
+          className='relative cursor-pointer'
+          onClick={ () => openShoppingCartMenu() }
+        >
+          <HiOutlineShoppingCart
+            color='white'
+            size={32}
+            cursor="pointer"
+          />
+          <span className='w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2'>{items.length}</span>
+        </div>
         <input
           type="search"
           placeholder='Encuentra tu manga favorito'

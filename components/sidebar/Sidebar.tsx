@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { HiX } from 'react-icons/hi'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { close } from '../../app/slices/uiSlice'
+import { closeSidebar } from '../../app/slices/uiSlice'
 
 export const Sidebar = () => {
   const isSidebarOpen = useAppSelector( (state) => state.ui.isSidebarOpen)
@@ -13,7 +13,7 @@ export const Sidebar = () => {
 
   const user = auth.user
   const closeSideBar = () => {
-    dispatch(close())
+    dispatch(closeSidebar())
   }
 
   const navigateTo = (url:string) => {
