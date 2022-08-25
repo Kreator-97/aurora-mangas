@@ -8,14 +8,24 @@ import { AppLayout } from '../../../layouts'
 import { dbMangas } from '../../../database'
 import { Manga } from '../../../interfaces'
 import { useCounter } from '../../../hooks'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../../app/slices/shoppingCartSlice'
+import { openShoppingCart } from '../../../app/slices/uiSlice'
 
 interface Props {
   manga: Manga;
 }
 
 const MangaPage:FC<Props> = ({manga}) => {
-  const { counter, increment, decrement } = useCounter({initial:0, minValue: 1})
+  const dispatch = useDispatch()
+
+  const { counter, increment, decrement } = useCounter({initial:1, minValue: 1})
   const title = `${manga.serie.name} #${manga.number}`
+
+  const onAddToCart = () => {
+    dispatch( addItem({amount: counter, product: manga}))
+    dispatch( openShoppingCart() )
+  }
 
   return (
     <AppLayout title={title} maxWidth='md'>
@@ -53,7 +63,12 @@ const MangaPage:FC<Props> = ({manga}) => {
               <HiOutlinePlusCircle size={28} cursor="pointer" onClick={() => increment(1) }/>
             </div>
           </div>
-          <button className='btn bg-accent w-full'>Agregar al carrito</button>
+          <button
+            className='btn bg-accent w-full'
+            onClick={ () => onAddToCart()}
+          >
+            Agregar al carrito
+          </button>
         </div>
       </div>
     </AppLayout>

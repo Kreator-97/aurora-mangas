@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 
 import { login } from '../app/slices/authSlice'
-import { Navbar, Footer } from '../components'
+import { Navbar, Footer, ShoppingCart } from '../components'
 import { Sidebar } from '../components'
 import { useAppDispatch } from '../app/hooks'
 
@@ -30,6 +30,7 @@ export const AppLayout: NextPage<Props> = ({ title, children, maxWidth = 'xl' })
       </Head>
       <Navbar />
       <Sidebar />
+      <ShoppingCart />
       <main
         className='main'
         style={{
