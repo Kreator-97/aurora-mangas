@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export const Footer = () => {
   return (
-    <div
+    <footer
       className="min-h-[150px] border-t border-solid border-stroke"
     >
       <h2
@@ -23,6 +23,6 @@ export const Footer = () => {
           layout="fixed"
         />
       </div>
-    </div>
+    </footer>
   )
 }

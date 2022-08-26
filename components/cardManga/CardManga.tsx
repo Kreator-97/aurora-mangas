@@ -29,13 +29,13 @@ export const CardManga:FC<Props> = ({manga}) => {
   }
 
   return (
-    <div className="bg-white relative min-w-[220px]">
+    <div className="bg-white relative min-w-[220px] rounded">
       <Image
         src={manga.imgURL}
         layout="responsive"
         width={ 170 }
         height={ 255 }
-        className="object-contain cursor-pointer"
+        className="object-contain cursor-pointer rounded-t"
         onClick={ () => router.push(`/serie/${manga.serie.slug}/${manga.number}`) }
       />
       <div className='p-2 flex flex-col items-center'>
