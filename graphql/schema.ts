@@ -63,6 +63,15 @@ export const typeDefs = gql`
     slug      : String!
   }
 
+  input MangaInput {
+    serieId  :String!,
+    number   : String!,
+    price    : Int!,
+    imgURL   : String!,
+    published: String!,
+    title    : String
+  }
+
   type Query {
     series: [Serie!]
     authors: [Author!]
@@ -78,6 +87,13 @@ export const typeDefs = gql`
 
   type UserResponse {
     user: User
+    ok: Boolean!
+    error: String
+    message: String!
+  }
+  
+  type MangaResponse {
+    manga: Manga
     ok: Boolean!
     error: String
     message: String!
@@ -99,5 +115,6 @@ export const typeDefs = gql`
       fullname: String!,
       password: String!,
     ): UserResponse
+    updateManga(mangaId: String, manga:MangaInput): MangaResponse!
   }
 `

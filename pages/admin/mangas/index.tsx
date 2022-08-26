@@ -29,7 +29,7 @@ const AdminProductPage: NextPage<Props> = ({mangas}) => {
             )
             : (
               <Table
-                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación']}
+                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación', 'Editar']}
               >
                 {
                   mangas.map((manga) => {
@@ -40,6 +40,11 @@ const AdminProductPage: NextPage<Props> = ({mangas}) => {
                         <td>{manga.number}</td>
                         <td>{manga.price}</td>
                         <td>{manga.published}</td>
+                        <td>
+                          <Link href={`/admin/mangas/update?id=${manga.id}`}>
+                            <a className='btn bg-accent'>Editar 📝</a>
+                          </Link>
+                        </td>
                       </tr>
                     )
                   })

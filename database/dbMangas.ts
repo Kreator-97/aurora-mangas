@@ -84,3 +84,8 @@ export const searchMangas = async (query:string) => {
 
   return filteredMangas
 }
+
+export const getMangaById = async (id:string) => {
+  const manga = await prisma.manga.findUnique({where: {id: id}, include: { serie: true }})
+  return manga
+}

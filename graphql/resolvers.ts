@@ -126,6 +126,38 @@ export const resolvers = {
           error,
         }
       }
-    }
+    },
+    async updateManga(parent: any, args: any) {
+      const { mangaId } = args
+      const { serieId, number, price, imgURL, published, title } = args.manga
+
+      try {
+        const updated = await prisma.manga.update({
+          where: {
+            id: mangaId,
+          },
+          data: {
+            number, price, published, imgURL, title, serieId
+          }, include: {
+            serie: true,
+          }
+        })
+
+        return {
+          manga: updated,
+          ok: true,
+          message: 'Actualizado con éxito',
+          error: null,
+        }
+      } catch (error) {
+        console.log(error)
+        return {
+          manga: null,
+          ok: false,
+          message: 'Ocurrió un error al actualizar',
+          error: (error as { message: string }),
+        }
+      }
+    },
   }
 }

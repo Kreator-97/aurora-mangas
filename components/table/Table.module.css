@@ -1,6 +1,7 @@
 .table {
+  table-layout: auto;
   width: 100%;
-  min-width: 400px;
+  min-width: 500px;
   border-collapse: collapse;
   border-radius: .25rem;
   overflow-x: scroll;
@@ -18,8 +19,9 @@
   font-family: var(--font-regular);
   border: 1px solid var(--stroke-color);
   color: var(--text-primary);
-  max-width: 250px;
+  max-width: 150px;
   word-break: break-word;
+  min-width: 100px;
 }
 
 .table th {

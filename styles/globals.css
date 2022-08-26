@@ -27,9 +27,8 @@ html {
   color: var(--light);
   background-image: linear-gradient( var(--bg-color), var(--bg-color2));
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-size: cover;
-  /* background-attachment: fixed; */
 }
 
 .main {
