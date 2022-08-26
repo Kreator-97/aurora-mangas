@@ -1,0 +1,12 @@
+
+.cartlist-items {
+  --footerHeight: 108px;
+  --headerHeight: 65px;
+  max-height: calc(100vh - ((var(--footerHeight)) + var(--headerHeight)) );
+}
+
+@media only screen and (max-device-width: 480px){
+  .cartlist-items {
+    max-height: calc(100vh - 4rem - ((var(--footerHeight)) + var(--headerHeight)) );
+  }
+ }
