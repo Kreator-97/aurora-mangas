@@ -17,7 +17,7 @@ export const CardGrid: FC<Props> = ({ series, children, gridCols }) => {
   }
 
   return (
-    <div className={ `grid gap-2 ${gridDefault} px-2` }>
+    <div className={ `grid gap-2 ${gridDefault} px-2` } data-testid="card-suscribe">
       {
         series?.map((serie) =>(
           <CardSuscribe

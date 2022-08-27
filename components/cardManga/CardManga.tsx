@@ -29,7 +29,7 @@ export const CardManga:FC<Props> = ({manga}) => {
   }
 
   return (
-    <div className="bg-white relative min-w-[220px] rounded">
+    <div className="bg-white relative min-w-[220px] rounded" data-testid="card-manga">
       <Image
         src={manga.imgURL}
         layout="responsive"
