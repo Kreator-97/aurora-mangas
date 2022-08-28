@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Serie } from '../../interfaces'
 
-import { CardSuscribe } from '../'
+import { CardSerie } from '../'
 
 interface Props {
   series    ?: Serie[];
@@ -17,10 +17,13 @@ export const CardGrid: FC<Props> = ({ series, children, gridCols }) => {
   }
 
   return (
-    <div className={ `grid gap-2 ${gridDefault} px-2` } data-testid="card-suscribe">
+    <div
+      className={ `grid gap-2 ${gridDefault} px-2` }
+      data-testid="card-serie"
+    >
       {
-        series?.map((serie) =>(
-          <CardSuscribe
+        series?.filter((serie) => serie.isNewRelease === true).map((serie) =>(
+          <CardSerie
             key={serie.name}
             serie={serie}
           />

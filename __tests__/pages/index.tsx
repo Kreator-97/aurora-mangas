@@ -34,7 +34,7 @@ describe('Tests in Homepage', () => {
     expect(screen.getByText('Síguenos en nuestras redes sociales') ).toBeInTheDocument
 
     expect(screen.getAllByTestId('card-manga').length ).toBe(mangas.length)
-    expect(screen.getAllByTestId('card-suscribe').length )
+    expect(screen.getAllByTestId('card-serie').length )
       .toBe(series.filter(series => series.isNewRelease === true).length )
   })
 })
