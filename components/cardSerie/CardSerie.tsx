@@ -18,7 +18,10 @@ export const CardSerie: FC<Props> = ({ serie }) => {
   }
 
   return (
-    <div className='relative w-full max-w-[var(--md)]'>
+    <div
+      className='relative w-full max-w-[var(--md)]'
+      data-testid="card-serie"
+    >
       <Image
         src={ serie.imgURL }
         width={360}

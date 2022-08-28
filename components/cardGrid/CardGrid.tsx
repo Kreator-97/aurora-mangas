@@ -19,7 +19,7 @@ export const CardGrid: FC<Props> = ({ series, children, gridCols }) => {
   return (
     <div
       className={ `grid gap-2 ${gridDefault} px-2` }
-      data-testid="card-serie"
+      data-testid="card-grid"
     >
       {
         series?.filter((serie) => serie.isNewRelease === true).map((serie) =>(
