@@ -41,6 +41,7 @@ export const Navbar = () => {
           size={32}
           cursor="pointer"
           onClick={ () => openMenu() }
+          data-testid='menu'
         />
         <Image
           src="/images/logo.png"
@@ -54,6 +55,7 @@ export const Navbar = () => {
         <div
           className='relative cursor-pointer'
           onClick={ () => openShoppingCartMenu() }
+          data-testid='cart-menu'
         >
           <HiOutlineShoppingCart
             color='white'
@@ -62,7 +64,11 @@ export const Navbar = () => {
           />
           <span className='w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2'>{items.length}</span>
         </div>
-        <form className='flex col-span-2' onSubmit={ onSearch }>
+        <form
+          className='flex col-span-2'
+          onSubmit={ onSearch }
+          data-testid="search-form"
+        >
           <input
             type="search"
             placeholder='Encuentra tu manga favorito. Ejemplo: one punch man #1'

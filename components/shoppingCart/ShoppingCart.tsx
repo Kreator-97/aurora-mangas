@@ -17,7 +17,7 @@ export const ShoppingCart = () => {
   const { isShoppingCartOpen } = useAppSelector(state => state.ui)
   const { items, total } = useAppSelector(state => state.cart)
   const router = useRouter()
-  
+
   const onClose = () => {
     dispatch( closeShoppingCart() )
   }
@@ -39,7 +39,12 @@ export const ShoppingCart = () => {
         className='flex justify-between items-center border-b border-strokeLight p-4'
         style={{ height: headerHeight }}
       >
-        <HiX size={28} onClick={ () => onClose()} cursor="pointer"/>
+        <HiX
+          size={28}
+          onClick={ () => onClose()}
+          cursor="pointer"
+          data-testid="close-shopping-cart-icon"
+        />
         <h2 className="text-center text-2xl">Carrito de compra</h2>
         <div className='w-7'></div>
       </div>
@@ -58,6 +63,7 @@ export const ShoppingCart = () => {
                   width={ 100 }
                   height={ 100 }
                   className="object-contain"
+                  data-testid="cart-item"
                 />
                 <div className='px-2 w-52'>
                   <h2>{title}</h2>

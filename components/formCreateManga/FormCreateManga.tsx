@@ -87,7 +87,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
   } 
 
   return (
-    <form className='mx-auto mb-4 max-w-lg' onSubmit={onSubmitEvent}>
+    <form className='mx-auto mb-4 max-w-lg' onSubmit={onSubmitEvent} data-testid="form-create-manga">
       <div className='flex flex-col gap-4 mb-4'>
 
         <div className='flex flex-col gap-2'>
@@ -169,7 +169,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
 
         <div className='flex flex-col gap-2'>
           <label htmlFor="title" className='text-lg'>
-              Escribe un titulo (opcional)
+              Escribe un título (opcional)
           </label>
           <input
             type="text"

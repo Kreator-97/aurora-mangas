@@ -39,7 +39,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
           <p
             class="font-light"
           >
-            Peridiocidad: 
+            Periodicidad: 
             MENSUAL
           </p>
         </div>
@@ -83,7 +83,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
           <p
             class="font-light"
           >
-            Peridiocidad: 
+            Periodicidad: 
             MENSUAL
           </p>
         </div>

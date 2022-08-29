@@ -28,11 +28,25 @@ export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) 
 
       <div className='flex gap-4 mb-2 justify-center'>
         <div>
-          <HiOutlineMinusCircle size={28} cursor="pointer" onClick={() => onDecrementEvent(1) }/>
+          <HiOutlineMinusCircle
+            size={28}
+            cursor="pointer"
+            onClick={() => onDecrementEvent(1) }
+            data-testid={'decrement-icon'}
+          />
         </div>
-        <div className='font-medium text-2xl px-2'>{ counter }</div>
+        <div
+          className='font-medium text-2xl px-2'
+          data-testid={'amount-box'}
+        >{ counter }
+        </div>
         <div>
-          <HiOutlinePlusCircle size={28} cursor="pointer" onClick={() => onIncrementEvent(1) }/>
+          <HiOutlinePlusCircle
+            size={28}
+            cursor="pointer"
+            onClick={() => onIncrementEvent(1) }
+            data-testid={'increment-icon'}
+          />
         </div>
       </div>
     </div>

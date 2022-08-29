@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { HiOutlineHeart } from 'react-icons/hi'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { addItem } from '../../app/slices/shoppingCartSlice'
 import { dbLocal, formatPrice } from '../../util'
@@ -23,7 +23,7 @@ export const CardManga:FC<Props> = ({manga}) => {
     dispatch( addItem({
       amount: 1,
       product: manga,
-    }), )
+    }))
     dbLocal.addItemInLocal(cart, {amount: 1, product: manga})
     toast.success('Producto agregado al carrito')
   }
@@ -46,6 +46,7 @@ export const CardManga:FC<Props> = ({manga}) => {
         <button
           className='btn bg-accent text-dark w-full'
           onClick={ () => onAddToCart()}
+          role="button"
         >
           Agregar al carrito
         </button>

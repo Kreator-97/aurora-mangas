@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests on footer component should to match with snapshot 1`] = `
+<div>
+  <footer
+    class="min-h-[150px] border-t border-solid border-stroke"
+  >
+    <h2
+      class="text-xl md:text-3xl text-center p-4 mt-8"
+    >
+      Síguenos en nuestras redes sociales
+    </h2>
+    <div
+      class="flex justify-center gap-8"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 32px; height: 32px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 36px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+    </div>
+  </footer>
+</div>
+`;
