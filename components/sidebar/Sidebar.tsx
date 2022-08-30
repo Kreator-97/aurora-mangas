@@ -6,12 +6,13 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { closeSidebar } from '../../app/slices/uiSlice'
 
 export const Sidebar = () => {
-  const isSidebarOpen = useAppSelector( (state) => state.ui.isSidebarOpen)
+  const { ui, auth } = useAppSelector( (state) => state)
   const dispatch = useAppDispatch()
-  const auth = useAppSelector( state => state.auth)
   const router = useRouter()
 
-  const user = auth.user
+  const { user } = auth
+  const { isSidebarOpen } = ui
+
   const closeSideBar = () => {
     dispatch(closeSidebar())
   }
@@ -30,6 +31,7 @@ export const Sidebar = () => {
           className='cursor-pointer'
           size={32}
           onClick={ () => closeSideBar() }
+          data-testid="close-icon"
         />
       </div>
       {
@@ -39,7 +41,10 @@ export const Sidebar = () => {
               <button
                 className='text-alert w-full'
                 onClick={ () => signOut() }
-              >Cerrar sesión</button>
+                data-testid="signout"
+              >
+                Cerrar sesión
+              </button>
             </div>
           </>)
           : (<>

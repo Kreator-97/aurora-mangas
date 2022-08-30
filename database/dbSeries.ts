@@ -57,10 +57,4 @@ export const searchSeries = async (query:string) => {
   })
 
   return results
-  // const filteredMangas = results.filter((manga) => {
-  //   const publishedDate = new Date(manga.published)
-  //   return publishedDate.getTime() < Date.now()
-  // })
-
-  // return filteredMangas
 }

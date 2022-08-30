@@ -2,8 +2,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { AppLayout } from '../../layouts'
 import { Manga, Serie } from '../../interfaces'
 import { dbMangas, dbSeries } from '../../database'
-import { CardSerie } from '../../components/cardSerie/CardSerie'
-import { SliderMangas } from '../../components/sliderMangas/SliderMangas'
+import { CardSerie, SliderMangas} from '../../components'
 
 interface Props {
   results: {
@@ -15,10 +14,8 @@ interface Props {
 }
 
 const SearchPage: NextPage<Props> = ({results, query}) => {
-  console.log({results, query})
   const { total, series, mangas } = results
   const title = `Resultados para "${query}"`
-
 
   return (
     <AppLayout title={title} >

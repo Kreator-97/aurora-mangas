@@ -16,7 +16,7 @@ export const Table = ({columns, children}:Props) => {
           {
             columns.map((col) => {
               return (
-                <th key={col}>{col}</th>
+                <th key={col} data-testid="column">{col}</th>
               )
             })
           }
