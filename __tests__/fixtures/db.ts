@@ -1,4 +1,30 @@
-import { Manga, Serie, User } from '../../interfaces'
+import { Author, Manga, Serie, User } from '../../interfaces'
+
+export const authors: Author[] =  [
+  {
+    'id': '1e7816e3-d9e9-45f1-a964-a77f4269189c',
+    'name': 'Yoshihiro Togashi'
+  },
+  {
+    'id': '5f45bd24-ef5c-47df-869e-ca8097942355',
+    'name': 'Rumiko Takahashi'
+  },
+  {
+    'id': '9b43c3b8-b506-4591-9707-f6ca6b993097',
+    'name': 'Katsuhiro Otomo'
+  },
+  {
+    'id': 'f215fd73-448c-4128-a9d0-ff4ed1ce837d',
+    'name': 'Yusuke Murata'
+  },
+  {
+    'id': 'f4daa82f-e612-4313-ae4f-8d6debc2f9ac',
+    'name': 'Eiichiro Oda'
+  }
+]
+
+
+// export (authors as Author[])
 
 const u = [
   {

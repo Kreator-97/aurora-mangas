@@ -9,7 +9,7 @@ import { dbAuthors, dbUsers } from '../../../database'
 import { useForm } from '../../../hooks'
 import { CREATE_AUTHOR } from '../../../graphql/client/mutations'
 
-const AdminCreateSerie:NextPage = () => {
+const AdminCreateAuthor:NextPage = () => {
   const [ createAuthor ] = useMutation(CREATE_AUTHOR)
   const { author, onInputChange, onResetForm } = useForm({
     author: '',
@@ -31,7 +31,11 @@ const AdminCreateSerie:NextPage = () => {
   return (
     <AppLayout title="Crear nuevo autor | Admin" maxWidth='md'>
       <h1 className='title'>Agregar nuevo autor</h1>
-      <form className='mx-auto mb-4 max-w-lg' onSubmit={onSave}>
+      <form
+        className='mx-auto mb-4 max-w-lg'
+        data-testid="form-create-serie"
+        onSubmit={onSave}
+      >
         <div className='flex flex-col gap-4 mb-4'>
           <div className='flex flex-col gap-2'>
             <label htmlFor="author" className='text-lg'>
@@ -56,7 +60,7 @@ const AdminCreateSerie:NextPage = () => {
   )
 }
 
-export default AdminCreateSerie
+export default AdminCreateAuthor
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)

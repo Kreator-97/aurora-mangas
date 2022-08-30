@@ -17,6 +17,7 @@ const AdminCreateManga:NextPage<Props> = ({series}) => {
   const [ createManga ] = useMutation(CREATE_MANGA)
 
   const onSave = async (formState:FormCreateManga) => {
+    console.log('submit')
     const { imgURL, month, number, price, serie, title, year } = formState
     const monthPrefixed = Number(month) < 10 ? `0${Number(month)}` : month
     const published = `${year}/${monthPrefixed}/01`

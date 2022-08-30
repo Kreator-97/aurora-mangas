@@ -11,7 +11,7 @@ interface Props {
   authors: Author[]
 }
 
-const AdminProductPage: NextPage<Props> = ({authors}) => {
+const AdminAuthorPage: NextPage<Props> = ({authors}) => {
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>
@@ -25,7 +25,7 @@ const AdminProductPage: NextPage<Props> = ({authors}) => {
         {
           authors.length === 0 
             ? (
-              <h2 className='text-lg text-center'>No existen datos de Series</h2>
+              <h2 className='text-lg text-center'>No existen datos de Autores</h2>
             )
             : (
               <Table
@@ -49,7 +49,7 @@ const AdminProductPage: NextPage<Props> = ({authors}) => {
   )
 }
 
-export default AdminProductPage
+export default AdminAuthorPage
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)

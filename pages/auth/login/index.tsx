@@ -34,7 +34,10 @@ const LoginPage = () => {
   return (
     <div className="mx-auto max-w-lg min-h-screen flex items-center md:w-1/2">
 
-      <form className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit" onSubmit={ onSubmit }>
+      <form
+        className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit" onSubmit={ onSubmit }
+        data-testid="form-login"
+      >
         <div className='flex justify-between mb-2'>
           <HiArrowSmLeft fill='#444' size={28} cursor="pointer" onClick={ () => router.back() }/>
           <h1 className="text-2xl text-center text-dark">Iniciar sesión</h1>
@@ -65,6 +68,7 @@ const LoginPage = () => {
               name="password"
               value={ password }
               onChange={ onInputChange }
+              data-testid="password"
             />
           </label>
         </div>
@@ -75,7 +79,12 @@ const LoginPage = () => {
         
         <h2 className="text-center text-lg text-dark mb-2">Inicia sesión con tu cuenta Google:</h2>
         <div className='flex justify-center mb-4'>
-          <FcGoogle size={48} cursor="pointer" onClick={() => onGoogleSignIn() } />
+          <FcGoogle
+            size={48}
+            cursor="pointer"
+            onClick={() => onGoogleSignIn() }
+            data-testid="google-icon"
+          />
         </div>
 
         <Link href={'/auth/register'} passHref>

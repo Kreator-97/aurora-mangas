@@ -1,0 +1,630 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests on AdminManga page should to match with snapshot 1`] = `
+<div>
+  <nav
+    class="container"
+  >
+    <div
+      class="content"
+    >
+      <svg
+        color="white"
+        cursor="pointer"
+        data-testid="menu"
+        fill="currentColor"
+        height="32"
+        stroke="currentColor"
+        stroke-width="0"
+        style="color: white;"
+        viewBox="0 0 20 20"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 150px; height: 30px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          alt="Aurora Mangas Logo"
+          class="cursor-pointer"
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <div
+        class="relative cursor-pointer"
+        data-testid="cart-menu"
+      >
+        <svg
+          color="white"
+          cursor="pointer"
+          fill="none"
+          height="32"
+          stroke="currentColor"
+          stroke-width="0"
+          style="color: white;"
+          viewBox="0 0 24 24"
+          width="32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        <span
+          class="w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2"
+        >
+          0
+        </span>
+      </div>
+      <form
+        class="flex col-span-2"
+        data-testid="search-form"
+      >
+        <input
+          class="w-full rounded border-cyan-400 border p-1 text-sm text-dark"
+          placeholder="Encuentra tu manga favorito. Ejemplo: one punch man #1"
+          type="search"
+          value=""
+        />
+      </form>
+      <svg
+        color="white"
+        cursor="pointer"
+        fill="none"
+        height="32"
+        stroke="currentColor"
+        stroke-width="0"
+        style="color: white;"
+        viewBox="0 0 24 24"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+  </nav>
+  <div
+    class="min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform -translate-x-full"
+  >
+    <div
+      class="flex justify-between items-center mb-2"
+    >
+      <div
+        class="w-8"
+      />
+      <h2
+        class="text-2xl"
+      >
+        Bienvenido
+      </h2>
+      <svg
+        class="cursor-pointer"
+        data-testid="close-icon"
+        fill="currentColor"
+        height="32"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 20 20"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <p
+      class="text-center mb-2"
+    >
+      Ingresa para gestionar tu cuenta
+    </p>
+    <div
+      class="flex gap-2 mb-4"
+    >
+      <button
+        class="btn bg-accent w-full"
+      >
+        Ingresar
+      </button>
+      <button
+        class="btn ghost w-full"
+      >
+        Crear cuenta
+      </button>
+    </div>
+    <hr />
+    <section>
+      <button
+        class="text-xl py-2 hover:text-accent cursor-pointer block"
+      >
+        Listar por géneros
+      </button>
+      <button
+        class="text-xl py-2 hover:text-accent cursor-pointer block"
+      >
+        Lista de deseos
+      </button>
+      <button
+        class="text-xl py-2 hover:text-accent cursor-pointer block"
+      >
+        Más vendidos
+      </button>
+    </section>
+  </div>
+  <div
+    class="fixed top-0 right-0 min-h-screen h-screen min-w-[360px] bg-dark z-50 transition-transform translate-x-full"
+  >
+    <div
+      class="flex justify-between items-center border-b border-strokeLight p-4"
+      style="height: 65px;"
+    >
+      <svg
+        cursor="pointer"
+        data-testid="close-shopping-cart-icon"
+        fill="currentColor"
+        height="28"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 20 20"
+        width="28"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <h2
+        class="text-center text-2xl"
+      >
+        Carrito de compra
+      </h2>
+      <div
+        class="w-7"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-4 items-center overflow-y-scroll cartlist-items"
+      style="padding-top: 1rem; padding-bottom: 1rem;"
+    />
+    <div
+      class="bg-dark absolute left-0 w-full px-4 py-4 border-t border-strokeLight"
+      style="height: 108px;"
+    >
+      <h2
+        class="text-center text-2xl mb-2"
+      >
+        Total global: 
+        $0.00
+      </h2>
+      <button
+        class="btn bg-accent w-full"
+      >
+        Ir al resumen
+      </button>
+    </div>
+  </div>
+  <main
+    class="main"
+    style="max-width: var(--lg);"
+  >
+    <div
+      class="px-2"
+    >
+      <div
+        class="flex justify-between items-center py-4"
+      >
+        <div
+          class="w-36"
+        />
+        <h1
+          class="title"
+        >
+          Mangas
+        </h1>
+        <button
+          class="btn bg-accent text-sm"
+        >
+          Agregar manga
+        </button>
+      </div>
+      <table
+        class="table"
+      >
+        <thead>
+          <tr>
+            <th
+              data-testid="column"
+            >
+              Id
+            </th>
+            <th
+              data-testid="column"
+            >
+              Nombre
+            </th>
+            <th
+              data-testid="column"
+            >
+              # Volumen
+            </th>
+            <th
+              data-testid="column"
+            >
+              Precio Unitario($)
+            </th>
+            <th
+              data-testid="column"
+            >
+              Publicación
+            </th>
+            <th
+              data-testid="column"
+            >
+              Editar
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              02e7e70f-0d0d-43c2-86e6-34e75b7025e3
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              12
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/09/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=02e7e70f-0d0d-43c2-86e6-34e75b7025e3"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              19fbddbe-2157-45e5-a58b-da2670a25bf8
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              8
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/05/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=19fbddbe-2157-45e5-a58b-da2670a25bf8"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              20bcecfd-5599-4027-921a-ab4e544875a8
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              5
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/02/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=20bcecfd-5599-4027-921a-ab4e544875a8"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              21299faf-231f-48e1-9e54-975ce7d68716
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              2
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2021/11/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=21299faf-231f-48e1-9e54-975ce7d68716"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              2711e383-e7d3-4169-bd29-e7bb98f7375c
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              1
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2021/10/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=2711e383-e7d3-4169-bd29-e7bb98f7375c"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              3c5fdf37-ea75-4cad-a701-d7ec98edbaa2
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              10
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/07/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=3c5fdf37-ea75-4cad-a701-d7ec98edbaa2"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              51755e4c-9523-4c68-80fb-cee7dd080fe8
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              7
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/04/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=51755e4c-9523-4c68-80fb-cee7dd080fe8"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              8996f64d-5e5d-45bd-8041-acc331e47e10
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              4
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/01/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=8996f64d-5e5d-45bd-8041-acc331e47e10"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              c3d1c41a-38a0-4245-bdb4-8b680fe4d917
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              11
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/08/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=c3d1c41a-38a0-4245-bdb4-8b680fe4d917"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              c6d9a827-9f89-431a-b29f-ce9714cf8a40
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              9
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/06/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=c6d9a827-9f89-431a-b29f-ce9714cf8a40"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              d03805c0-2f4a-468b-91aa-4997d6d44923
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              3
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2021/12/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=d03805c0-2f4a-468b-91aa-4997d6d44923"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              dd6e8fa8-a111-4758-8b52-b1e2329dace6
+            </td>
+            <td>
+              One Punch Man
+            </td>
+            <td>
+              6
+            </td>
+            <td>
+              99
+            </td>
+            <td>
+              2022/03/01
+            </td>
+            <td>
+              <a
+                class="btn bg-accent"
+                href="/admin/mangas/update?id=dd6e8fa8-a111-4758-8b52-b1e2329dace6"
+              >
+                Editar 📝
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <footer
+    class="min-h-[150px] border-t border-solid border-stroke"
+  >
+    <h2
+      class="text-xl md:text-3xl text-center p-4 mt-8"
+    >
+      Síguenos en nuestras redes sociales
+    </h2>
+    <div
+      class="flex justify-center gap-8"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 32px; height: 32px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 36px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+    </div>
+  </footer>
+</div>
+`;
