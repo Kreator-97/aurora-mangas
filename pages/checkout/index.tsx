@@ -1,12 +1,13 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { AppLayout } from '../../layouts'
 import { dbLocal, formatPrice } from '../../util'
 import { removeItem, setAmount } from '../../app/slices/shoppingCartSlice'
-import { SelectAmount } from '../../components/selectAmount/SelectAmount'
+import { SelectAmount } from '../../components'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 const CheckoutPage:NextPage<Props> = ({user}) => {
   const dispatch = useAppDispatch()
   const { items, total } = useAppSelector(state => state.cart)
+  const router = useRouter()
 
   const onIncrement = (amount:number, id:string ) => {
     const newAmount = amount < 1 ? 1 : amount
@@ -87,6 +89,10 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
             <div>
               <p className='text-center text-alert'>Necesitas iniciar sesión para realizar tu compra</p>
               <p className='text-center text-alert'>Inicia sesión o crea una cuenta para continuar</p>
+              <button
+                className='btn bg-accent mt-2 w-full'
+                onClick={ () => router.push('/auth/login') }
+              >Iniciar sesión</button>
             </div>
           )
         }

@@ -1,0 +1,283 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests on Manga Page should to match with snapshot 1`] = `
+<div>
+  <nav
+    class="container"
+  >
+    <div
+      class="content"
+    >
+      <svg
+        color="white"
+        cursor="pointer"
+        data-testid="menu"
+        fill="currentColor"
+        height="32"
+        stroke="currentColor"
+        stroke-width="0"
+        style="color: white;"
+        viewBox="0 0 20 20"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 150px; height: 30px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          alt="Aurora Mangas Logo"
+          class="cursor-pointer"
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <div
+        class="relative cursor-pointer"
+        data-testid="cart-menu"
+      >
+        <svg
+          color="white"
+          cursor="pointer"
+          fill="none"
+          height="32"
+          stroke="currentColor"
+          stroke-width="0"
+          style="color: white;"
+          viewBox="0 0 24 24"
+          width="32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        <span
+          class="w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2"
+        >
+          0
+        </span>
+      </div>
+      <form
+        class="flex col-span-2"
+        data-testid="search-form"
+      >
+        <input
+          class="w-full rounded border-cyan-400 border p-1 text-sm text-dark"
+          placeholder="Encuentra tu manga favorito. Ejemplo: one punch man #1"
+          type="search"
+          value=""
+        />
+      </form>
+      <svg
+        color="white"
+        cursor="pointer"
+        fill="none"
+        height="32"
+        stroke="currentColor"
+        stroke-width="0"
+        style="color: white;"
+        viewBox="0 0 24 24"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+  </nav>
+  <main
+    class="main"
+    style="max-width: var(--md);"
+  >
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 py-4"
+    >
+      <span
+        style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <span
+          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
+        />
+        <img
+          alt="One Punch Man #12"
+          class="object-contain cursor-pointer animate__animated animate__backInLeft"
+          data-nimg="responsive"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <div
+        class="px-4 py-2"
+      >
+        <h1
+          class="text-3xl mb-4"
+        >
+          <a
+            href="/serie/one-punch-man"
+          >
+            One Punch Man #12
+          </a>
+        </h1>
+        <div
+          class="grid grid-cols-2 mb-2 hover:bg-accent"
+        >
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            Author
+          </p>
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            Yusuke Murata
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-2 mb-2 hover:bg-accent"
+        >
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            Precio
+          </p>
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            $
+            99
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-2 mb-2 hover:bg-accent"
+        >
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            Publicado en
+          </p>
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            2022/09/01
+          </p>
+        </div>
+        <div>
+          <h2
+            class="text-lg mb-2 text-center"
+          >
+            Seleccione la cantidad
+          </h2>
+          <div
+            class="flex gap-4 mb-2 justify-center"
+          >
+            <div>
+              <svg
+                cursor="pointer"
+                data-testid="decrement-icon"
+                fill="none"
+                height="28"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="28"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+            <div
+              class="font-medium text-2xl px-2"
+              data-testid="amount-box"
+            >
+              1
+            </div>
+            <div>
+              <svg
+                cursor="pointer"
+                data-testid="increment-icon"
+                fill="none"
+                height="28"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="28"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn bg-accent w-full"
+        >
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </main>
+  <footer
+    class="min-h-[150px] border-t border-solid border-stroke"
+  >
+    <h2
+      class="text-xl md:text-3xl text-center p-4 mt-8"
+    >
+      Síguenos en nuestras redes sociales
+    </h2>
+    <div
+      class="flex justify-center gap-8"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 32px; height: 32px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 36px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+      >
+        <img
+          data-nimg="fixed"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+    </div>
+  </footer>
+</div>
+`;
