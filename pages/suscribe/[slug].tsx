@@ -4,6 +4,7 @@ import { FaCcPaypal } from 'react-icons/fa'
 
 import { AppLayout } from '../../layouts'
 import { dbSeries } from '../../database'
+import { formatPrice } from '../../util'
 import { Serie } from '../../interfaces'
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
-  console.log({serie})
+
   return (
     <AppLayout title={ `${serie.name} | subscripción` } maxWidth='lg'>
       <h1 className='text-xl text-center py-2'>{ serie.name }</h1>
@@ -57,7 +58,15 @@ const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
         <p className='text-base text-success text-center'>
           Suscríbete y obtén todos los volúmenes en su fecha de publicación sin costo por envío
         </p>
-        <button className='btn bg-success-gradient w-full text-lg'>Suscríbete por ${ serie.volumes[0].price }.00</button>
+        <button
+          className='btn bg-success-gradient w-full text-lg'
+        >
+          { 
+            serie.volumes[0]
+              ? `Suscribete por ${formatPrice(serie.volumes[0].price)}`
+              : 'Suscribete proximamente'
+          }
+        </button>
         <p>Cargo recurrente {serie.periodicy.toLowerCase()}</p>
         <p className='text-center'>Pago seguro procesado a través de:</p>
         <FaCcPaypal size={64}/>

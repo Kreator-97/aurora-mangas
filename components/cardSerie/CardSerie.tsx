@@ -18,7 +18,10 @@ export const CardSerie: FC<Props> = ({ serie }) => {
   }
 
   return (
-    <div className='relative w-full max-w-[var(--md)]'>
+    <div
+      className='relative w-full max-w-[var(--md)]'
+      data-testid="card-serie"
+    >
       <Image
         src={ serie.imgURL }
         width={360}
@@ -30,7 +33,7 @@ export const CardSerie: FC<Props> = ({ serie }) => {
       <div className="absolute bottom-0 bg-dark bg-opacity-75 w-full p-2 flex items-center justify-between ">
         <div>
           <h2 className='text-lg sm:text-xl'>Serie: { serie.name }</h2>
-          <p className='font-light'>Peridiocidad: { serie.periodicy }</p>
+          <p className='font-light'>Periodicidad: { serie.periodicy }</p>
         </div>
         <button className='btn bg-accent' onClick={ ()=> goToPage() }>{ serie.isNewRelease ? 'Suscribirse' : 'Ver serie' }</button>
       </div>

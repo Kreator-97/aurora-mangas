@@ -35,7 +35,7 @@ export const shoppingCartSlice = createSlice({
     setAmount: (state, action: PayloadAction<{amount:number, id: string}>) => {
       const { id, amount } = action.payload
       const index = state.items.findIndex( item => item.product.id === id )
-      console.log(action.payload)
+
       if( index !== -1 ) {
         state.items[index].amount = amount
         state.total = state.items.reduce( (acc, item) => (item.product.price * item.amount) + acc, 0)

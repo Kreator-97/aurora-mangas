@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { HiOutlineHeart } from 'react-icons/hi'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { addItem } from '../../app/slices/shoppingCartSlice'
 import { dbLocal, formatPrice } from '../../util'
@@ -23,19 +23,20 @@ export const CardManga:FC<Props> = ({manga}) => {
     dispatch( addItem({
       amount: 1,
       product: manga,
-    }), )
+    }))
+
     dbLocal.addItemInLocal(cart, {amount: 1, product: manga})
     toast.success('Producto agregado al carrito')
   }
 
   return (
-    <div className="bg-white relative min-w-[220px]">
+    <div className="bg-white relative min-w-[220px] rounded" data-testid="card-manga">
       <Image
         src={manga.imgURL}
         layout="responsive"
         width={ 170 }
         height={ 255 }
-        className="object-contain cursor-pointer"
+        className="object-contain cursor-pointer rounded-t"
         onClick={ () => router.push(`/serie/${manga.serie.slug}/${manga.number}`) }
       />
       <div className='p-2 flex flex-col items-center'>
@@ -46,6 +47,7 @@ export const CardManga:FC<Props> = ({manga}) => {
         <button
           className='btn bg-accent text-dark w-full'
           onClick={ () => onAddToCart()}
+          role="button"
         >
           Agregar al carrito
         </button>

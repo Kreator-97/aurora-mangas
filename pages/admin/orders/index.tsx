@@ -10,7 +10,7 @@ interface Props {
 }
 
 const OrdersPage: NextPage<Props> = ({orders}) => {
-  console.log(orders)
+
   return (
     <AppLayout title="Pedidos realizados">
       <h1 className='text-2xl text-center py-4'>Ordenes</h1>

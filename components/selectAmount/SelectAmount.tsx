@@ -10,6 +10,8 @@ interface Props {
   onDecrement?: (amount:number, id:string) => void;
 }
 
+// TODO: this function should to return the new counter on a event named onChangeAmount, then remove both onIncrement and onDecrement
+
 export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) => {
   const { counter, increment, decrement } = useCounter({initial, minValue: 1})
 
@@ -28,11 +30,25 @@ export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) 
 
       <div className='flex gap-4 mb-2 justify-center'>
         <div>
-          <HiOutlineMinusCircle size={28} cursor="pointer" onClick={() => onDecrementEvent(1) }/>
+          <HiOutlineMinusCircle
+            size={28}
+            cursor="pointer"
+            onClick={() => onDecrementEvent(1) }
+            data-testid={'decrement-icon'}
+          />
         </div>
-        <div className='font-medium text-2xl px-2'>{ counter }</div>
+        <div
+          className='font-medium text-2xl px-2'
+          data-testid={'amount-box'}
+        >{ counter }
+        </div>
         <div>
-          <HiOutlinePlusCircle size={28} cursor="pointer" onClick={() => onIncrementEvent(1) }/>
+          <HiOutlinePlusCircle
+            size={28}
+            cursor="pointer"
+            onClick={() => onIncrementEvent(1) }
+            data-testid={'increment-icon'}
+          />
         </div>
       </div>
     </div>

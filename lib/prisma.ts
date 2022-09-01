@@ -1,14 +1,15 @@
-// import { PrismaClient } from '@prisma/client'
+// lib/prisma.ts
+import { PrismaClient } from '@prisma/client'
 
-// let prisma: PrismaClient
+interface CustomNodeJsGlobal {
+  prisma: PrismaClient;
+}
 
-// if( process.env.NODE_ENV === 'production' ) {
-//   prisma = new PrismaClient()
-// } else {
-//   if( !global.prisma ) {
-//     global.prisma = new PrismaClient()
-//   } 
-//   prisma = global.prisma
-// }
+declare const global: CustomNodeJsGlobal
 
-// export default prisma
+const prisma = global.prisma || new PrismaClient()
+
+if (process.env.NODE_ENV === 'development') global.prisma = prisma
+
+export default prisma
+

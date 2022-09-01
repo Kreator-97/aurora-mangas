@@ -11,7 +11,8 @@ interface Props {
   mangas: Manga[]
 }
 
-const AdminProductPage: NextPage<Props> = ({mangas}) => {
+const AdminMangaPage: NextPage<Props> = ({mangas}) => {
+
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>
@@ -29,7 +30,7 @@ const AdminProductPage: NextPage<Props> = ({mangas}) => {
             )
             : (
               <Table
-                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación']}
+                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación', 'Editar']}
               >
                 {
                   mangas.map((manga) => {
@@ -40,6 +41,11 @@ const AdminProductPage: NextPage<Props> = ({mangas}) => {
                         <td>{manga.number}</td>
                         <td>{manga.price}</td>
                         <td>{manga.published}</td>
+                        <td>
+                          <Link href={`/admin/mangas/update?id=${manga.id}`}>
+                            <a className='btn bg-accent'>Editar 📝</a>
+                          </Link>
+                        </td>
                       </tr>
                     )
                   })
@@ -52,7 +58,7 @@ const AdminProductPage: NextPage<Props> = ({mangas}) => {
   )
 }
 
-export default AdminProductPage
+export default AdminMangaPage
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)

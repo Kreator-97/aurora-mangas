@@ -37,3 +37,13 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const UPDATE_MANGA = gql`
+  mutation UpdateManga($mangaId: String, $manga: MangaInput) {
+    updateManga(mangaId: $mangaId, manga: $manga) {
+      ok
+      error
+      message
+    }
+  }
+`

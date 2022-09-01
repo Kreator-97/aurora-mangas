@@ -10,7 +10,7 @@ const initialState: State = {
   isShoppingCartOpen: false,
 }
 
-const uiSlice = createSlice({
+export const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {

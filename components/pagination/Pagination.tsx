@@ -57,6 +57,7 @@ export const Pagination: FC<Props> = ({totalPages, initialPage, onPageChange}) =
               className={`text-xl py-1 rounded bg-accent ${p === currentPage ? 'active' : ''}`}
               key={`page-${page}`}
               onClick={ () => onPageChangeEvent(page) }
+              data-testid="btn-page"
             >
               <span className='w-9 block'>
                 {page}

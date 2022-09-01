@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { getSession, signIn } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import { HiArrowSmLeft } from 'react-icons/hi'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 import { useMutation } from '@apollo/client'
 
 import { useForm } from '../../../hooks'
@@ -38,7 +38,6 @@ const RegisterPage = () => {
   const [ createUser ] = useMutation(CREATE_USER)
 
   const onGoogleSignIn = async () => {
-    console.log('Hay que realizar el signin con google')
     try {
       signIn('google')
     } catch (error) {
@@ -77,6 +76,7 @@ const RegisterPage = () => {
       <form
         className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit"
         onSubmit={ onSubmit}
+        data-testid="form-register"
       >
 
         <div className='flex justify-between mb-2'>
@@ -95,6 +95,8 @@ const RegisterPage = () => {
               name="name"
               value={ name }
               onChange={ onInputChange }
+              data-testid="input-name"
+
             />
           </label>
           { (errors.name && showErrors) && (<p className='text-error text-sm'>{errors.name}</p>)}
@@ -110,6 +112,8 @@ const RegisterPage = () => {
               name="email"
               value={ email }
               onChange={ onInputChange }
+              data-testid="input-email"
+
             />
           </label>
           { (errors.email && showErrors)&& (<p className='text-error text-sm'>{errors.email}</p>)}
@@ -125,6 +129,7 @@ const RegisterPage = () => {
               name="password"
               value={ password }
               onChange={ onInputChange }
+              data-testid="input-password"
             />
           </label>
           { (errors.password && showErrors) && (<p className='text-error text-sm'>{errors.password}</p>)}
@@ -138,7 +143,12 @@ const RegisterPage = () => {
         
         <h2 className="text-center text-lg text-dark mb-2">Inicia sesión con tu cuenta Google:</h2>
         <div className='flex justify-center mb-4'>
-          <FcGoogle size={48} cursor="pointer" onClick={() => onGoogleSignIn() } />
+          <FcGoogle
+            size={48}
+            cursor="pointer"
+            onClick={() => onGoogleSignIn() }
+            data-testid="google-signin"
+          />
         </div>
 
         <Link href={'/auth/login'} passHref>

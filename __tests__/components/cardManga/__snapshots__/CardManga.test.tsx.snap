@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests on CardManga component should to match with snapshot 1`] = `
+<div>
+  <div
+    class="bg-white relative min-w-[220px] rounded"
+    data-testid="card-manga"
+  >
+    <span
+      style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
+    >
+      <span
+        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
+      />
+      <img
+        class="object-contain cursor-pointer rounded-t"
+        data-nimg="responsive"
+        decoding="async"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      />
+      <noscript />
+    </span>
+    <div
+      class="p-2 flex flex-col items-center"
+    >
+      <a
+        class="text-dark text-xl text-center hover:underline"
+        href="/serie/one-punch-man"
+      >
+        One Punch Man
+         #
+        12
+      </a>
+      <p
+        class="text-dark text-lg"
+      >
+        $99.00
+      </p>
+      <button
+        class="btn bg-accent text-dark w-full"
+        role="button"
+      >
+        Agregar al carrito
+      </button>
+    </div>
+    <div
+      class="p-1 bg-light absolute top-4 right-2 rounded-full"
+    >
+      <svg
+        color="var(--dark)"
+        fill="none"
+        height="36"
+        stroke="currentColor"
+        stroke-width="0"
+        viewBox="0 0 24 24"
+        width="36"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+    <div
+      class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+    >
+      <p
+        class="text-2xl p-2"
+      >
+        # 
+        12
+      </p>
+    </div>
+  </div>
+</div>
+`;

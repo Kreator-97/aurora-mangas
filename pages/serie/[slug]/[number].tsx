@@ -1,9 +1,7 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
-import { useDispatch } from 'react-redux'
 
 import { addItem } from '../../../app/slices/shoppingCartSlice'
 import { AppLayout } from '../../../layouts'
@@ -11,18 +9,20 @@ import { dbLocal } from '../../../util'
 import { dbMangas } from '../../../database'
 import { Manga } from '../../../interfaces'
 import { openShoppingCart } from '../../../app/slices/uiSlice'
-import { useAppSelector } from '../../../app/hooks'
-import { useCounter } from '../../../hooks'
+import { SelectAmount } from '../../../components'
+import { useAppSelector, useAppDispatch } from '../../../app/hooks'
+
 
 interface Props {
   manga: Manga;
 }
 
 const MangaPage:FC<Props> = ({manga}) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { cart } = useAppSelector(state => state)
 
-  const { counter, increment, decrement } = useCounter({initial:1, minValue: 1})
+  const [ counter, setCounter] = useState(1)
+  
   const title = `${manga.serie.name} #${manga.number}`
 
   const onAddToCart = () => {
@@ -56,17 +56,13 @@ const MangaPage:FC<Props> = ({manga}) => {
             <p className='border border-strokeLight border-solid px-2'>Publicado en</p>
             <p className='border border-strokeLight border-solid px-2'>{manga.published}</p>
           </div>
-          <h2 className='text-lg mb-2 text-center'>Seleccione la cantidad</h2>
 
-          <div className='flex gap-4 mb-2 justify-center'>
-            <div>
-              <HiOutlineMinusCircle size={28} cursor="pointer" onClick={() => decrement(1) }/>
-            </div>
-            <div className='font-medium text-2xl px-2'>{ counter }</div>
-            <div>
-              <HiOutlinePlusCircle size={28} cursor="pointer" onClick={() => increment(1) }/>
-            </div>
-          </div>
+          <SelectAmount
+            initial={1}
+            onDecrement={(amount) => setCounter(amount)}
+            onIncrement={(amount) => setCounter(amount)}
+          />
+
           <button
             className='btn bg-accent w-full'
             onClick={ () => onAddToCart()}
