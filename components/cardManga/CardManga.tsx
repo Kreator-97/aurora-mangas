@@ -24,6 +24,7 @@ export const CardManga:FC<Props> = ({manga}) => {
       amount: 1,
       product: manga,
     }))
+
     dbLocal.addItemInLocal(cart, {amount: 1, product: manga})
     toast.success('Producto agregado al carrito')
   }

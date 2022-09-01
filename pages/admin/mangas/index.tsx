@@ -12,6 +12,7 @@ interface Props {
 }
 
 const AdminMangaPage: NextPage<Props> = ({mangas}) => {
+
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>

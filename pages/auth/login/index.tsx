@@ -38,6 +38,7 @@ const LoginPage = () => {
         className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit" onSubmit={ onSubmit }
         data-testid="form-login"
       >
+
         <div className='flex justify-between mb-2'>
           <HiArrowSmLeft fill='#444' size={28} cursor="pointer" onClick={ () => router.back() }/>
           <h1 className="text-2xl text-center text-dark">Iniciar sesión</h1>
@@ -69,6 +70,7 @@ const LoginPage = () => {
               value={ password }
               onChange={ onInputChange }
               data-testid="password"
+
             />
           </label>
         </div>

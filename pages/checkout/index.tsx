@@ -2,12 +2,15 @@ import { GetServerSideProps, NextPage } from 'next'
 import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+
 import Image from 'next/image'
 
 import { AppLayout } from '../../layouts'
 import { dbLocal, formatPrice } from '../../util'
 import { removeItem, setAmount } from '../../app/slices/shoppingCartSlice'
+
 import { SelectAmount } from '../../components'
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 interface Props {
@@ -93,6 +96,7 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
                 className='btn bg-accent mt-2 w-full'
                 onClick={ () => router.push('/auth/login') }
               >Iniciar sesión</button>
+
             </div>
           )
         }

@@ -12,6 +12,7 @@ import { openShoppingCart } from '../../../app/slices/uiSlice'
 import { SelectAmount } from '../../../components'
 import { useAppSelector, useAppDispatch } from '../../../app/hooks'
 
+
 interface Props {
   manga: Manga;
 }
@@ -55,11 +56,13 @@ const MangaPage:FC<Props> = ({manga}) => {
             <p className='border border-strokeLight border-solid px-2'>Publicado en</p>
             <p className='border border-strokeLight border-solid px-2'>{manga.published}</p>
           </div>
+
           <SelectAmount
             initial={1}
             onDecrement={(amount) => setCounter(amount)}
             onIncrement={(amount) => setCounter(amount)}
           />
+
           <button
             className='btn bg-accent w-full'
             onClick={ () => onAddToCart()}

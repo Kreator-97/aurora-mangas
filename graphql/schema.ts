@@ -115,6 +115,7 @@ export const typeDefs = gql`
       fullname: String!,
       password: String!,
     ): UserResponse
+
     updateManga(mangaId: String, manga:MangaInput): MangaResponse!
   }
 `

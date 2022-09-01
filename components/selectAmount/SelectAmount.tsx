@@ -11,6 +11,7 @@ interface Props {
 }
 
 // TODO: this function should to return the new counter on a event named onChangeAmount, then remove both onIncrement and onDecrement
+
 export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) => {
   const { counter, increment, decrement } = useCounter({initial, minValue: 1})
 

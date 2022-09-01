@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Serie } from '../../interfaces'
 
+import { Serie } from '../../interfaces'
 import { CardSerie } from '../'
 
 interface Props {

@@ -45,6 +45,7 @@ export const ShoppingCart = () => {
           cursor="pointer"
           data-testid="close-shopping-cart-icon"
         />
+
         <h2 className="text-center text-2xl">Carrito de compra</h2>
         <div className='w-7'></div>
       </div>

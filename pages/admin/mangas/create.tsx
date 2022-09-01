@@ -13,6 +13,7 @@ interface Props {
   series: Serie[];
 }
 
+
 const AdminCreateManga:NextPage<Props> = ({series}) => {
   const [ createManga ] = useMutation(CREATE_MANGA)
 

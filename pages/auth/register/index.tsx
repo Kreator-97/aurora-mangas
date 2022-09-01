@@ -52,7 +52,7 @@ const RegisterPage = () => {
       setShowErrors(true)
       return
     }
-    
+
     try {
       const { data } = await createUser({ variables: {
         email, password, fullname: name,
@@ -96,6 +96,7 @@ const RegisterPage = () => {
               value={ name }
               onChange={ onInputChange }
               data-testid="input-name"
+
             />
           </label>
           { (errors.name && showErrors) && (<p className='text-error text-sm'>{errors.name}</p>)}
@@ -112,6 +113,7 @@ const RegisterPage = () => {
               value={ email }
               onChange={ onInputChange }
               data-testid="input-email"
+
             />
           </label>
           { (errors.email && showErrors)&& (<p className='text-error text-sm'>{errors.email}</p>)}

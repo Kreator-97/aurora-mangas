@@ -12,7 +12,6 @@ export const Sidebar = () => {
 
   const { user } = auth
   const { isSidebarOpen } = ui
-
   const closeSideBar = () => {
     dispatch(closeSidebar())
   }

@@ -12,6 +12,7 @@ interface Props {
 }
 
 const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
+
   return (
     <AppLayout title={ `${serie.name} | subscripción` } maxWidth='lg'>
       <h1 className='text-xl text-center py-2'>{ serie.name }</h1>
