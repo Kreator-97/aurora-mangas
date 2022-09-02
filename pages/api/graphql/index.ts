@@ -3,11 +3,30 @@ import Cors from 'micro-cors'
 
 import { typeDefs } from '../../../graphql/schema'
 import { resolvers } from '../../../graphql/resolvers'
+import { getSession } from 'next-auth/react'
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} from 'apollo-server-core'
 
-const cors = Cors()
+const cors = Cors({
+  origin: 'https://studio.apollographql.com',
+  allowCredentials: true
+})
 
 const apolloServer = new ApolloServer({
-  typeDefs, resolvers,
+  typeDefs,
+  resolvers,
+  context: async ({ req }) => {
+    const session = await getSession({ req })
+    return { session }
+  },
+  plugins: [
+    ApolloServerPluginLandingPageGraphQLPlayground( {
+      settings: {
+        'request.credentials': 'include',
+      },
+    }),
+  ],
 })
 
 const startServer = apolloServer.start()

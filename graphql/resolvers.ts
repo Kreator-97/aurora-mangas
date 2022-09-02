@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { dbUsers } from '../database'
+import { User } from '../interfaces'
 import { suggestSlug } from '../util'
 
 const prisma = new PrismaClient()
@@ -34,6 +35,20 @@ export const resolvers = {
     users: async() => {
       const users = await prisma.user.findMany()
       return users
+    },
+    orders: async () => {
+      const orders = await prisma.order.findMany({
+        include: {
+          items: {
+            include: {
+              product: true,
+            }
+          }, 
+          user: true
+        }
+      })
+      orders.forEach((o) =>console.log(o.items))
+      return orders
     }
   },
   Mutation: {
@@ -159,5 +174,58 @@ export const resolvers = {
         }
       }
     },
+    async createOrder(parent: any, args: {items: any[], total: number, token: string }, ctx:any) {
+      const { items } = args
+      const user = ctx?.session?.user as User
+      console.log(user.id)
+
+      if( !user ) return null
+
+      // TODO: Crear función calcTotal y colocar el siguiente código ahí
+      const mangas = await Promise.all( items.map( (item) => {
+        return prisma.manga.findUnique({ where: { id: item.productId }})
+      }))
+
+      const mangaWithAmount = mangas.map( (manga, i) => {
+        return {...manga, amount: items[i].amount}
+      })
+
+      const total = mangaWithAmount.reduce((acc, manga ) => {
+        if ( !manga.price ) return acc
+        return (manga.price * manga.amount) + acc
+      } ,0)
+
+      if( total !== args.total  ) {
+        console.log('Los montos del total calculado no coindicen con el monto indicado')
+        return 'No se pudo completar el pago'
+      }
+
+      try {
+        const result = await prisma.order.create({
+          data: {
+            user: {
+              connect: {
+                id: user.id
+              }
+            },
+            total,
+            items: {
+              createMany: {
+                data: items.map( i => ({
+                  amount: i.amount,
+                  productId: i.productId
+                }))
+              }
+            }
+          }
+        })
+        
+        // TODO: agregar orden a la cuenta del usuario
+        return 'Orden de pago creada'
+      } catch (error) {
+        console.log(error)
+        return 'error'
+      }
+    }
   }
 }

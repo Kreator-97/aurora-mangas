@@ -20,6 +20,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   provider  Provider @default(CREDENTIALS)
+  orders    Order[]
 }
 
 enum Provider {
@@ -62,11 +63,29 @@ model Manga {
   imgURL    String
   published String
   title     String?
+  item      Item[]
 }
 
 enum Periodicy {
   MENSUAL
   BIMESTRAL
+}
+
+model Order {
+  id      String @id @default(uuid())
+  items   Item[]
+  user    User @relation(fields: [userId], references: [id])
+  userId  String
+  total   Int
+}
+
+model Item {
+  id        String  @id @default(uuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  amount    Int
+  product   Manga   @relation(fields: [productId], references: [id])
+  productId String
 }
 
 // enum Genre {
