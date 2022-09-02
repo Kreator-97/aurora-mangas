@@ -1,6 +1,5 @@
 import { Manga, Serie } from '@prisma/client'
 import prisma from '../lib/prisma'
-// const prisma = new PrismaClient()
 
 export const getAllMangas = async () => {
   const mangas = await prisma.manga.findMany({
@@ -97,7 +96,6 @@ interface Items {
 }
 
 export const calcCartTotal = async (items: Items[], expectedTotal: number):Promise<number | string> => {
-  // TODO: Crear función calcTotal y colocar el siguiente código ahí
   const mangas = await Promise.all( items.map( (item) => {
     return prisma.manga.findUnique({ where: { id: item.productId }})
   }))

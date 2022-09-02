@@ -46,7 +46,6 @@ export const resolvers = {
           user: true
         }
       })
-      orders.forEach((o) =>console.log(o.items))
       return orders
     },
     ordersByUser: async (parent:any, args: any) => {
