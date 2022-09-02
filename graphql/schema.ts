@@ -115,6 +115,7 @@ export const typeDefs = gql`
     volumes(serieId: String): [Manga!]
     users: [User!]
     orders: [Order!]
+    ordersByUser(userId: String!): [Order!]
   }
 
   type Mutation {
@@ -144,6 +145,6 @@ export const typeDefs = gql`
 
     createOrder(
       items: [ItemsInput!], total: Int!
-    ): String!
+    ): String
   }
 `

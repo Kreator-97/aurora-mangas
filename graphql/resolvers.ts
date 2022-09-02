@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../lib/prisma'
 import { dbUsers } from '../database'
 import { User } from '../interfaces'
 import { suggestSlug } from '../util'
-
-const prisma = new PrismaClient()
+import { calcCartTotal } from '../database/dbMangas'
 
 export const resolvers = {
   Query: {
@@ -48,6 +47,24 @@ export const resolvers = {
         }
       })
       orders.forEach((o) =>console.log(o.items))
+      return orders
+    },
+    ordersByUser: async (parent:any, args: any) => {
+      const { userId } = args
+      const orders = await prisma.order.findMany({
+        where: {
+          userId
+        },
+        include: {
+          user: true,
+          items: {
+            include: {
+              product: true
+            }
+          }
+        }
+      })
+      if( orders.length === 0 ) return null
       return orders
     }
   },
@@ -174,34 +191,17 @@ export const resolvers = {
         }
       }
     },
-    async createOrder(parent: any, args: {items: any[], total: number, token: string }, ctx:any) {
+    async createOrder(parent: any, args: {items: any[], total: number }, ctx:any) {
       const { items } = args
       const user = ctx?.session?.user as User
-      console.log(user.id)
 
       if( !user ) return null
 
-      // TODO: Crear función calcTotal y colocar el siguiente código ahí
-      const mangas = await Promise.all( items.map( (item) => {
-        return prisma.manga.findUnique({ where: { id: item.productId }})
-      }))
-
-      const mangaWithAmount = mangas.map( (manga, i) => {
-        return {...manga, amount: items[i].amount}
-      })
-
-      const total = mangaWithAmount.reduce((acc, manga ) => {
-        if ( !manga.price ) return acc
-        return (manga.price * manga.amount) + acc
-      } ,0)
-
-      if( total !== args.total  ) {
-        console.log('Los montos del total calculado no coindicen con el monto indicado')
-        return 'No se pudo completar el pago'
-      }
+      const total = await calcCartTotal(items, args.total)
+      if( typeof total === 'string' ) return total
 
       try {
-        const result = await prisma.order.create({
+        await prisma.order.create({
           data: {
             user: {
               connect: {
@@ -219,8 +219,7 @@ export const resolvers = {
             }
           }
         })
-        
-        // TODO: agregar orden a la cuenta del usuario
+
         return 'Orden de pago creada'
       } catch (error) {
         console.log(error)
