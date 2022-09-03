@@ -194,13 +194,25 @@ export const resolvers = {
       const { items } = args
       const user = ctx?.session?.user as User
 
-      if( !user ) return null
+      if( !user ) {
+        return {
+          message: 'No se pudo crear la orden',
+          error: 'El usuario no está authenticado',
+          ok: false
+        } 
+      }
 
       const total = await calcCartTotal(items, args.total)
-      if( typeof total === 'string' ) return total
+      if( typeof total === 'string' ) {
+        return {
+          message: total,
+          error: 'El monto calculado no coincide',
+          ok: false,
+        } 
+      }
 
       try {
-        await prisma.order.create({
+        const order = await prisma.order.create({
           data: {
             user: {
               connect: {
@@ -219,10 +231,15 @@ export const resolvers = {
           }
         })
 
-        return 'Orden de pago creada'
+        return {
+          message: 'Orden de pago creada',
+          error: null,
+          ok: true,
+          orderId: order.id,
+        } 
       } catch (error) {
-        console.log(error)
-        return 'error'
+        console.error(error)
+        return 'Error al intentar realizar la orden'
       }
     }
   }

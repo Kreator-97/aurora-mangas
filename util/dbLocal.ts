@@ -49,6 +49,15 @@ export const loadShoppingCart = ():ShoppingCart | null => {
   return JSON.parse(localStorage.getItem('cart') || 'null')
 }
 
+export const cleanShoppingCart = () => {
+  const cart:ShoppingCart = {
+    items: [],
+    total: 0
+  }
+
+  updateItemsInLocal(cart)
+}
+
 const updateItemsInLocal = (cart: ShoppingCart ) => {
   localStorage.setItem('cart', JSON.stringify(cart))
 }

@@ -47,3 +47,14 @@ export const UPDATE_MANGA = gql`
     }
   }
 `
+
+export const CREATE_ORDER = gql`
+  mutation CreateOrder($total: Int!, $items: [ItemsInput!]) {
+    createOrder(total: $total, items: $items) {
+      error
+      message
+      ok
+      orderId
+    }
+  }
+`

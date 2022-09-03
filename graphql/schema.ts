@@ -78,6 +78,13 @@ export const typeDefs = gql`
     message: String!
   }
 
+  type OrderResponse {
+    ok: Boolean!
+    error: String
+    message: String!
+    orderId: String
+  }
+
   type UserResponse {
     user: User
     ok: Boolean!
@@ -145,6 +152,6 @@ export const typeDefs = gql`
 
     createOrder(
       items: [ItemsInput!], total: Int!
-    ): String
+    ): OrderResponse
   }
 `

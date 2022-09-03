@@ -72,11 +72,13 @@ enum Periodicy {
 }
 
 model Order {
-  id      String @id @default(uuid())
+  id      String    @id @default(uuid())
   items   Item[]
-  user    User @relation(fields: [userId], references: [id])
+  user    User      @relation(fields: [userId], references: [id])
   userId  String
   total   Int
+  date    DateTime  @default(now())
+  status  Status    @default(PENDING)
 }
 
 model Item {
@@ -88,15 +90,8 @@ model Item {
   productId String
 }
 
-// enum Genre {
-//   ACTION
-//   ADVENTURE
-//   FANTASY
-//   GORE
-//   HORROR
-//   MARTIAL_ARTS
-//   MYSTERY
-//   ROMANCE
-//   SOBRENATURAL
-//   THRILLER
-// }
+enum Status {
+  PAID
+  PENDING
+  CANCELLED
+}

@@ -80,6 +80,7 @@ export const Sidebar = () => {
               <p className='text-xl text-center pt-2'>Sobre tu cuenta</p>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/orders') }
               >
             Lista de pedidos
               </button>

@@ -1,8 +1,15 @@
 import { Manga, User } from '.'
 
 export interface Order {
-  products    : Manga[];
-  buyer       : User;
-  totalPrice  : number;
-  date        : Date
+  id          : string;
+  items       : Item[]
+  user        : User;
+  total       : number;
+  date        : string
+  status      : 'PAID' | 'PENDING' | 'CANCELLED'
+}
+
+interface Item {
+  amount  : number;
+  product : Manga;
 }

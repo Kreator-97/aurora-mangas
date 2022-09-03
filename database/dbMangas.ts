@@ -114,7 +114,6 @@ export const calcCartTotal = async (items: Items[], expectedTotal: number):Promi
   } ,0)
   
   if( total !== expectedTotal ) {
-    console.log('Los montos del total calculado no coinciden con el monto indicado')
     return 'No se pudo completar el pago'
   }
   

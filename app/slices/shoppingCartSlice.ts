@@ -44,9 +44,16 @@ export const shoppingCartSlice = createSlice({
     setShoppingCart: (state, action: PayloadAction<ShoppingCart>) => {
       state = action.payload
       return state
+    },
+    cleanShoppingCart: (state) => {
+      state = {
+        items: [],
+        total: 0,
+      }
+      return state
     }
   }
 })
 
-export const { addItem, removeItem, setAmount, setShoppingCart } = shoppingCartSlice.actions
+export const { addItem, removeItem, setAmount, setShoppingCart, cleanShoppingCart } = shoppingCartSlice.actions
 export default shoppingCartSlice.reducer
