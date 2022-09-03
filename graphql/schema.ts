@@ -20,6 +20,15 @@ export const typeDefs = gql`
     role      : Role
     createdAt : String
     updatedAt : String
+    address   : Address
+  }
+
+  type Address {
+    city  : String
+    col   : String
+    cp    : String
+    number: String
+    state : String
   }
 
   type Author {
@@ -64,12 +73,20 @@ export const typeDefs = gql`
   }
 
   input MangaInput {
-    serieId  :String!,
-    number   : String!,
-    price    : Int!,
-    imgURL   : String!,
-    published: String!,
+    serieId  : String!
+    number   : String!
+    price    : Int!
+    imgURL   : String!
+    published: String!
     title    : String
+  }
+
+  input AddressInput {
+    city  : String!
+    col   : String!
+    cp    : String!
+    number: String!
+    state : String!
   }
 
   type Response {
@@ -147,11 +164,13 @@ export const typeDefs = gql`
 
     updateManga(
       mangaId: String,
-      manga:MangaInput
+      manga: MangaInput
     ): MangaResponse!
 
     createOrder(
       items: [ItemsInput!], total: Int!
     ): OrderResponse
+
+    createAndUpdateDirection(userId:String, address: AddressInput): Response
   }
 `

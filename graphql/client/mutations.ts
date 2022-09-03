@@ -58,3 +58,13 @@ export const CREATE_ORDER = gql`
     }
   }
 `
+
+export const CREATE_OR_UPDATE_DIRECTION = gql`
+  mutation CreateAndUpdateDirection($userId: String, $address: AddressInput) {
+    createAndUpdateDirection(userId: $userId, address: $address) {
+      ok
+      error
+      message
+    }
+  }
+`

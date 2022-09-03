@@ -32,8 +32,12 @@ export const resolvers = {
       return mangas
     },
     users: async() => {
-      const users = await prisma.user.findMany()
-      return users
+      const users = await prisma.user.findMany({
+        include: {
+          address: true
+        }
+      })
+      return users.map((user) => ({...user, password: null}))
     },
     orders: async () => {
       const orders = await prisma.order.findMany({
@@ -241,6 +245,74 @@ export const resolvers = {
         console.error(error)
         return 'Error al intentar realizar la orden'
       }
-    }
+    },
+    async createAndUpdateDirection(root:any, args:any) {
+      // este resolver se encarga tanto de crear como de actualizar una dirección
+      const userId = args.userId
+      const address = args.address
+
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        include: { address: true }
+      })
+
+      // si la dirección existe entonces realizamos una actualización
+      if( user?.address ) {
+        try {
+          await prisma.address.update({
+            where: {
+              userId,
+            },
+            data: {
+              city: address.city,
+              col: address.col,
+              cp: address.cp,
+              number: address.number,
+              state: address.state
+            }
+          })
+        
+          return {
+            ok: true,
+            message: 'La dirección ha sido actualizada',
+            error: null,
+          }
+        } catch (error) {
+          console.error(error)
+          return {
+            ok: false,
+            message: 'No se pudo actualizar la dirección',
+            error: null,
+          }
+        }
+      }
+
+      // Aqui realizamos una creación de la dirección del usuario
+      try {
+        await prisma.address.create({
+          data: {
+            city: address.city,
+            col: address.col,
+            cp: address.cp,
+            number: address.number,
+            state: address.state,
+            userId: userId
+          }
+        })
+        
+        return {
+          ok: true,
+          message: 'La dirección ha sido guardada exitosamente',
+          error: null
+        }
+      } catch (error) {
+        console.error(error)
+        return {
+          ok: false,
+          message:'Ocurrió un error al intentar guardar la dirección',
+          error: null,
+        }
+      }
+    },
   }
 }

@@ -3,14 +3,20 @@ import { gql } from '@apollo/client'
 export const AllUsers = gql`
   query GetAllUsers {
     users {
-      id
-      fullname
-      email
-      password
-      imgURL
-      role
-      createdAt
-      updatedAt
+        id
+        createdAt
+        email
+        fullname
+        imgURL
+        role
+        updatedAt
+        address {
+          city
+          col
+          cp
+          number
+          state
+        }
     }
   }
 `

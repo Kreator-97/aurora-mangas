@@ -28,7 +28,7 @@ export const getOrderById = async (orderId:string): Promise<Order | null> => {
       },
       user: {
         select: {
-          fullname: true, imgURL: true, id: true
+          fullname: true, imgURL: true, id: true, address: true
         }
       }
     }

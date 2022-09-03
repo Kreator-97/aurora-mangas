@@ -1,10 +1,14 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
-import { Table } from '../../../components'
+import { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { useMutation } from '@apollo/client'
 
-import { dbOrders } from '../../../database'
-import { Order } from '../../../interfaces'
+import { Address, Order } from '../../../interfaces'
 import { AppLayout } from '../../../layouts'
+import { CREATE_OR_UPDATE_DIRECTION } from '../../../graphql/client'
+import { dbOrders } from '../../../database'
+import { FormAddress, Table } from '../../../components'
 import { formatPrice } from '../../../util'
 
 interface Props {
@@ -12,9 +16,42 @@ interface Props {
 }
 
 const PayOrderPage:NextPage<Props> = ({order}) => {
+  const address = order.user.address
+  const [ editAddress, setEditAddress ] = useState(!address ? true : false)
+  const [ addressState, setAddressState] = useState<Address | undefined>(address)
 
+  const [ createOrUpdateDirection ] = useMutation(CREATE_OR_UPDATE_DIRECTION)
+  
   const onPayOrder = () => {
     console.log('Hay que realizar el pago en paypal')
+  }
+
+  const onAddressChange = async (formValues: any) => {
+    setEditAddress(false)
+    
+    try {
+      const { data } = await createOrUpdateDirection({
+        variables: {
+          userId: order.user.id,
+          address: {
+            ...formValues
+          }
+        }
+      })
+
+      const { message, ok, error } = data.createAndUpdateDirection
+      setAddressState(formValues)
+      if( !ok ) {
+        console.log(message)
+        throw new Error(error)
+      }
+
+      toast.success(message)
+
+    } catch (error) {
+      console.error(error)
+      toast.error((error as {message: string}).message)
+    }
   }
 
   return (
@@ -22,77 +59,43 @@ const PayOrderPage:NextPage<Props> = ({order}) => {
       <div className='py-4'>
         <h1 className='text-center text-xl'>Orden: {order.id}</h1>
 
-        <section className='mt-2 mb-8'>
-          <h2 className='text-xl text-center'>Verifica tu dirección de entrega</h2>
-
-          <div className='flex flex-col mb-4'>
-            <label htmlFor="state">
-              Estado:
-            </label>
-            <input
-              className='input text-dark'
-              type="text"
-              name='state'
-              readOnly
-              value="Chiapas"
-            />
-          </div>
-
-          <div className='flex flex-col mb-4'>
-            <label htmlFor="city">
-              Ciudad:
-            </label>
-            <input
-              className='input text-dark'
-              type="text"
-              name='city'
-              readOnly
-              value="Tuxtla Gutierrez"
-            />
-          </div>
-
-          <div className='flex flex-col mb-4'>
-            <label htmlFor="col">
-              Colonia:
-            </label>
-            <input
-              className='input text-dark'
-              type="text"
-              name='col'
-              readOnly
-              value="Callejon el zapote"
-            />
-          </div>
-
-          <div className='grid grid-cols-2 gap-2'>
-            <div className='flex flex-col mb-4'>
-              <label htmlFor="numero">
-              Numero de domicilio:
-              </label>
-              <input
-                className='input text-dark'
-                type="text"
-                name='numero'
-                readOnly
-                value="604"
-              />
-            </div>
-
-            <div className='flex flex-col mb-4'>
-              <label htmlFor="cp">
-              Código postal:
-              </label>
-              <input
-                className='input text-dark'
-                type="text"
-                name='cp'
-                readOnly
-                value="25040"
-              />
-            </div>
-          </div>
-          <button className='btn bg-accent w-full'>Guardar dirección</button>
+        <section>
+          {
+            (editAddress)
+              ? (
+                <FormAddress onSubmit={ onAddressChange } address={ addressState}/>
+              )
+              : (<div className='mb-4'>
+                <p className='text-center text-xl mb-2'>Dirección del usuario</p>
+                <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+                  <p className='border border-strokeLight border-solid px-2'>Estado</p>
+                  <p className='border border-strokeLight border-solid px-2'>{addressState?.state}</p>
+                </div>
+                <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+                  <p className='border border-strokeLight border-solid px-2'>Ciudad</p>
+                  <p className='border border-strokeLight border-solid px-2'>{addressState?.city}</p>
+                </div>
+                <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+                  <p className='border border-strokeLight border-solid px-2'>Colonia</p>
+                  <p className='border border-strokeLight border-solid px-2'>{addressState?.col}</p>
+                </div>
+                <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+                  <p className='border border-strokeLight border-solid px-2'>Número de domicilio</p>
+                  <p className='border border-strokeLight border-solid px-2'>{addressState?.number}</p>
+                </div>
+                <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
+                  <p className='border border-strokeLight border-solid px-2'>Código postal</p>
+                  <p className='border border-strokeLight border-solid px-2'>{addressState?.cp}</p>
+                </div>
+                <button
+                  className='btn bg-accent text-sm w-full'
+                  onClick={ () => setEditAddress(true) }
+                >Cambiar dirección</button>
+              </div>)
+              
+          }
         </section>
+
         <section className='mb-8'>
           <h2 className='text-center text-xl mb-2'>Resumen de la orden</h2>
 
@@ -114,12 +117,14 @@ const PayOrderPage:NextPage<Props> = ({order}) => {
         <section>
           <h2 className='text-center text-xl mb-2'>Total a pagar { formatPrice(order.total) } MXN</h2>
           <button
-            className='px-4 py-4 rounded border border-white bg-accent w-full'
+            className='btn rounded border border-white bg-success w-full'
             onClick={ () => onPayOrder() }
+            disabled={ true }
           >
             PAGAR
           </button>
         </section>
+        <Toaster position='top-center'/>
       </div>
     </AppLayout>
   )
