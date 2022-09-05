@@ -5,12 +5,13 @@ import { AppLayout } from '../../../layouts'
 import { dbOrders } from '../../../database'
 import { formatPrice } from '../../../util'
 import { Order } from '../../../interfaces'
+import { OrderSummary } from '../../../components'
 
 interface Props {
   order: Order;
 }
 
-const OrderSummary: NextPage<Props> = ({order}) => {
+const OrderSummaryPage: NextPage<Props> = ({order}) => {
   return (
     <AppLayout title="Resumen de la orden" maxWidth='md'>
       <div className='p-2'>
@@ -23,7 +24,7 @@ const OrderSummary: NextPage<Props> = ({order}) => {
   )
 }
 
-export default OrderSummary
+export default OrderSummaryPage
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
