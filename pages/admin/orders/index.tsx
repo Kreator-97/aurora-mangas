@@ -1,36 +1,50 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
-import { dbUsers } from '../../../database'
+import Link from 'next/link'
 
+import { dbOrders, dbUsers } from '../../../database'
 import { AppLayout } from '../../../layouts'
 import { Order } from '../../../interfaces'
+import { Table } from '../../../components'
 
 interface Props {
   orders: Order[]
 }
 
 const OrdersPage: NextPage<Props> = ({orders}) => {
-
   return (
     <AppLayout title="Pedidos realizados">
       <h1 className='text-2xl text-center py-4'>Ordenes</h1>
       {
         orders.length === 0
           ? (
-            <h2 className='title'>No hay pedidos realizados</h2>
+            <h2 className='text-center text-xl '>No hay pedidos realizados</h2>
           )
           : (
-            <table>
-              <thead>
-                <th>Orden ID</th>
-                <th>Comprador</th>
-                <th>Comprador ID</th>
-                <th>Fecha</th>
-              </thead>
-            </table>
+            <Table columns={['Orden ID', 'Comprador', 'Cant. Artículos','Fecha', 'Estado', 'Acción' ]}>
+              {
+                orders.map((order) => {
+                  return (
+                    <tr key={order.id}>
+                      <td>
+                        { order.id }
+                      </td>
+                      <td>{order.user.fullname}</td>
+                      <td>{order.items.length}</td>
+                      <td>{new Date(order.date).toDateString() }</td>
+                      <td>{order.status}</td>
+                      <td>
+                        <Link href={`/admin/orders/${order.id}`}>
+                          <a className='btn bg-accent'>Ver orden</a>
+                        </Link>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </Table>
           )
       }
-
     </AppLayout>
   )
 }
@@ -51,9 +65,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
+  const orders = await dbOrders.getAllOrders()
+
   return {
     props: {
-      orders: [],
+      orders,
     }
   }
 }

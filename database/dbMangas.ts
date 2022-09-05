@@ -1,5 +1,5 @@
-import { Manga, PrismaClient, Serie } from '@prisma/client'
-const prisma = new PrismaClient()
+import { Manga, Serie } from '@prisma/client'
+import prisma from '../lib/prisma'
 
 export const getAllMangas = async () => {
   const mangas = await prisma.manga.findMany({
@@ -67,7 +67,6 @@ export const searchMangas = async (query:string) => {
       title: {
         contains: query
       }
-      
     },
     orderBy: {
       title: 'asc'
@@ -88,4 +87,64 @@ export const searchMangas = async (query:string) => {
 export const getMangaById = async (id:string) => {
   const manga = await prisma.manga.findUnique({where: {id: id}, include: { serie: true }})
   return manga
+}
+
+interface Items {
+  productId: string;
+  amount   : number;
+}
+
+export const calcCartTotal = async (items: Items[], expectedTotal: number):Promise<number | string> => {
+  const mangas = await Promise.all( items.map( (item) => {
+    return prisma.manga.findUnique({ where: { id: item.productId }})
+  }))
+
+  const validMangas = ( mangas.filter((manga) => manga !== null) as Manga[])
+
+  if( validMangas.length === 0 ) return 'items in cart are not valid'
+  
+  const mangaWithAmount = validMangas.map( (manga, i) => {
+    return {...manga, amount: items[i].amount}
+  })
+  
+  const total = mangaWithAmount.reduce((acc, manga ) => {
+    if ( !manga.price ) return acc
+    return (manga.price * manga.amount) + acc
+  } ,0)
+  
+  if( total !== expectedTotal ) {
+    return 'No se pudo completar el pago'
+  }
+  
+  return total
+}
+
+export const getBestSellersMangas = async () => {
+  const groupedData = await prisma.item.groupBy({
+    by: ['productId'],
+    _sum: {
+      amount: true,
+    },
+    orderBy: {
+      _sum: {
+        amount: 'desc',
+      }
+    },
+    take: 10,
+    where: {
+      order: {
+        status: {
+          equals: 'PAID'
+        }
+      },
+    },
+  })
+
+  const promises = groupedData.map( res => prisma.manga.findUnique({ where: { id: res.productId } }) )
+
+  const mangas = await Promise.all(promises)
+
+  const result = mangas.map((manga, i) => ({product: manga, soldUnits: groupedData[i]._sum.amount}))
+
+  return JSON.parse( JSON.stringify( result ))
 }

@@ -20,6 +20,15 @@ export const typeDefs = gql`
     role      : Role
     createdAt : String
     updatedAt : String
+    address   : Address
+  }
+
+  type Address {
+    city  : String
+    col   : String
+    cp    : String
+    number: String
+    state : String
   }
 
   type Author {
@@ -44,7 +53,7 @@ export const typeDefs = gql`
 
   type Manga {
     id        : ID
-    serie     : Serie!
+    serie     : Serie
     number    : String!
     price     : Int!
     imgURL    : String!
@@ -64,25 +73,33 @@ export const typeDefs = gql`
   }
 
   input MangaInput {
-    serieId  :String!,
-    number   : String!,
-    price    : Int!,
-    imgURL   : String!,
-    published: String!,
+    serieId  : String!
+    number   : String!
+    price    : Int!
+    imgURL   : String!
+    published: String!
     title    : String
   }
 
-  type Query {
-    series: [Serie!]
-    authors: [Author!]
-    volumes(serieId: String): [Manga!]
-    users: [User!]
+  input AddressInput {
+    city  : String!
+    col   : String!
+    cp    : String!
+    number: String!
+    state : String!
   }
 
   type Response {
     ok: Boolean!
     error: String
     message: String!
+  }
+
+  type OrderResponse {
+    ok: Boolean!
+    error: String
+    message: String!
+    orderId: String
   }
 
   type UserResponse {
@@ -99,9 +116,37 @@ export const typeDefs = gql`
     message: String!
   }
 
+  type Item {
+    product: Manga
+    amount: Int
+  }
+
+  input ItemsInput {
+    productId: String!
+    amount: Int!
+  }
+
+  type Order {
+    id: String
+    total: Int!
+    items: [Item!]
+    user: User!
+  }
+
+  type Query {
+    series: [Serie!]
+    authors: [Author!]
+    volumes(serieId: String): [Manga!]
+    users: [User!]
+    orders: [Order!]
+    ordersByUser(userId: String!): [Order!]
+  }
+
   type Mutation {
     createAuthor(name:String): Author
+
     createSerie( serie:SerieInput ): Serie
+
     createManga(
       serieId:String!,
       number: String!,
@@ -110,12 +155,24 @@ export const typeDefs = gql`
       published: String!,
       title: String
     ):Response!
+
     createUser(
       email: String!,
       fullname: String!,
       password: String!,
     ): UserResponse
 
-    updateManga(mangaId: String, manga:MangaInput): MangaResponse!
+    updateManga(
+      mangaId: String,
+      manga: MangaInput
+    ): MangaResponse!
+
+    createOrder(
+      items: [ItemsInput!], total: Int!
+    ): OrderResponse
+
+    createAndUpdateDirection(userId:String, address: AddressInput): Response
+
+    confirmPaypalOrder(paypalOrderId: String!, orderId: String!) :Response
   }
 `

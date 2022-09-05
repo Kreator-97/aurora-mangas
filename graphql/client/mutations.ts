@@ -47,3 +47,34 @@ export const UPDATE_MANGA = gql`
     }
   }
 `
+
+export const CREATE_ORDER = gql`
+  mutation CreateOrder($total: Int!, $items: [ItemsInput!]) {
+    createOrder(total: $total, items: $items) {
+      error
+      message
+      ok
+      orderId
+    }
+  }
+`
+
+export const CREATE_OR_UPDATE_DIRECTION = gql`
+  mutation CreateAndUpdateDirection($userId: String, $address: AddressInput) {
+    createAndUpdateDirection(userId: $userId, address: $address) {
+      ok
+      error
+      message
+    }
+  }
+`
+
+export const CONFIRM_PAYPAL_ORDERID = gql`
+  mutation ConfirmPaypalOrderId($paypalOrderId: String!, $orderId: String! ) {
+      confirmPaypalOrder( paypalOrderId:$paypalOrderId, orderId: $orderId ) {
+          error
+          message
+          ok
+      }
+  }
+`

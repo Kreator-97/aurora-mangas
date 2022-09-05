@@ -54,32 +54,14 @@ export const Sidebar = () => {
             </div>
           </>)
       }
-      <hr />
-      <section>
-        <button
-          className='text-xl py-2 hover:text-accent cursor-pointer block'
-        >
-          Listar por géneros
-        </button>
-        <button
-          className='text-xl py-2 hover:text-accent cursor-pointer block'
-        >
-          Lista de deseos
-        </button>
-        <button
-          className='text-xl py-2 hover:text-accent cursor-pointer block'
-        >
-          Más vendidos
-        </button>
-      </section>
       {
         auth.isLogged && (
           <>
-            <hr />
-            <section>
+            <section className='border-t border-strokeLight border-solid'>
               <p className='text-xl text-center pt-2'>Sobre tu cuenta</p>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/orders') }
               >
             Lista de pedidos
               </button>
@@ -94,8 +76,7 @@ export const Sidebar = () => {
       {
         auth.user?.role === 'ADMIN' && (
           <>
-            <hr />
-            <section>
+            <section className='border-t border-strokeLight border-solid'>
               <p className='text-xl text-center pt-2'>Administrador</p>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
@@ -120,6 +101,13 @@ export const Sidebar = () => {
                 onClick={ () => navigateTo('/admin/authors') }
               >
                 Autores
+              </button>
+
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/analitics/best-sellers') }
+              >
+                Más vendidos
               </button>
             </section>
           </>

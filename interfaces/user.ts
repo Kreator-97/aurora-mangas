@@ -6,4 +6,14 @@ export interface User {
   role      : 'USER' | 'ADMIN'
   createdAt : string;
   updatedAt : string;
+  address  ?: Address;
+}
+
+export interface Address {
+  id      : string;
+  state   : string;
+  col     : string;
+  city    : string;
+  number  : string;
+  cp      : string;
 }

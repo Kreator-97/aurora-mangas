@@ -19,11 +19,12 @@ export const Pagination: FC<Props> = ({totalPages, initialPage, onPageChange}) =
   // current page = 10
   // minpage = 10 - 4 = 6
   // maxpage = minpage + (offset * 2) = 14
+  // define the previous and next pages that will be displayed
 
   let diff = 0
   // diff is the result of totalpages - currentpage. Example
   // 20 - 18 = -2
-  // we add ABS(-2) to offset left (min page) to show always 9 pages in pagination
+  // we add ABS(-2) to previous pages (min page) to show always 9 pages in pagination
 
   if( (totalPages - currentPage) < initialOffset ) {
     diff = Math.abs((totalPages - (currentPage + initialOffset)))

@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { SessionProvider } from 'next-auth/react'
 import { ApolloProvider } from '@apollo/client'
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 
 import { client } from '../graphql/client'
 import { store } from '../app/store'
@@ -11,11 +12,13 @@ import 'animate.css'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
-      <ApolloProvider client={ client }>
-        <Provider store={ store }>
-          <Component {...pageProps } />
-        </Provider>
-      </ApolloProvider>
+      <PayPalScriptProvider options={{'client-id': process.env.NEXT_PUBLIC_PAYPAY_CLIENT_ID || '', 'buyer-country': 'MX', currency: 'MXN'}}>
+        <ApolloProvider client={ client }>
+          <Provider store={ store }>
+            <Component {...pageProps } />
+          </Provider>
+        </ApolloProvider>
+      </PayPalScriptProvider>
     </SessionProvider>
   ) 
 }

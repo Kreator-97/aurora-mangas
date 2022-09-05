@@ -29,8 +29,8 @@ describe('tests on pagination component', () => {
     const expectedPage = 9
     const { container } = render(<Pagination totalPages={9} initialPage={5} />)
 
-    const btnPage10 = screen.getByText(String(expectedPage))
-    fireEvent.click( btnPage10 )
+    const btnPage9 = screen.getByText(String(expectedPage))
+    fireEvent.click( btnPage9 )
 
     const pageActive = container.querySelector('.active')
     expect( pageActive?.textContent ).toBe(String(expectedPage))

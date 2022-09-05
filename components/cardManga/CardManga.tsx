@@ -2,7 +2,6 @@ import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { HiOutlineHeart } from 'react-icons/hi'
 import { Toaster, toast } from 'react-hot-toast'
 
 import { addItem } from '../../app/slices/shoppingCartSlice'
@@ -52,11 +51,8 @@ export const CardManga:FC<Props> = ({manga}) => {
           Agregar al carrito
         </button>
       </div>
-      <div className='p-1 bg-light absolute top-4 right-2 rounded-full'>
-        <HiOutlineHeart color='var(--dark)' className='' size={36}/>
-      </div>
-      <div className='absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full'>
-        <p className='text-2xl p-2'># {manga.number}</p>
+      <div className='absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full'>
+        <p className='text-2xl px-2 py-4'># {manga.number}</p>
       </div>
       <Toaster position='bottom-left' />
     </div>

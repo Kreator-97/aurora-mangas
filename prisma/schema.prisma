@@ -20,6 +20,19 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   provider  Provider @default(CREDENTIALS)
+  orders    Order[]
+  address   Address?
+}
+
+model Address {
+  id      String @id @default(uuid())
+  state   String
+  col     String
+  city    String
+  number  String
+  cp      String
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String @unique
 }
 
 enum Provider {
@@ -61,7 +74,8 @@ model Manga {
   price     Int
   imgURL    String
   published String
-  title     String?
+  title     String
+  item      Item[]
 }
 
 enum Periodicy {
@@ -69,15 +83,29 @@ enum Periodicy {
   BIMESTRAL
 }
 
-// enum Genre {
-//   ACTION
-//   ADVENTURE
-//   FANTASY
-//   GORE
-//   HORROR
-//   MARTIAL_ARTS
-//   MYSTERY
-//   ROMANCE
-//   SOBRENATURAL
-//   THRILLER
-// }
+model Order {
+  id            String    @id @default(uuid())
+  items         Item[]
+  user          User      @relation(fields: [userId], references: [id])
+  userId        String
+  total         Int
+  date          DateTime  @default(now())
+  status        Status    @default(PENDING)
+  transactionId String?
+}
+
+// check later the relaction on field product
+model Item {
+  id        String  @id @default(uuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  amount    Int
+  product   Manga   @relation(fields: [productId], references: [id])
+  productId String
+}
+
+enum Status {
+  PAID
+  PENDING
+  CANCELLED
+}

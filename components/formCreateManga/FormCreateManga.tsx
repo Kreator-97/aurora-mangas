@@ -11,6 +11,10 @@ const formValidations = {
     validation: (value:string) => value.trim() !== '',
     message: 'Este campo no puede estar vacio',
   },
+  title: {
+    validation: (value:string) => value.trim() !== '',
+    message: 'Este campo no puede estar vacio',
+  },
   imgURL: {
     validation: (value:string) => value.trim() !== '' && value.startsWith(CLOUDINARY_DOMAIN) ,
     message: 'Este campo debe de ser una URL de Cloudinary válida',
@@ -59,9 +63,9 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
   const { imgURL, number, price, title, serie, month, year, errors, onInputChange, onResetForm } = useForm<FormCreateManga>({
     serie   : manga?.serie.id || '',
     imgURL  : manga?.imgURL|| '',
-    number  : manga?.number ||  '',
+    number  : manga?.number || '',
     price   : String(manga?.price) || '',
-    title   : manga?.title ||  '',
+    title   : manga?.title || '',
     month   : mangaMonth || '',
     year    : mangaYear || '',
   }, formValidations)
@@ -169,17 +173,18 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
 
         <div className='flex flex-col gap-2'>
           <label htmlFor="title" className='text-lg'>
-              Escribe un título (opcional)
+              Escribe un título
           </label>
           <input
             type="text"
             name="title"
             id="title"
             className='input'
-            placeholder='Titulo opcional'
+            placeholder='Escribe un título'
             value={ title }
             onChange={ onInputChange }
           />
+          { (errors.title && showErrors) && (<p className='text-error'>{errors.title}</p>) }
         </div> 
 
         <div className='grid grid-cols-2 gap-2'>

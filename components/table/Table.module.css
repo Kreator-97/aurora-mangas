@@ -1,7 +1,6 @@
 .table {
   table-layout: auto;
   width: 100%;
-  min-width: 500px;
   border-collapse: collapse;
   border-radius: .25rem;
   overflow-x: scroll;

@@ -2,15 +2,16 @@ import { GetServerSideProps, NextPage } from 'next'
 import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-
 import Image from 'next/image'
+import { useMutation } from '@apollo/client'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { AppLayout } from '../../layouts'
+import { cleanShoppingCart, removeItem, setAmount } from '../../app/slices/shoppingCartSlice'
+import { CREATE_ORDER } from '../../graphql/client/mutations'
 import { dbLocal, formatPrice } from '../../util'
-import { removeItem, setAmount } from '../../app/slices/shoppingCartSlice'
-
+import { OrderResponse } from '../../interfaces/graphql'
 import { SelectAmount } from '../../components'
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 const CheckoutPage:NextPage<Props> = ({user}) => {
   const dispatch = useAppDispatch()
   const { items, total } = useAppSelector(state => state.cart)
+  const [ createOrder ] = useMutation(CREATE_ORDER)
   const router = useRouter()
 
   const onIncrement = (amount:number, id:string ) => {
@@ -37,6 +39,39 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
   const onRemoveItem = (id:string) => {
     dispatch(removeItem({id}))
     dbLocal.removeItemInLocal({items, total}, id)
+  }
+
+  const onCreateOrder = async () => {
+    const newItems = items.map((item) => {
+      return {
+        productId: item.product.id,
+        amount: item.amount
+      }
+    })
+    try {
+      const { data } = await createOrder({
+        variables: {
+          total,
+          items: newItems,
+        }
+      })
+      
+      const { ok, message, error, orderId } = (data.createOrder) as OrderResponse
+      if ( !ok ) {
+        console.error(error)
+        throw new Error(message)
+      }
+
+      toast.success(message)
+      window.setTimeout(() => {
+        // clean localstorage and redux state
+        dbLocal.cleanShoppingCart()
+        dispatch(cleanShoppingCart())
+        router.push(`/orders/pay/${orderId}`)
+      }, 2000)
+    } catch (error) {
+      toast.error((error as {message: string}).message)
+    }
   }
 
   if ( items.length === 0) {
@@ -96,7 +131,6 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
                 className='btn bg-accent mt-2 w-full'
                 onClick={ () => router.push('/auth/login') }
               >Iniciar sesión</button>
-
             </div>
           )
         }
@@ -104,11 +138,13 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
         <button
           className='btn bg-accent w-full'
           disabled={ !user }
+          onClick={ () => onCreateOrder() }
         >
           Confirmar pedido
         </button>
         <p className='text-success text-center' >El pago es procesado a través de Paypal</p>
       </div>
+      <Toaster position='top-center'/>
     </AppLayout>
   )
 }
