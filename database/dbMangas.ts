@@ -67,7 +67,6 @@ export const searchMangas = async (query:string) => {
       title: {
         contains: query
       }
-      
     },
     orderBy: {
       title: 'asc'
@@ -118,4 +117,34 @@ export const calcCartTotal = async (items: Items[], expectedTotal: number):Promi
   }
   
   return total
+}
+
+export const getBestSellersMangas = async () => {
+  const groupedData = await prisma.item.groupBy({
+    by: ['productId'],
+    _sum: {
+      amount: true,
+    },
+    orderBy: {
+      _sum: {
+        amount: 'desc',
+      }
+    },
+    take: 10,
+    where: {
+      order: {
+        status: {
+          equals: 'PAID'
+        }
+      },
+    },
+  })
+
+  const promises = groupedData.map( res => prisma.manga.findUnique({ where: { id: res.productId } }) )
+
+  const mangas = await Promise.all(promises)
+
+  const result = mangas.map((manga, i) => ({product: manga, soldUnits: groupedData[i]._sum.amount}))
+
+  return JSON.parse( JSON.stringify( result ))
 }

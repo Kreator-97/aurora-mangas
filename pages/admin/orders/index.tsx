@@ -21,20 +21,23 @@ const OrdersPage: NextPage<Props> = ({orders}) => {
             <h2 className='text-center text-xl '>No hay pedidos realizados</h2>
           )
           : (
-            <Table columns={['Orden ID', 'Comprador', 'Cant. Artículos','Fecha', 'Estado' ]}>
+            <Table columns={['Orden ID', 'Comprador', 'Cant. Artículos','Fecha', 'Estado', 'Acción' ]}>
               {
                 orders.map((order) => {
                   return (
                     <tr key={order.id}>
                       <td>
-                        <Link href={`/admin/orders/${order.id}`}>
-                          <a className='text-success'>{ order.id }</a>
-                        </Link>
+                        { order.id }
                       </td>
                       <td>{order.user.fullname}</td>
                       <td>{order.items.length}</td>
                       <td>{new Date(order.date).toDateString() }</td>
                       <td>{order.status}</td>
+                      <td>
+                        <Link href={`/admin/orders/${order.id}`}>
+                          <a className='btn bg-accent'>Ver orden</a>
+                        </Link>
+                      </td>
                     </tr>
                   )
                 })
