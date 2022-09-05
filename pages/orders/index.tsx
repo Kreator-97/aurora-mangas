@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-import { getSession } from 'next-auth/react'
 import Link from 'next/link'
+import { getSession } from 'next-auth/react'
 
 import { dbOrders } from '../../database'
 import { Order } from '../../interfaces'
@@ -45,12 +45,14 @@ const OrderPage: NextPage<Props> = ({orders}) => {
                       {
                         ordersPaid.map((order) => {
                           return (
-                            <div key={order.id}>
+                            <div key={order.id} className="bg-darkTransparent p-2 rounded">
                               <h3>Orden #{order.id}</h3>
-                              <p>Fecha: {new Date(order.date).toString()}</p>
+                              <p>Fecha: {new Date(order.date).toDateString()}</p>
                               <p>Estado: { order.status }</p>
-                              <p>Total pagado: { order.total }</p>
-                              {/* TODO: colocar dirección de envio */}
+                              <p>Total pagado: { formatPrice(order.total) }</p>
+                              <Link href={`/orders/summary/${order.id}`}>
+                                <a className='mt-2 btn bg-accent w-full block text-center text-sm'>Resumen de la orden</a>
+                              </Link>
                             </div>
                           )
                         })
@@ -65,7 +67,11 @@ const OrderPage: NextPage<Props> = ({orders}) => {
           orderStatus === 'PENDING' && (
             <section>
               <h2 className='text-center text-2xl mb-2'>Ordenes Pendientes</h2>
-              <p className='text-center bg-alert mb-4 text-dark'>Las pendientes se cancelarán automaticamente si no se realiza el pago después de 24 horas</p>
+              {
+                ordersPending.length > 0 && (
+                  <p className='text-center bg-alert mb-4 text-dark'>Las ordenes pendientes se cancelarán automaticamente si no se realiza el pago después de 24 horas</p>
+                )
+              }
               {
                 (ordersPending.length === 0)
                   ? (<p className='text-center bg-accentDark'>No existen ordenes pendientes</p>)
@@ -73,12 +79,11 @@ const OrderPage: NextPage<Props> = ({orders}) => {
                     {
                       ordersPending.map((order) => {
                         return (
-                          <div key={order.id} className="bg-dark p-2 rounded">
+                          <div key={order.id} className="bg-darkTransparent p-2 rounded">
                             <h3>Orden #{order.id}</h3>
                             <p>Fecha: {new Date(order.date).toDateString()}</p>
                             <p>Estado: { order.status }</p>
                             <p>Total a pagar: { formatPrice(order.total) }</p>
-                            {/* TODO: colocar dirección de envio */}
                             <Link href={`/orders/pay/${order.id}`}>
                               <a className='mt-2 btn bg-accent w-full block text-center text-sm'>Pagar orden</a>
                             </Link>

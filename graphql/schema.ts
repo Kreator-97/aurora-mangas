@@ -172,5 +172,7 @@ export const typeDefs = gql`
     ): OrderResponse
 
     createAndUpdateDirection(userId:String, address: AddressInput): Response
+
+    confirmPaypalOrder(paypalOrderId: String!, orderId: String!) :Response
   }
 `

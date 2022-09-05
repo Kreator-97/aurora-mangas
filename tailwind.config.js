@@ -21,6 +21,7 @@ module.exports = {
       alert: '#ff922b',
       error: '#ff3300',
       dark: '#333',
+      darkTransparent: '#333333AA',
       light: '#eee',
       white: '#fff',
       stroke: '#0068584f',

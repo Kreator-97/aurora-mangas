@@ -1,6 +1,7 @@
 export * from './cardGrid'
 export * from './cardManga'
 export * from './cardSerie'
+export * from './customRow'
 export * from './footer'
 export * from './formCreateManga'
 export * from './formAddress'

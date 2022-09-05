@@ -23,7 +23,9 @@ export const getOrderById = async (orderId:string): Promise<Order | null> => {
     include: {
       items: {
         include: {
-          product: true,
+          product: {
+            include: { serie: true }
+          },
         }
       },
       user: {

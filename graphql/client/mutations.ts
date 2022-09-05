@@ -68,3 +68,13 @@ export const CREATE_OR_UPDATE_DIRECTION = gql`
     }
   }
 `
+
+export const CONFIRM_PAYPAL_ORDERID = gql`
+  mutation ConfirmPaypalOrderId($paypalOrderId: String!, $orderId: String! ) {
+      confirmPaypalOrder( paypalOrderId:$paypalOrderId, orderId: $orderId ) {
+          error
+          message
+          ok
+      }
+  }
+`

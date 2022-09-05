@@ -3,6 +3,9 @@ import { dbUsers } from '../database'
 import { User } from '../interfaces'
 import { suggestSlug } from '../util'
 import { calcCartTotal } from '../database/dbMangas'
+import fetch from 'cross-fetch'
+import { getPaypalBearerToken } from '../util/paypal'
+import { Session } from 'next-auth'
 
 export const resolvers = {
   Query: {
@@ -314,5 +317,89 @@ export const resolvers = {
         }
       }
     },
+    async confirmPaypalOrder(root:any, args:any, ctx:{session:Session} ) {
+      const { paypalOrderId, orderId } = args
+      
+      const order = await prisma.order.findUnique({
+        where: { id: orderId }
+      })
+
+      if( !order ) {
+        return {
+          message: `La orden con id "${orderId}" no existe`,
+          ok: false,
+          error: 'Orden no existe',
+        }
+      }
+
+      if( ctx.session.user.id !== order.userId ) {
+        return {
+          message: 'Este usuario no puede confirma esta orden de pago',
+          ok: false,
+          error: 'Error de authenticación',
+        }
+      }
+
+      try {
+        const paypalBearerToken = await getPaypalBearerToken()
+
+        if( !paypalBearerToken) {
+          return {
+            message: 'Ocurrió un error al intentar obtener el token de paypal',
+            ok: false,
+            error: 'Authentication failed',
+          }
+        }
+
+        const paypal_orders_url = process.env.PAYPAL_ORDERS_URL
+
+        const res = await fetch(`${paypal_orders_url}/${paypalOrderId}`, {
+          headers: {
+            'Authorization': `Bearer ${paypalBearerToken}`
+          }
+        })
+
+        const paypalOrder = await res.json()
+        if( paypalOrder.status !== 'COMPLETED' ) {
+          return {
+            message: 'Orden no completada',
+            ok: false,
+            error: null,
+          }
+        }
+
+        await prisma.order.update({
+          where: {
+            id: orderId,
+          },
+          data: {
+            status: 'PAID',
+            transactionId: paypalOrder.id
+          }
+        })
+        
+        if( Number(paypalOrder.purchase_units[0].amount.value) !== order.total ) {
+          return {
+            message: 'No se pudo confirmar el pago',
+            ok: false,
+            error: 'Los montos de paypal no coinciden con los montos de la orden guardada en la base de datos',
+          }
+        }
+
+        return {
+          message: 'El pago ha sido confirmado como pagado',
+          ok: true,
+          error: null,
+        }
+        
+      } catch (error) {
+        console.error(error)
+        return {
+          message: 'El pago no pudo ser confirmado',
+          ok: false,
+          error: null,
+        }
+      }
+    }
   }
 }
