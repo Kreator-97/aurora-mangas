@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Serie` ADD COLUMN `slug` VARCHAR(191) NULL;

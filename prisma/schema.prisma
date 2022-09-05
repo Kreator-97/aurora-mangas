@@ -74,7 +74,7 @@ model Manga {
   price     Int
   imgURL    String
   published String
-  title     String?
+  title     String
   item      Item[]
 }
 
