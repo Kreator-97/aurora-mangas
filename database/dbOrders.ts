@@ -1,7 +1,7 @@
 import { Order } from '@prisma/client'
 import prisma from '../lib/prisma'
 
-export const getOrders = async (userId:string):Promise<Order[]> => {
+export const getOrdersByUserId = async (userId:string):Promise<Order[]> => {
   const orders = await prisma.order.findMany({
     where: {
       userId,
@@ -37,4 +37,10 @@ export const getOrderById = async (orderId:string): Promise<Order | null> => {
   })
 
   return JSON.parse(JSON.stringify(order))
+}
+
+export const getAllOrders = async () => {
+  const orders = await prisma.order.findMany({include: { user: true, items: true }})
+
+  return JSON.parse( JSON.stringify(orders) )
 }

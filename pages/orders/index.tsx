@@ -114,7 +114,7 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
   }
 
   const { user } = session
-  const orders = await dbOrders.getOrders(user.id)
+  const orders = await dbOrders.getOrdersByUserId(user.id)
 
   return {
     props: {
