@@ -325,6 +325,9 @@ exports[`tests on Checkout Page should to match with snapshot 1`] = `
         El pago es procesado a través de Paypal
       </p>
     </div>
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
   </main>
   <footer
     class="min-h-[150px] border-t border-solid border-stroke"

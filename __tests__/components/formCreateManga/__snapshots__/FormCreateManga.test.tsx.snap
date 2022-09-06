@@ -119,13 +119,13 @@ exports[`Tests on FormCreateManga component should to match with snapshot 1`] = 
           class="text-lg"
           for="title"
         >
-          Escribe un título (opcional)
+          Escribe un título
         </label>
         <input
           class="input"
           id="title"
           name="title"
-          placeholder="Titulo opcional"
+          placeholder="Escribe un título"
           type="text"
           value=""
         />
