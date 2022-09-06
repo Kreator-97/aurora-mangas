@@ -29,7 +29,7 @@ export const CardManga:FC<Props> = ({manga}) => {
   }
 
   return (
-    <div className="bg-white relative min-w-[220px] rounded" data-testid="card-manga">
+    <div className="bg-white relative min-w-[225px] max-w-[450px] rounded w-full" data-testid="card-manga">
       <Image
         src={manga.imgURL}
         layout="responsive"
@@ -52,7 +52,7 @@ export const CardManga:FC<Props> = ({manga}) => {
         </button>
       </div>
       <div className='absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full'>
-        <p className='text-2xl px-2 py-4'># {manga.number}</p>
+        <p className='text-2xl px-2 py-4 w-16 text-center'># {manga.number}</p>
       </div>
       <Toaster position='bottom-left' />
     </div>

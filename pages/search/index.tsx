@@ -19,7 +19,7 @@ const SearchPage: NextPage<Props> = ({results, query}) => {
 
   return (
     <AppLayout title={title} >
-      <h1 className='title mb-2'>{title}</h1>
+      <h1 className='title'>{title}</h1>
       <div className='mb-4'>
         {
           total === 0 && (

@@ -18,7 +18,7 @@ export const CardGrid: FC<Props> = ({ series, children, gridCols }) => {
 
   return (
     <div
-      className={ `grid gap-2 ${gridDefault} px-2` }
+      className={ `grid gap-2 ${gridDefault} px-2 justify-items-center` }
       data-testid="card-grid"
     >
       {

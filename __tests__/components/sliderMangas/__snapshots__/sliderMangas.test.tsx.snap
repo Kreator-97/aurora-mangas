@@ -12,17 +12,11 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
        Mangas
     </h2>
     <div
-      class="
-          grid grid-cols-1
-          sm:grid-cols-2 gap-4 w-full max-w-[var(--max)] px-1
-          md:flex md:overflow-y-scroll
-          md:justify-start
-          lg:justify-start
-        "
-      style="scroll-behavior: smooth;"
+      class="content "
+      style="scroll-behavior: smooth; justify-content: flex-start;"
     >
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -64,31 +58,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             12
@@ -99,7 +72,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -141,31 +114,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             8
@@ -176,7 +128,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -218,31 +170,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             5
@@ -253,7 +184,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -295,31 +226,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             2
@@ -330,7 +240,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -372,31 +282,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             1
@@ -407,7 +296,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -449,31 +338,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             10
@@ -484,7 +352,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -526,31 +394,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             7
@@ -561,7 +408,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -603,31 +450,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             4
@@ -638,7 +464,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -680,31 +506,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             11
@@ -715,7 +520,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -757,31 +562,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             9
@@ -792,7 +576,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -834,31 +618,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             3
@@ -869,7 +632,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="bg-white relative min-w-[220px] rounded"
+        class="bg-white relative min-w-[225px] max-w-[450px] rounded w-full"
         data-testid="card-manga"
       >
         <span
@@ -911,31 +674,10 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
           </button>
         </div>
         <div
-          class="p-1 bg-light absolute top-4 right-2 rounded-full"
-        >
-          <svg
-            color="var(--dark)"
-            fill="none"
-            height="36"
-            stroke="currentColor"
-            stroke-width="0"
-            viewBox="0 0 24 24"
-            width="36"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <div
-          class="absolute bg-dark bg-opacity-75 top-2/4 right-2 rounded-full"
+          class="absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full"
         >
           <p
-            class="text-2xl p-2"
+            class="text-2xl px-2 py-4 w-16 text-center"
           >
             # 
             6
