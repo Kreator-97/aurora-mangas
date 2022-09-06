@@ -29,7 +29,7 @@ describe('Tests on FormCreateManga component', () => {
     const numberLabel = screen.getByLabelText('Escribe el número de volumen')
     const unitPriceLabel = screen.getByLabelText('Escribe el precio unitario')
     const imgURLLabel = screen.getByLabelText('Coloca la URL de la serie (cloudinary)')
-    const titleLabel = screen.getByLabelText('Escribe un título (opcional)')
+    const titleLabel = screen.getByLabelText('Escribe un título')
     const monthLabel = screen.getByLabelText('Mes de publicación')
     const yearLabel = screen.getByLabelText('Año de publicación')
 
@@ -57,7 +57,7 @@ describe('Tests on FormCreateManga component', () => {
     const numberInput = screen.getByRole('spinbutton', {name: 'Escribe el número de volumen'})
     const unitPriceInput = screen.getByRole('spinbutton', {name: 'Escribe el precio unitario'})
     const imgURLInput = screen.getByRole('textbox', {name: 'Coloca la URL de la serie (cloudinary)'})
-    const title = screen.getByRole('textbox', {name: 'Escribe un título (opcional)'})
+    const title = screen.getByRole('textbox', {name: 'Escribe un título'})
     const monthInput = screen.getByRole('spinbutton', {name: 'Mes de publicación'})
     const yearInput = screen.getByRole('spinbutton', {name: 'Año de publicación'})
 

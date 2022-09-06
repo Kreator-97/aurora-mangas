@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
+
 import { store } from '../../../app/store'
 import { default as CheckoutPage } from '../../../pages/checkout'
 import { mangas, users } from '../../fixtures/db'
+import { MockedProvider } from '@apollo/client/testing'
 
 // mocks
 import { useSession } from 'next-auth/react'
@@ -37,9 +39,11 @@ describe('tests on Checkout Page', () => {
     }
 
     const { container } = render(
-      <Provider store={store} >
-        <CheckoutPage user={ session }/>
-      </Provider>
+      <MockedProvider mocks={[]}>
+        <Provider store={store} >
+          <CheckoutPage user={ session }/>
+        </Provider>
+      </MockedProvider>
     )
     expect(container).toMatchSnapshot()
   })
@@ -52,12 +56,13 @@ describe('tests on Checkout Page', () => {
       },
     }).cart)
 
-    const { container } = render(
-      <Provider store={store}>
-        <CheckoutPage user={ null }/>
-      </Provider>
+    render(
+      <MockedProvider>
+        <Provider store={store}>
+          <CheckoutPage user={ null }/>
+        </Provider>
+      </MockedProvider>
     )
-    // expect(container).toMatchSnapshot()
     const message = screen.getByText('No tienes elementos en el carrito de compras')
     expect(message).toBeInTheDocument
   })
@@ -68,9 +73,11 @@ describe('tests on Checkout Page', () => {
     }).cart)
 
     render(
-      <Provider store={store}>
-        <CheckoutPage user={ null }/>
-      </Provider>
+      <MockedProvider>
+        <Provider store={store}>
+          <CheckoutPage user={ null }/>
+        </Provider>
+      </MockedProvider>
     )
     
     expect( screen.getByText('Iniciar sesión') ).toBeInTheDocument
@@ -88,10 +95,12 @@ describe('tests on Checkout Page', () => {
       expires: '0'
     }
 
-    const { container } = render(
-      <Provider store={store} >
-        <CheckoutPage user={ session }/>
-      </Provider>
+    render(
+      <MockedProvider>
+        <Provider store={store} >
+          <CheckoutPage user={ session }/>
+        </Provider>
+      </MockedProvider>
     )
 
     const confirm = screen.getByText('Confirmar pedido')

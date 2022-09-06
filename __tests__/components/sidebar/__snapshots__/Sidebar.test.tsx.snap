@@ -53,24 +53,6 @@ exports[`tests on Sidebar component should to match with snapshot 1`] = `
         Crear cuenta
       </button>
     </div>
-    <hr />
-    <section>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Listar por géneros
-      </button>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Lista de deseos
-      </button>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Más vendidos
-      </button>
-    </section>
   </div>
 </div>
 `;

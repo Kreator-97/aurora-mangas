@@ -152,24 +152,6 @@ exports[`tests on SuscribeSerie page should to match with snapshot 1`] = `
         Crear cuenta
       </button>
     </div>
-    <hr />
-    <section>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Listar por géneros
-      </button>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Lista de deseos
-      </button>
-      <button
-        class="text-xl py-2 hover:text-accent cursor-pointer block"
-      >
-        Más vendidos
-      </button>
-    </section>
   </div>
   <div
     class="fixed top-0 right-0 min-h-screen h-screen min-w-[360px] bg-dark z-50 transition-transform translate-x-full"
@@ -207,22 +189,12 @@ exports[`tests on SuscribeSerie page should to match with snapshot 1`] = `
     <div
       class="flex flex-col gap-4 items-center overflow-y-scroll cartlist-items"
       style="padding-top: 1rem; padding-bottom: 1rem;"
-    />
-    <div
-      class="bg-dark absolute left-0 w-full px-4 py-4 border-t border-strokeLight"
-      style="height: 108px;"
     >
       <h2
-        class="text-center text-2xl mb-2"
+        class="text-center"
       >
-        Total global: 
-        $0.00
+        No hay elementos en el carrito de compra
       </h2>
-      <button
-        class="btn bg-accent w-full"
-      >
-        Ir al resumen
-      </button>
     </div>
   </div>
   <main

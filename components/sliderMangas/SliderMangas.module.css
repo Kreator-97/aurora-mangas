@@ -1,0 +1,30 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  max-width: var(--max);
+  gap: 16px;
+}
+
+.content.single-element {
+  display: flex;
+  justify-content: center;
+}
+
+.content.single-element div {
+  flex-grow: 1;
+}
+
+@media (min-width: 532px ) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 720px ) {
+  .content {
+    display: flex;
+    overflow-y: scroll;
+    justify-content: flex-start;
+  }
+}
