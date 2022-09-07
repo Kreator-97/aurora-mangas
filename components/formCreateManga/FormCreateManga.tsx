@@ -3,30 +3,14 @@ import { Toaster } from 'react-hot-toast'
 
 import { useForm } from '../../hooks'
 import { Manga, Serie } from '../../interfaces'
-
-const CLOUDINARY_DOMAIN = 'https://res.cloudinary.com'
+import { validations } from '../../util'
 
 const formValidations = {
-  serie: {
-    validation: (value:string) => value.trim() !== '',
-    message: 'Este campo no puede estar vacio',
-  },
-  title: {
-    validation: (value:string) => value.trim() !== '',
-    message: 'Este campo no puede estar vacio',
-  },
-  imgURL: {
-    validation: (value:string) => value.trim() !== '' && value.startsWith(CLOUDINARY_DOMAIN) ,
-    message: 'Este campo debe de ser una URL de Cloudinary válida',
-  },
-  number: {
-    validation: (value:string) => ( !isNaN(Number(value)) ) && value !== '',
-    message: 'Este campo debe de ser un número válido',
-  },
-  price: {
-    validation: (value:string) => ( !isNaN(Number(value)) ) && value !== '',
-    message: 'Este campo debe de ser un número válido',
-  },
+  serie: validations.noEmptyString,
+  title: validations.noEmptyString,
+  imgURL: validations.mustToBeCloudinaryImgURL,
+  number: validations.isValidNumber,
+  price: validations.isValidNumber,
   month: {
     validation: (value:string) => ( !isNaN(Number(value)) ) && value !== '',
     message: 'Este campo debe de ser un número válido entre 1 y 12',
@@ -35,6 +19,8 @@ const formValidations = {
     validation: (value:string) => ( !isNaN(Number(value)) ) && value !== '',
     message: 'Este campo debe de ser un año superior a 2020',
   },
+  stock: validations.isValidNumber,
+  incrementStock: validations.isValidNumber
 }
 
 interface Props {
@@ -45,13 +31,15 @@ interface Props {
 }
 
 export interface FormCreateManga {
-  serie: string;
-  imgURL: string;
-  number : string;
-  price : string;
-  title : string;
-  month : string;
-  year : string;
+  serie           : string;
+  imgURL          : string;
+  number          : string;
+  price           : string;
+  title           : string;
+  month           : string;
+  year            : string;
+  stock           : number;
+  incrementStock  : number;
 }
 
 export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubmit = true}) => {
@@ -60,7 +48,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
   const mangaYear = date[0]
   const mangaMonth = date [1]
 
-  const { imgURL, number, price, title, serie, month, year, errors, onInputChange, onResetForm } = useForm<FormCreateManga>({
+  const { imgURL, number, price, title, serie, month, year, stock, incrementStock, errors, onInputChange, onResetForm } = useForm<FormCreateManga>({
     serie   : manga?.serie.id || '',
     imgURL  : manga?.imgURL|| '',
     number  : manga?.number || '',
@@ -68,6 +56,8 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
     title   : manga?.title || '',
     month   : mangaMonth || '',
     year    : mangaYear || '',
+    stock   : manga?.stock || 0,
+    incrementStock: 0,
   }, formValidations)
 
   const onSubmitEvent = async (e:FormEvent) => {
@@ -79,7 +69,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
       return
     }
 
-    const formValid:FormCreateManga = { serie, title, number, imgURL, price, year, month }
+    const formValid:FormCreateManga = { serie, title, number, imgURL, price, year, month, stock, incrementStock }
 
     // we execute onSubmit event handle from parent element
     await onSubmit(formValid)
@@ -88,7 +78,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
     if( resetOnSubmit ) {
       onResetForm()
     }
-  } 
+  }
 
   return (
     <form className='mx-auto mb-4 max-w-lg' onSubmit={onSubmitEvent} data-testid="form-create-manga">
@@ -96,7 +86,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
 
         <div className='flex flex-col gap-2'>
           <label htmlFor="serie" className='text-lg'>
-              Seleccionar serie
+            Seleccionar serie
           </label>
           <select
             name="serie"
@@ -108,7 +98,9 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
             <option
               value=""
               defaultChecked
-              disabled>Selecciona una serie
+              disabled
+            >
+              Selecciona una serie
             </option>
             {
               series.map((serie) => {
@@ -223,6 +215,43 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
             />
             { (errors.year && showErrors) && (<p className='text-error'>{errors.year}</p>) }
           </div>
+        </div>
+
+        <div className='grid grid-cols-2 gap-2'>
+
+          <div className='flex flex-col'>
+            <label htmlFor="stock" className='text-lg'>
+            Stock actual
+            </label>
+            <input
+              min={0}
+              type="number"
+              name="stock"
+              id="stock"
+              className='input'
+              value={ stock }
+              readOnly
+            />
+            { (errors.stock && showErrors) && (<p className='text-error'>{errors.stock}</p>) }
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor="incrementStock" className='text-lg'>
+              Incrementar Stock
+            </label>
+            <input
+              min={0}
+              type="number"
+              name="incrementStock"
+              id="incrementStock"
+              className='input'
+              value={ incrementStock }
+              onChange={ onInputChange }
+              placeholder='Añade el incremento de stock '
+            />
+            { (errors.incrementStock && showErrors) && (<p className='text-error'>{errors.incrementStock}</p>) }
+          </div>
+
         </div>
         
       </div> 

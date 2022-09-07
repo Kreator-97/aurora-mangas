@@ -32,6 +32,8 @@ describe('Tests on FormCreateManga component', () => {
     const titleLabel = screen.getByLabelText('Escribe un título')
     const monthLabel = screen.getByLabelText('Mes de publicación')
     const yearLabel = screen.getByLabelText('Año de publicación')
+    const stockLabel = screen.getByLabelText('Stock actual')
+    const incrementStockLabel = screen.getByLabelText('Incrementar Stock')
 
     expect(selectSerieLabel).toBeInTheDocument
     expect(numberLabel).toBeInTheDocument
@@ -40,6 +42,8 @@ describe('Tests on FormCreateManga component', () => {
     expect(titleLabel).toBeInTheDocument
     expect(monthLabel).toBeInTheDocument
     expect(yearLabel).toBeInTheDocument
+    expect(stockLabel).toBeInTheDocument
+    expect(incrementStockLabel).toBeInTheDocument
   })
 
   test('should to call onSubmit callback', async () => {
@@ -60,6 +64,7 @@ describe('Tests on FormCreateManga component', () => {
     const title = screen.getByRole('textbox', {name: 'Escribe un título'})
     const monthInput = screen.getByRole('spinbutton', {name: 'Mes de publicación'})
     const yearInput = screen.getByRole('spinbutton', {name: 'Año de publicación'})
+    const incrementStockLabel = screen.getByRole('spinbutton', {name: 'Incrementar Stock'})
 
     fireEvent.change(selectSerie, {target: { value: serie.id, name: 'serie' }})
     fireEvent.change(numberInput, {target: { value: '1', name: 'number' }})
@@ -68,6 +73,7 @@ describe('Tests on FormCreateManga component', () => {
     fireEvent.change(title, {target: { value: 'volumen no.1', name: 'title' }})
     fireEvent.change(monthInput, {target: { value: '1', name: 'month' }})
     fireEvent.change(yearInput, {target: { value: '2022', name: 'year' }})
+    fireEvent.change(incrementStockLabel, {target: { value: '100', name: 'incrementStock' }})
     
     fireEvent.submit(form, {preventDefault: () => {}})
 
@@ -80,7 +86,9 @@ describe('Tests on FormCreateManga component', () => {
         price: '99',
         serie: serie.id,
         title: 'volumen no.1',
-        year: '2022'
+        year: '2022',
+        stock: 0,
+        incrementStock: '100',
       })
     })
   })

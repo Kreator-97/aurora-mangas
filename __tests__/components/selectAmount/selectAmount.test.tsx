@@ -12,14 +12,15 @@ describe('tests on SelectAmount component', () => {
     expect(amount).toBeInTheDocument
   })
 
-  test('should to call decrement and increment events', () => {
-    const onDecrementMock = jest.fn()
-    const onIncrementMock = jest.fn()
+  test('should to call onChangeAmount event', () => {
+    const onChangeAmountMock = jest.fn()
+    const id = '123-abc-xyz'
     render(
       <SelectAmount
         initial={1}
-        onDecrement={onDecrementMock}
-        onIncrement={ onIncrementMock}
+        onChangeAmount={ onChangeAmountMock }
+        minValue={1}
+        id={id}
       />
     )
 
@@ -27,13 +28,13 @@ describe('tests on SelectAmount component', () => {
     const decrementIcon = screen.getByTestId('decrement-icon')
 
     fireEvent.click(incrementIcon)
-    expect(onIncrementMock).toHaveBeenCalled()
+    expect(onChangeAmountMock).toHaveBeenCalledWith(2, id)
 
     const amount = screen.getByTestId('amount-box')
     expect( amount.textContent ).toBe('2')
 
     fireEvent.click(decrementIcon)
-    expect(onDecrementMock).toHaveBeenCalled()
+    expect(onChangeAmountMock).toHaveBeenCalledWith(1, id)
 
     expect( amount.textContent ).toBe('1')
   })

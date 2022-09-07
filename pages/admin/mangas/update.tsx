@@ -18,7 +18,7 @@ const AdminUpdateManga:NextPage<Props> = ({series, manga}) => {
   const [ updateManga ] = useMutation(UPDATE_MANGA)
 
   const onSave = async (formState:FormCreateManga) => {
-    const { imgURL, month, number, price, serie, title, year } = formState
+    const { imgURL, month, number, price, serie, title, year, stock, incrementStock } = formState
     const monthPrefixed = Number(month) < 10 ? `0${Number(month)}` : month
     const published = `${year}/${monthPrefixed}/01`
 
@@ -27,7 +27,7 @@ const AdminUpdateManga:NextPage<Props> = ({series, manga}) => {
         variables: {
           mangaId: manga.id,
           manga: {
-            serieId: serie, title, number, imgURL, price: Number(price), published
+            serieId: serie, title, number, imgURL, price: Number(price), published, stock: Number(stock) + Number(incrementStock)
           }
         }
       })

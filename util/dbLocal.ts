@@ -58,6 +58,10 @@ export const cleanShoppingCart = () => {
   updateItemsInLocal(cart)
 }
 
+export const setShoppingCart = (cart:ShoppingCart) => {
+  updateItemsInLocal(cart)
+}
+
 const updateItemsInLocal = (cart: ShoppingCart ) => {
   localStorage.setItem('cart', JSON.stringify(cart))
 }

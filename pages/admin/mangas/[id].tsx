@@ -33,6 +33,7 @@ const MangaDetailsPage:NextPage<Props> = ({manga}) => {
             <CustomRow name={'Número'} value={ manga.number } />
             <CustomRow name={'Publicado'} value={ manga.published } />
             <CustomRow name={'Precio'} value={ formatPrice(manga.price) } />
+            <CustomRow name={'Stock'} value={ manga.stock } />
             <CustomRow name={'Unidades vendidas'} value={ manga.soldUnits } />
           </div>
         </div>

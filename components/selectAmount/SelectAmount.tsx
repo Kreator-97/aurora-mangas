@@ -1,27 +1,33 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
-
-import { useCounter } from '../../hooks'
 
 interface Props {
   initial: number;
   id?: string;
-  onIncrement?: (amount:number, id:string) => void;
-  onDecrement?: (amount:number, id:string) => void;
+  minValue?: number;
+  maxValue?: number;
+  onChangeAmount?: (amount:number, id:string) => void;
 }
 
 // TODO: this function should to return the new counter on a event named onChangeAmount, then remove both onIncrement and onDecrement
 
-export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) => {
-  const { counter, increment, decrement } = useCounter({initial, minValue: 1})
+export const SelectAmount:FC<Props> = ({initial, id = '', onChangeAmount, minValue = 1, maxValue = Infinity}) => {
+  const [ counter, setCounter] = useState(initial)
 
-  const onDecrementEvent = (value:number) => {
-    decrement(value)
-    onDecrement && onDecrement(counter-value, id || '')
-  }
-  const onIncrementEvent = (value:number) => {
-    increment(value)
-    onIncrement && onIncrement(counter+value, id || '')
+  const onChangeAmountEvent = (value: number, type: 'decrement' | 'increment') => {
+    if( type === 'decrement' ) {
+      const newValue = Math.max(minValue, counter-value)
+      setCounter(newValue)
+      onChangeAmount && onChangeAmount(newValue, id)
+      return
+    }
+    
+    if( type === 'increment' ) {
+      const newValue = Math.min(maxValue, counter+value)
+      setCounter(newValue)
+      onChangeAmount && onChangeAmount(newValue, id)
+      return
+    }
   }
 
   return (
@@ -33,7 +39,7 @@ export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) 
           <HiOutlineMinusCircle
             size={28}
             cursor="pointer"
-            onClick={() => onDecrementEvent(1) }
+            onClick={() => onChangeAmountEvent(1, 'decrement') }
             data-testid={'decrement-icon'}
           />
         </div>
@@ -46,7 +52,7 @@ export const SelectAmount:FC<Props> = ({initial ,onIncrement, onDecrement, id}) 
           <HiOutlinePlusCircle
             size={28}
             cursor="pointer"
-            onClick={() => onIncrementEvent(1) }
+            onClick={() => onChangeAmountEvent(1, 'increment') }
             data-testid={'increment-icon'}
           />
         </div>

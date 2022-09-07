@@ -76,6 +76,7 @@ model Manga {
   published String
   title     String
   item      Item[]
+  stock     Int    @default(0)
 }
 
 enum Periodicy {
@@ -94,7 +95,6 @@ model Order {
   transactionId String?
 }
 
-// check later the relaction on field product
 model Item {
   id        String  @id @default(uuid())
   order     Order   @relation(fields: [orderId], references: [id])

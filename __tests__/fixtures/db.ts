@@ -143,6 +143,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-12_cm7u9l.jpg',
     'published': '2022/09/01',
     'title': 'One punch man no.12',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -167,6 +168,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-08_cublat.jpg',
     'published': '2022/05/01',
     'title': 'one punch man no.8',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -191,6 +193,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751739/aurora-manga/mangas/one-punch-man/opman-05_ggyfvd.jpg',
     'published': '2022/02/01',
     'title': 'One punch man no.5',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -215,6 +218,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-02_viieky.jpg',
     'published': '2021/11/01',
     'title': 'One punch man no.2',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -239,6 +243,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751739/aurora-manga/mangas/one-punch-man/opman-01_rlozl9.jpg',
     'published': '2021/10/01',
     'title': 'One punch man no.1',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -263,6 +268,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751741/aurora-manga/mangas/one-punch-man/opman-10_oci7rn.jpg',
     'published': '2022/07/01',
     'title': 'One punch man no.10',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -287,6 +293,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-07_pvnepc.jpg',
     'published': '2022/04/01',
     'title': 'One punch man no.7',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -311,6 +318,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751741/aurora-manga/mangas/one-punch-man/opman-04_m8zfmb.jpg',
     'published': '2022/01/01',
     'title': 'One punch man no.4',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -335,6 +343,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-11_mc46fj.jpg',
     'published': '2022/08/01',
     'title': 'One punch man no.11',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -359,6 +368,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751739/aurora-manga/mangas/one-punch-man/opman-09_e9mo1o.jpg',
     'published': '2022/06/01',
     'title': 'One punch man no.9',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -383,6 +393,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751740/aurora-manga/mangas/one-punch-man/opman-03_cxwejh.jpg',
     'published': '2021/12/01',
     'title': 'One punch man no.3',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {
@@ -407,6 +418,7 @@ export const mangas: Manga[] = [
     'imgURL': 'https://res.cloudinary.com/kreator/image/upload/v1660751741/aurora-manga/mangas/one-punch-man/opman-06_c05bci.jpg',
     'published': '2022/03/01',
     'title': 'One punch man no.6',
+    stock: 10,
     'serie': {
       'id': '543e5b82-6441-428e-b1c6-4c35db75d17b',
       'author': {

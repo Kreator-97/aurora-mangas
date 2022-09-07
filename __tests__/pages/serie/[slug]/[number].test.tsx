@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, getByText, render, screen } from '@testing-library/react'
 import { useSession } from 'next-auth/react'
 import { Provider } from 'react-redux'
 
@@ -41,6 +41,27 @@ describe('tests on Manga Page', () => {
     const headingTitle = screen.getByRole('heading', {level: 1})
     expect(container).toMatchSnapshot()
     expect( headingTitle.textContent).toBe(`${manga.serie.name} #${manga.number}`)
+  })
+
+  test('should to show alert when there are few units in stock', () => {
+    render(
+      <Provider store={store}>
+        <MangaPage manga={{...manga, stock: 5}} />
+      </Provider>
+    )
+
+    expect(screen.getByText('Quedan pocas unidades!'))
+    expect(screen.getByText('Aprovecha y realiza tu compra ahora'))
+  })
+
+  test('should to show "disponible" when there are many units in stock', () => {
+    render(
+      <Provider store={store}>
+        <MangaPage manga={{...manga, stock: 1000}} />
+      </Provider>
+    )
+
+    expect(screen.getByText('Disponible'))
   })
 
   test('should to dispatch addItem action ', () => {

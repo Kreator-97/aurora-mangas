@@ -249,6 +249,11 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
             <th
               data-testid="column"
             >
+              Stock
+            </th>
+            <th
+              data-testid="column"
+            >
               Publicación
             </th>
             <th
@@ -270,7 +275,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               12
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/09/01
@@ -295,7 +303,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               8
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/05/01
@@ -320,7 +331,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               5
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/02/01
@@ -345,7 +359,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               2
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2021/11/01
@@ -370,7 +387,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               1
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2021/10/01
@@ -395,7 +415,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               10
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/07/01
@@ -420,7 +443,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               7
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/04/01
@@ -445,7 +471,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               4
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/01/01
@@ -470,7 +499,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               11
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/08/01
@@ -495,7 +527,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               9
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/06/01
@@ -520,7 +555,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               3
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2021/12/01
@@ -545,7 +583,10 @@ exports[`tests on AdminManga page should to match with snapshot 1`] = `
               6
             </td>
             <td>
-              99
+              $99.00
+            </td>
+            <td>
+              10
             </td>
             <td>
               2022/03/01

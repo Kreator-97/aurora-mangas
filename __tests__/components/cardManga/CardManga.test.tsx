@@ -36,6 +36,17 @@ describe('tests on CardManga component', () => {
     expect(screen.getByText(`${manga.serie.name} #${manga.number}`))
   })
 
+  test('should to show "Sin stock disponible" when stock is 0', () => {
+    const component = render(
+      <Provider store={store}>
+        <CardManga manga={ {...manga, stock: 0} } />
+      </Provider>
+    )
+
+    expect(screen.getByTestId('card-manga')).toBeInTheDocument
+    expect(screen.getByText('Sin stock disponible'))
+  })
+
   test('should to call onAddToCart event', () => {
     render(
       <Provider store={store}>

@@ -148,3 +148,14 @@ export const getBestSellersMangas = async () => {
 
   return JSON.parse( JSON.stringify( result ))
 }
+
+export const decrementStock = async (id:string, amount: number) => {
+  await prisma.manga.update({
+    where: { id },
+    data: {
+      stock: {
+        decrement: amount
+      }
+    }
+  })
+}
