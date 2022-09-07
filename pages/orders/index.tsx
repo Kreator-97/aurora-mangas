@@ -15,7 +15,8 @@ interface Props {
 const OrderPage: NextPage<Props> = ({orders}) => {
   const ordersPaid = orders.filter(order => order.status === 'PAID')
   const ordersPending = orders.filter(order => order.status === 'PENDING')
-  const [ orderStatus, setOrderStatus ] = useState<'PAID' | 'PENDING'>(ordersPaid.length === 0 ? 'PENDING' : 'PAID')
+  const ordersCancelled = orders.filter(order => order.status === 'CANCELLED')
+  const [ orderStatus, setOrderStatus ] = useState<'PAID' | 'PENDING' | 'CANCELLED'>(ordersPaid.length === 0 ? 'PENDING' : 'PAID')
 
   return (
     <AppLayout title="Ordenes realizadas" maxWidth='lg'>
@@ -28,9 +29,14 @@ const OrderPage: NextPage<Props> = ({orders}) => {
           >Pagadas
           </button>
           <button
-            className={`btn ${orderStatus === 'PENDING' ? 'bg-accent' : 'ghost' }`}
+            className={`btn ${orderStatus === 'PENDING' ? 'bg-accent' : 'ghost' } mr-2`}
             onClick={ () => setOrderStatus('PENDING')}
           >Pendientes
+          </button>
+          <button
+            className={`btn ${orderStatus === 'CANCELLED' ? 'bg-accent' : 'ghost' }`}
+            onClick={ () => setOrderStatus('CANCELLED')}
+          >Canceladas
           </button>
         </div>
         {
@@ -69,7 +75,7 @@ const OrderPage: NextPage<Props> = ({orders}) => {
               <h2 className='text-center text-2xl mb-2'>Ordenes Pendientes</h2>
               {
                 ordersPending.length > 0 && (
-                  <p className='text-center bg-alert mb-4 text-dark'>Las ordenes pendientes se cancelarán automaticamente si no se realiza el pago después de 24 horas</p>
+                  <p className='text-center bg-alert mb-4 text-dark'>Las ordenes pendientes se cancelarán automaticamente si no se realiza el pago después de 5 minutos</p>
                 )
               }
               {
@@ -87,6 +93,30 @@ const OrderPage: NextPage<Props> = ({orders}) => {
                             <Link href={`/orders/pay/${order.id}`}>
                               <a className='mt-2 btn bg-accent w-full block text-center text-sm'>Pagar orden</a>
                             </Link>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>)
+              }
+            </section>
+          )}
+        {
+          orderStatus === 'CANCELLED' && (
+            <section>
+              <h2 className='text-center text-2xl mb-2'>Ordenes canceladas</h2>
+              {
+                (ordersCancelled.length === 0)
+                  ? (<p className='text-center bg-accentDark'>No existen ordenes canceladas</p>)
+                  : (<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                    {
+                      ordersCancelled.map((order) => {
+                        return (
+                          <div key={order.id} className="bg-darkTransparent p-2 rounded">
+                            <h3>Orden #{order.id}</h3>
+                            <p>Fecha: {new Date(order.date).toDateString()}</p>
+                            <p>Estado: { order.status }</p>
+                            <p>Total a pagar: { formatPrice(order.total) }</p>
                           </div>
                         )
                       })

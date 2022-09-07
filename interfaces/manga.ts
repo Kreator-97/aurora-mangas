@@ -6,6 +6,7 @@ export interface Manga {
   number    : string;
   price     : number;
   imgURL    : string;
-  published : string
+  published : string;
   title     : string;
+  stock     : number;
 }

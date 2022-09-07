@@ -160,10 +160,7 @@ exports[`tests on Manga Page should to match with snapshot 1`] = `
           </p>
           <p
             class="border border-strokeLight border-solid px-2"
-          >
-            $
-            99
-          </p>
+          />
         </div>
         <div
           class="grid grid-cols-2 mb-2 hover:bg-accent"
@@ -177,6 +174,34 @@ exports[`tests on Manga Page should to match with snapshot 1`] = `
             class="border border-strokeLight border-solid px-2"
           >
             2022/09/01
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-2 mb-2 hover:bg-accent"
+        >
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            Stock
+          </p>
+          <p
+            class="border border-strokeLight border-solid px-2"
+          >
+            10
+          </p>
+        </div>
+        <div
+          class="mb-2"
+        >
+          <p
+            class="text-alert text-center"
+          >
+            Quedan pocas unidades!
+          </p>
+          <p
+            class="text-alert text-center"
+          >
+            Aprovecha y realiza tu compra ahora
           </p>
         </div>
         <div>
@@ -237,7 +262,7 @@ exports[`tests on Manga Page should to match with snapshot 1`] = `
           </div>
         </div>
         <button
-          class="btn bg-accent w-full"
+          class="btn bg-accent w-full mt-2"
         >
           Agregar al carrito
         </button>

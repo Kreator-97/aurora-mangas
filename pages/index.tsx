@@ -1,10 +1,15 @@
 import type { GetServerSideProps, NextPage } from 'next'
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../app/hooks'
+import { setShoppingCart } from '../app/slices/shoppingCartSlice'
 
-import { CardGrid, CardManga, Pagination } from '../components'
-import { dbMangas, dbSeries } from '../database'
-import { Manga, Serie } from '../interfaces'
 import { AppLayout } from '../layouts'
+import { CardGrid, CardManga, Pagination } from '../components'
+import { dbLocal } from '../util'
+import { dbMangas, dbOrders, dbSeries } from '../database'
+import { Manga, Order, Serie, ShoppingCart } from '../interfaces'
 
 interface Props {
   series: Serie[]
@@ -14,15 +19,34 @@ interface Props {
     totalPages: number;
     page: number
   }
+  orderCancelled: Order | null;
 }
 
-const Home: NextPage<Props> = ({series, mangasInfo}) => {
+const Home: NextPage<Props> = ({series, mangasInfo, orderCancelled}) => {
   const { mangas, totalPages, page } = mangasInfo
+  const dispatch = useAppDispatch()
   const router = useRouter()
 
   const onPageChange = (page:number) => {
     router.push(`/?page=${page}`)
   }
+
+  useEffect(() => {
+    if( orderCancelled ) {
+      // if an order was cancelled and there are not items on cart
+      // we can restore the shoppingCart state using the order cancelled
+      const cart = dbLocal.loadShoppingCart()
+      if( cart && cart.items.length === 0 ) {
+        orderCancelled
+        const newCart:ShoppingCart = {
+          items: orderCancelled.items,
+          total: orderCancelled.total,
+        } 
+        dbLocal.setShoppingCart(newCart)
+        dispatch( setShoppingCart(newCart) )
+      }
+    }
+  }, [])
 
   return (
     <AppLayout title='Aurora Mangas | Página de inicio'>
@@ -57,15 +81,19 @@ export default Home
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const page = ctx.query.page?.toString()
 
-  const [ series, mangas ] = await Promise.all([
+  const session = await getSession(ctx)
+
+  const [ series, mangas, orderCancelled ] = await Promise.all([
     await dbSeries.getNewReleaseSeries(),
     await dbMangas.getAllMangasPublished(12, Number(page || 1)),
+    await dbOrders.checkPendingOrderTime(session?.user.id)
   ])
 
   return {
     props: {
       series,
-      mangasInfo: mangas
+      mangasInfo: mangas,
+      orderCancelled
     }
   }
 }

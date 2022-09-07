@@ -78,7 +78,8 @@ export const typeDefs = gql`
     price    : Int!
     imgURL   : String!
     published: String!
-    title    : String
+    title    : String!
+    stock    : Int
   }
 
   input AddressInput {

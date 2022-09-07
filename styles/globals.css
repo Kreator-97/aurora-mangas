@@ -55,7 +55,7 @@ html {
 
 .btn:disabled {
   cursor: not-allowed;
-  @apply bg-strokeLight
+  @apply bg-strokeLight text-dark border-dark
 }
 
 .btn.ghost {

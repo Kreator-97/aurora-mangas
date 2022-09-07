@@ -47,8 +47,9 @@ export const CardManga:FC<Props> = ({manga}) => {
           className='btn bg-accent text-dark w-full'
           onClick={ () => onAddToCart()}
           role="button"
+          disabled={ manga.stock === 0 }
         >
-          Agregar al carrito
+          { manga.stock === 0 ? 'Sin stock disponible' : 'Agregar al carrito' }
         </button>
       </div>
       <div className='absolute bg-dark bg-opacity-80 top-2/4 right-2 rounded-full'>

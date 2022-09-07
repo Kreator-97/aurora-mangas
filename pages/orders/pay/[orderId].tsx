@@ -162,7 +162,6 @@ const PayOrderPage:NextPage<Props> = ({order}) => {
                       }]
                     })
                       .then((orderId) => {
-                        console.log({orderId})
                         return orderId
                       })
                   }}

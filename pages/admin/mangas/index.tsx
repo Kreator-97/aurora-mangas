@@ -6,6 +6,7 @@ import { dbMangas, dbUsers } from '../../../database'
 import { Manga } from '../../../interfaces'
 import { AppLayout } from '../../../layouts'
 import { Table } from '../../../components'
+import { formatPrice } from '../../../util'
 
 interface Props {
   mangas: Manga[]
@@ -30,7 +31,7 @@ const AdminMangaPage: NextPage<Props> = ({mangas}) => {
             )
             : (
               <Table
-                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Publicación', 'Editar']}
+                columns={['Id', 'Nombre', '# Volumen', 'Precio Unitario($)', 'Stock', 'Publicación', 'Editar']}
               >
                 {
                   mangas.map((manga) => {
@@ -39,7 +40,8 @@ const AdminMangaPage: NextPage<Props> = ({mangas}) => {
                         <td>{manga.id}</td>
                         <td>{manga.serie.name}</td>
                         <td>{manga.number}</td>
-                        <td>{manga.price}</td>
+                        <td>{formatPrice(manga.price)}</td>
+                        <td>{manga.stock}</td>
                         <td>{manga.published}</td>
                         <td>
                           <Link href={`/admin/mangas/update?id=${manga.id}`}>

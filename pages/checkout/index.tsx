@@ -24,16 +24,9 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
   const [ createOrder ] = useMutation(CREATE_ORDER)
   const router = useRouter()
 
-  const onIncrement = (amount:number, id:string ) => {
-    const newAmount = amount < 1 ? 1 : amount
-    dispatch(setAmount({amount: newAmount, id}))
-    dbLocal.setProductAmountInLocal({items, total}, newAmount, id)
-  }
-  
-  const onDecrement = (amount:number, id:string ) => {
-    const newAmount = amount < 1 ? 1 : amount
-    dispatch(setAmount({amount: amount < 1 ? 1 : amount, id}))
-    dbLocal.setProductAmountInLocal({items, total}, newAmount, id)
+  const onChangeAmount = (newValue: number, id: string) => {
+    dispatch(setAmount({amount: newValue, id}))
+    dbLocal.setProductAmountInLocal({items, total}, newValue, id)
   }
 
   const onRemoveItem = (id:string) => {
@@ -111,8 +104,9 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
                   <button onClick={ () => onRemoveItem(item.product.id) } className='text-error text-lg'>Eliminar</button>
                   <SelectAmount
                     initial={ item.amount }
-                    onIncrement={ onIncrement }
-                    onDecrement={ onDecrement }
+                    onChangeAmount={ onChangeAmount }
+                    minValue={1}
+                    maxValue={item.product.stock}
                     id={item.product.id}
                   />
                 </div>

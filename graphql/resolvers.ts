@@ -1,11 +1,12 @@
-import prisma from '../lib/prisma'
-import { dbUsers } from '../database'
-import { User } from '../interfaces'
-import { suggestSlug } from '../util'
-import { calcCartTotal } from '../database/dbMangas'
-import fetch from 'cross-fetch'
-import { getPaypalBearerToken } from '../util/paypal'
 import { Session } from 'next-auth'
+import fetch from 'cross-fetch'
+import prisma from '../lib/prisma'
+
+import { calcCartTotal } from '../database/dbMangas'
+import { dbMangas, dbUsers } from '../database'
+import { getPaypalBearerToken } from '../util/paypal'
+import { suggestSlug } from '../util'
+import { User } from '../interfaces'
 
 export const resolvers = {
   Query: {
@@ -167,7 +168,7 @@ export const resolvers = {
     },
     async updateManga(parent: any, args: any) {
       const { mangaId } = args
-      const { serieId, number, price, imgURL, published, title } = args.manga
+      const { serieId, number, price, imgURL, published, title, stock } = args.manga
 
       try {
         const updated = await prisma.manga.update({
@@ -175,7 +176,7 @@ export const resolvers = {
             id: mangaId,
           },
           data: {
-            number, price, published, imgURL, title, serieId
+            number, price, published, imgURL, title, serieId, stock
           }, include: {
             serie: true,
           }
@@ -368,16 +369,7 @@ export const resolvers = {
           }
         }
 
-        await prisma.order.update({
-          where: {
-            id: orderId,
-          },
-          data: {
-            status: 'PAID',
-            transactionId: paypalOrder.id
-          }
-        })
-        
+        // verify total match
         if( Number(paypalOrder.purchase_units[0].amount.value) !== order.total ) {
           return {
             message: 'No se pudo confirmar el pago',
@@ -385,6 +377,29 @@ export const resolvers = {
             error: 'Los montos de paypal no coinciden con los montos de la orden guardada en la base de datos',
           }
         }
+
+        // mark order as paid
+        const orderUpdate = await prisma.order.update({
+          where: {
+            id: orderId,
+          },
+          data: {
+            status: 'PAID',
+            transactionId: paypalOrder.id
+          },
+          include: {
+            items: true
+          }
+        })
+
+        const itemIds = orderUpdate.items.map(item => ({id: item.productId, amount: item.amount }))
+        
+        // we decrement stock by the units sold
+        const promises = itemIds.map(({id, amount}) => {
+          return dbMangas.decrementStock(id, amount)
+        })
+
+        await Promise.all(promises)
 
         return {
           message: 'El pago ha sido confirmado como pagado',
