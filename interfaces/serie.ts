@@ -1,5 +1,4 @@
-import { Author } from './author'
-import { Manga } from './manga'
+import { Author, Manga, Subscription } from './'
 
 export interface Serie {
   id            : string;
@@ -13,4 +12,8 @@ export interface Serie {
   volumes       : Manga[];
   isNewRelease? : boolean;
   slug          : string;
+  unitPrice     : number;
+  totalVolumes  : number;
+  paypalPlanId? : string;
+  subscription  : Subscription[];
 }

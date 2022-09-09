@@ -79,3 +79,7 @@ html {
     padding: 0 .5rem;
   }
 }
+
+svg > path {
+  stroke-width: 1.5px;
+}

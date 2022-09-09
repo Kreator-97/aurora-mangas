@@ -1,6 +1,7 @@
 export * as dbAuthors from './dbAuthors'
 export * as dbMangas from './dbMangas'
 export * as dbSeries from './dbSeries'
+export * as dbSubscriptions from './dbSubscriptions'
 export * as dbUsers from './dbUsers'
 export * as dbOrders from './dbOrders'
 export * as dbItems from './dbItems'

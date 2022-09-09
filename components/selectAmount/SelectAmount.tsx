@@ -9,8 +9,6 @@ interface Props {
   onChangeAmount?: (amount:number, id:string) => void;
 }
 
-// TODO: this function should to return the new counter on a event named onChangeAmount, then remove both onIncrement and onDecrement
-
 export const SelectAmount:FC<Props> = ({initial, id = '', onChangeAmount, minValue = 1, maxValue = Infinity}) => {
   const [ counter, setCounter] = useState(initial)
 
@@ -41,6 +39,7 @@ export const SelectAmount:FC<Props> = ({initial, id = '', onChangeAmount, minVal
             cursor="pointer"
             onClick={() => onChangeAmountEvent(1, 'decrement') }
             data-testid={'decrement-icon'}
+            strokeWidth={2}
           />
         </div>
         <div

@@ -6,8 +6,8 @@ import { useMutation } from '@apollo/client'
 import { AppLayout } from '../../../layouts'
 import { CREATE_MANGA } from '../../../graphql/client'
 import { dbSeries, dbUsers } from '../../../database'
+import { FormManga } from '../../../components'
 import { Serie } from '../../../interfaces'
-import { FormCreateManga } from '../../../components'
 
 interface Props {
   series: Serie[];
@@ -17,8 +17,7 @@ interface Props {
 const AdminCreateManga:NextPage<Props> = ({series}) => {
   const [ createManga ] = useMutation(CREATE_MANGA)
 
-  const onSave = async (formState:FormCreateManga) => {
-    console.log('submit')
+  const onSave = async (formState:FormManga) => {
     const { imgURL, month, number, price, serie, title, year } = formState
     const monthPrefixed = Number(month) < 10 ? `0${Number(month)}` : month
     const published = `${year}/${monthPrefixed}/01`
@@ -36,7 +35,7 @@ const AdminCreateManga:NextPage<Props> = ({series}) => {
   return (
     <AppLayout title="Crear manga" maxWidth='md'>
       <h1 className='title'>Agregar nuevo manga</h1>
-      <FormCreateManga series={series} onSubmit={onSave}/>
+      <FormManga series={series} onSubmit={onSave}/>
     </AppLayout>
   )
 }

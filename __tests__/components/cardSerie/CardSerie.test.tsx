@@ -4,7 +4,6 @@ import { CardSerie } from '../../../components/cardSerie'
 import { series } from '../../fixtures/db'
 
 // mocks
-import { useRouter } from 'next/router'
 const push = jest.fn()
 
 jest.mock('next/router', () => ({
@@ -29,7 +28,7 @@ describe('tests on CardSerie component', () => {
     const serie = series.find(serie => serie.isNewRelease === true)
     render(<CardSerie serie={serie!} />)
 
-    expect(screen.getByText('Suscribirse')).toBeInTheDocument
+    expect(screen.getByText('Ver suscripción')).toBeInTheDocument
   })
 
   test('should to show "Ver serie" if serie is not a new realease', () => {
@@ -43,7 +42,7 @@ describe('tests on CardSerie component', () => {
     const serie = series.find(serie => serie.isNewRelease === true)
     render(<CardSerie serie={serie!} />)
 
-    const button = screen.getByText('Suscribirse')
+    const button = screen.getByText('Ver suscripción')
 
     fireEvent.click(button)
     expect(push).toHaveBeenCalledWith(`/suscribe/${serie?.slug}`)

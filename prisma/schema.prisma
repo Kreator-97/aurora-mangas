@@ -11,17 +11,35 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  fullname  String
-  password  String
-  imgURL    String?
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  provider  Provider @default(CREDENTIALS)
-  orders    Order[]
-  address   Address?
+  id            String   @id @default(uuid())
+  email         String   @unique
+  fullname      String
+  password      String
+  imgURL        String?
+  role          Role     @default(USER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  provider      Provider @default(CREDENTIALS)
+  orders        Order[]
+  address       Address?
+  subscriptions  Subscription[]
+}
+
+model Subscription {
+  id                  String            @id @default(uuid())
+  status              SubscriptionStatus
+  user                User              @relation(fields: [userId], references: [id])
+  userId              String            
+  serie               Serie             @relation(fields: [serieId], references: [id])
+  serieId             String
+  date                DateTime          @default(now())
+  paypalSuscriptionId String
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
 }
 
 model Address {
@@ -52,18 +70,22 @@ model Author {
 }
 
 model Serie {
-  id            String     @id @default(uuid())
-  author        Author     @relation(fields: [authorId], references: [id])
+  id            String      @id @default(uuid())
+  author        Author      @relation(fields: [authorId], references: [id])
   authorId      String
   finished      Boolean
   genre         String
   imgURL        String
   name          String
-  periodicy     Periodicy  @default(MENSUAL)
-  sinopsis      String     @db.MediumText
+  periodicy     Periodicy   @default(MENSUAL)
+  sinopsis      String      @db.MediumText
   volumes       Manga[]
   isNewRelease  Boolean?
-  slug          String     @unique
+  slug          String      @unique
+  totalVolumes  Int         @default(0)
+  unitPrice     Int         @default(0)
+  paypalPlanId  String?
+  subscription   Subscription[]
 }
 
 model Manga {
@@ -76,7 +98,7 @@ model Manga {
   published String
   title     String
   item      Item[]
-  stock     Int    @default(0)
+  stock     Int     @default(0)
 }
 
 enum Periodicy {

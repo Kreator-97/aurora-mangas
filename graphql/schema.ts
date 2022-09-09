@@ -175,5 +175,9 @@ export const typeDefs = gql`
     createAndUpdateDirection(userId:String, address: AddressInput): Response
 
     confirmPaypalOrder(paypalOrderId: String!, orderId: String!) :Response
+
+    createSubscription(paypalSubscriptionID: String!, serieId: String!): Response
+
+    cancelSubscription(subscriptionID: String!): Response
   }
 `

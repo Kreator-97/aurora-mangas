@@ -12,7 +12,11 @@ import 'animate.css'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
-      <PayPalScriptProvider options={{'client-id': process.env.NEXT_PUBLIC_PAYPAY_CLIENT_ID || '', 'buyer-country': 'MX', currency: 'MXN'}}>
+      <PayPalScriptProvider options={{
+        'client-id': process.env.NEXT_PUBLIC_PAYPAY_CLIENT_ID || '', 'buyer-country': 'MX',
+        currency: 'MXN',
+        vault: true,
+      }}>
         <ApolloProvider client={ client }>
           <Provider store={ store }>
             <Component {...pageProps } />

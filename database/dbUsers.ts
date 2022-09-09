@@ -1,3 +1,4 @@
+import { User } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import prisma from '../lib/prisma'
 
@@ -25,10 +26,9 @@ export const registerUser = async ({fullname, password, email}:RegisterUserProps
         email, password: hash, fullname,
       }
     })
-    console.log({user})
     return user
   } catch(err) {
-    console.log({err})
+    console.error(err)
     return Promise.reject((err as {message:string}).message)
   }
 }
@@ -91,4 +91,12 @@ export const validateRole = async ( userId: string,expectedRoles: string[] ):Pro
   if( expectedRoles.includes(user.role) ) return true
   
   return false
+}
+
+export const getUserById = async (userId: string):Promise<User | null> => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { address: true }
+  })
+  return JSON.parse( JSON.stringify(user) )
 }

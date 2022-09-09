@@ -28,14 +28,15 @@ export const CardSerie: FC<Props> = ({ serie }) => {
         height={180}
         layout="responsive"
         alt={ serie.name }
-        className='object-cover'
+        className='object-cover cursor-pointer'
+        onClick={ () => goToPage()}
       />
       <div className="absolute bottom-0 bg-dark bg-opacity-75 w-full p-2 flex items-center justify-between ">
         <div>
           <h2 className='text-lg sm:text-xl'>Serie: { serie.name }</h2>
           <p className='font-light'>Periodicidad: { serie.periodicy }</p>
         </div>
-        <button className='btn bg-accent' onClick={ ()=> goToPage() }>{ serie.isNewRelease ? 'Suscribirse' : 'Ver serie' }</button>
+        <button className='btn bg-accent' onClick={ ()=> goToPage() }>{ serie.isNewRelease ? 'Ver suscripción' : 'Ver serie' }</button>
       </div>
     </div>
   )

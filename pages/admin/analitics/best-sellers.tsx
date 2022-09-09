@@ -12,7 +12,6 @@ interface Props {
 }
 
 const BestSellersPage:NextPage<Props> = ({bestSellers}) => {
-  console.log({bestSellers})
   return (
     <AppLayout title="Más vendidos">
       <h1 className='title'>Productos más vendidos</h1>

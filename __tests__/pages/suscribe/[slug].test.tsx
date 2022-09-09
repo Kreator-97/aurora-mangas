@@ -5,6 +5,7 @@ import { mangas, series } from '../../fixtures/db'
 import { useSession } from 'next-auth/react'
 import { Provider } from 'react-redux'
 import { store } from '../../../app/store'
+import { MockedProvider } from '@apollo/client/testing'
 
 jest.mock('next-auth/react')
 jest.mock('next/router', () => ({
@@ -19,31 +20,25 @@ describe('tests on SuscribeSerie page', () => {
 
   test('should to match with snapshot', () => {
     const { container } = render(
-      <Provider store={store}>
-        <SuscribeSeriePage serie={series[0]} />
-      </Provider>
+      <MockedProvider>
+        <Provider store={store}>
+          <SuscribeSeriePage serie={series[0]} />
+        </Provider>
+      </MockedProvider>
     )
     expect(container).toMatchSnapshot()
   })
 
-  test('should to show "Suscribete proximamente" button if there are not volumes published on series', () => {
-    render(
-      <Provider store={store}>
-        <SuscribeSeriePage serie={series[0]} />
-      </Provider>
-    )
-
-    expect( screen.getByText('Suscribete proximamente') ).toBeInTheDocument
-  })
-
-  test('should to show "Suscribete por" button if there are prices on volumes', () => {
+  test('should to show "Suscribete por" message', () => {
     const manga = mangas[0]
     const serie = series[0]
     serie.volumes.push(manga)
     render(
-      <Provider store={store}>
-        <SuscribeSeriePage serie={serie} />
-      </Provider>
+      <MockedProvider>
+        <Provider store={store}>
+          <SuscribeSeriePage serie={serie} />
+        </Provider>
+      </MockedProvider>
     )
 
     expect( screen.getByText(/Suscribete por/) ).toBeInTheDocument

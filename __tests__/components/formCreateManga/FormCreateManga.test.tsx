@@ -1,15 +1,15 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { series } from '../../fixtures/db'
-import { FormCreateManga } from '../../../components/formCreateManga/FormCreateManga'
+import { FormManga } from '../../../components/'
 
 const onSubmit = jest.fn()
 
-describe('Tests on FormCreateManga component', () => {
+describe('Tests on FormManga component', () => {
   const serie = series[0]
 
   test('should to match with snapshot', () => {
     const { container } = render(
-      <FormCreateManga
+      <FormManga
         onSubmit={ async(formValues) => {}} 
         series={ series }
       />
@@ -20,7 +20,7 @@ describe('Tests on FormCreateManga component', () => {
 
   test('should to contain all inputs necessary', () => {
     render(
-      <FormCreateManga
+      <FormManga
         onSubmit={ async(formValues) => {}} 
         series={ series }
       />
@@ -48,7 +48,7 @@ describe('Tests on FormCreateManga component', () => {
 
   test('should to call onSubmit callback', async () => {
     render(
-      <FormCreateManga
+      <FormManga
         onSubmit={ onSubmit }
         series={ series }
         resetOnSubmit={ false }

@@ -63,12 +63,19 @@ export const Sidebar = () => {
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
                 onClick={ () => navigateTo('/orders') }
               >
-            Lista de pedidos
+                Lista de pedidos
               </button>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/user') }
               >
-            Datos personales
+                Datos personales
+              </button>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/subscriptions')}
+              >
+                Suscripciones
               </button>
             </section>
           </>)
@@ -83,6 +90,12 @@ export const Sidebar = () => {
                 onClick={ () => navigateTo('/admin/orders') }
               >
                 Ver pedidos realizados
+              </button>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/subscriptions') }
+              >
+                Ver suscripciones
               </button>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
