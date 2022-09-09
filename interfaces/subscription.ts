@@ -4,10 +4,8 @@ export interface Subscription {
   id      : string
   status  : SubscriptionStatus
   user    : User
-  userId  : string
   serie   : Serie
-  serieId : string
-  date    : String
+  date    : string
 }
 
 export type SubscriptionStatus = 'ACTIVE' | 'PAUSED' | 'CANCELLED'

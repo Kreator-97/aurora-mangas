@@ -67,6 +67,7 @@ export const Sidebar = () => {
               </button>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/user') }
               >
                 Datos personales
               </button>
@@ -89,6 +90,12 @@ export const Sidebar = () => {
                 onClick={ () => navigateTo('/admin/orders') }
               >
                 Ver pedidos realizados
+              </button>
+              <button
+                className='text-xl py-2 hover:text-accent cursor-pointer block'
+                onClick={ () => navigateTo('/admin/subscriptions') }
+              >
+                Ver suscripciones
               </button>
               <button
                 className='text-xl py-2 hover:text-accent cursor-pointer block'

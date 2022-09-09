@@ -15,5 +15,5 @@ export interface Serie {
   unitPrice     : number;
   totalVolumes  : number;
   paypalPlanId? : string;
-  subscription   : Subscription;
+  subscription  : Subscription[];
 }

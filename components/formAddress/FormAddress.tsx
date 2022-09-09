@@ -2,8 +2,8 @@ import { FC, FormEvent, useState } from 'react'
 import { useForm } from '../../hooks'
 
 interface Props {
-  onSubmit?(form: FormValues): void;
-  address?: FormValues;
+  onSubmit?(form: FormAddress): void;
+  address?: FormAddress;
 }
 
 const noEmptyString = (s:string) => s.trim() !== ''
@@ -32,7 +32,7 @@ const formValidations = {
   },
 }
 
-interface FormValues {
+export interface FormAddress {
   state : string;
   city  : string;
   col   : string;
@@ -54,7 +54,6 @@ export const FormAddress:FC<Props> = ({onSubmit, address}) => {
 
   const onSubmitEvent = (e:FormEvent) => {
     e.preventDefault()
-    console.log({errors})
     
     if ( Object.values(errors).some((error) => error !== null ) ) {
       setShowErrors(true)

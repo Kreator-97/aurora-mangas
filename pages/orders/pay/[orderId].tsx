@@ -74,14 +74,13 @@ const PayOrderPage:NextPage<Props> = ({order}) => {
       const { message, ok, error } = data.createAndUpdateDirection
       setAddressState(formValues)
       if( !ok ) {
-        console.log(message)
+        console.error(error)
         throw new Error(error)
       }
 
       toast.success(message)
 
     } catch (error) {
-      console.error(error)
       toast.error((error as {message: string}).message)
     }
   }
@@ -210,7 +209,6 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
   }
 
   if( order.userId !== session.user.id ) {
-    console.log('La orden de pago no pertenece a este usuario')
     return redirectHome
   }
 

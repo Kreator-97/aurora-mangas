@@ -18,7 +18,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
         />
         <img
           alt="Inuyasha"
-          class="object-cover"
+          class="object-cover cursor-pointer"
           data-nimg="responsive"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -46,7 +46,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
         <button
           class="btn bg-accent"
         >
-          Suscribirse
+          Ver suscripción
         </button>
       </div>
     </div>
@@ -62,7 +62,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
         />
         <img
           alt="One Piece"
-          class="object-cover"
+          class="object-cover cursor-pointer"
           data-nimg="responsive"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -90,7 +90,7 @@ exports[`tests on CardGrid component should to match with snapshot 1`] = `
         <button
           class="btn bg-accent"
         >
-          Suscribirse
+          Ver suscripción
         </button>
       </div>
     </div>

@@ -12,7 +12,6 @@ interface Props {
 }
 
 const AdminProductPage: NextPage<Props> = ({series}) => {
-  console.log({series})
   return (
     <AppLayout title="Series | Admin" maxWidth='lg'>
       <div className='px-2'>

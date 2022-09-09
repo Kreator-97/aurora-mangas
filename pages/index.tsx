@@ -3,13 +3,13 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-import { useAppDispatch } from '../app/hooks'
-import { setShoppingCart } from '../app/slices/shoppingCartSlice'
 import { AppLayout } from '../layouts'
 import { CardGrid, CardManga, Pagination } from '../components'
 import { dbLocal } from '../util'
 import { dbMangas, dbOrders, dbSeries } from '../database'
 import { Manga, Order, Serie, ShoppingCart } from '../interfaces'
+import { setShoppingCart } from '../app/slices/shoppingCartSlice'
+import { useAppDispatch } from '../app/hooks'
 
 interface Props {
   series: Serie[]

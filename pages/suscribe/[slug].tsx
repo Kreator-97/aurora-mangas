@@ -75,11 +75,7 @@ const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
         <p className='text-base text-success text-center'>
           Suscríbete y obtén todos los volúmenes en su fecha de publicación sin costo por envío
         </p>
-        { 
-          serie.unitPrice
-            ? `Suscribete por ${formatPrice(serie.unitPrice)}`
-            : 'Suscribete proximamente'
-        }
+        <p>{ `Suscribete por ${formatPrice(serie.unitPrice)}` }</p>
         {
           (serie.paypalPlanId !== undefined) && (
             <PayPalButtons

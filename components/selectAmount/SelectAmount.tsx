@@ -39,6 +39,7 @@ export const SelectAmount:FC<Props> = ({initial, id = '', onChangeAmount, minVal
             cursor="pointer"
             onClick={() => onChangeAmountEvent(1, 'decrement') }
             data-testid={'decrement-icon'}
+            strokeWidth={2}
           />
         </div>
         <div

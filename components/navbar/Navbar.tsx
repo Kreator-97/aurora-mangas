@@ -1,7 +1,7 @@
+import { FormEvent, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
-import { HiMenu, HiOutlineShoppingCart, HiOutlineSearchCircle } from 'react-icons/hi'
+import { HiOutlineShoppingCart, HiOutlineSearchCircle, HiOutlineMenu } from 'react-icons/hi'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { openSidebar, openShoppingCart } from '../../app/slices/uiSlice'
@@ -36,12 +36,13 @@ export const Navbar = () => {
   return (
     <nav className={ styles.container }>
       <div className={ styles.content }>
-        <HiMenu
+        <HiOutlineMenu
           color='white'
           size={32}
           cursor="pointer"
           onClick={ () => openMenu() }
           data-testid='menu'
+          strokeWidth={.5}
         />
         <Image
           src="/images/logo.png"

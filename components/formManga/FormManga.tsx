@@ -25,12 +25,12 @@ const formValidations = {
 
 interface Props {
   series : Serie[];
-  onSubmit: (formValues:FormCreateManga) => Promise<void>;
+  onSubmit: (formValues:FormManga) => Promise<void>;
   manga?: Manga;
   resetOnSubmit?: boolean;
 }
 
-export interface FormCreateManga {
+export interface FormManga {
   serie           : string;
   imgURL          : string;
   number          : string;
@@ -42,13 +42,13 @@ export interface FormCreateManga {
   incrementStock  : number;
 }
 
-export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubmit = true}) => {
+export const FormManga: FC<Props> = ({series, onSubmit, manga, resetOnSubmit = true}) => {
   const [showErrors, setShowErrors] = useState(false)
   const date = manga?.published ? manga.published.split('/') : []
   const mangaYear = date[0]
   const mangaMonth = date [1]
 
-  const { imgURL, number, price, title, serie, month, year, stock, incrementStock, errors, onInputChange, onResetForm } = useForm<FormCreateManga>({
+  const { imgURL, number, price, title, serie, month, year, stock, incrementStock, errors, onInputChange, onResetForm } = useForm<FormManga>({
     serie   : manga?.serie.id || '',
     imgURL  : manga?.imgURL|| '',
     number  : manga?.number || '',
@@ -69,7 +69,7 @@ export const FormCreateManga: FC<Props> = ({series, onSubmit, manga, resetOnSubm
       return
     }
 
-    const formValid:FormCreateManga = { serie, title, number, imgURL, price, year, month, stock, incrementStock }
+    const formValid:FormManga = { serie, title, number, imgURL, price, year, month, stock, incrementStock }
 
     // we execute onSubmit event handle from parent element
     await onSubmit(formValid)

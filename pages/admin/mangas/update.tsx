@@ -7,7 +7,7 @@ import { AppLayout } from '../../../layouts'
 import { UPDATE_MANGA } from '../../../graphql/client'
 import { dbMangas, dbSeries, dbUsers } from '../../../database'
 import { Manga, Serie } from '../../../interfaces'
-import { FormCreateManga } from '../../../components'
+import { FormManga } from '../../../components'
 
 interface Props {
   series: Serie[];
@@ -17,7 +17,7 @@ interface Props {
 const AdminUpdateManga:NextPage<Props> = ({series, manga}) => {
   const [ updateManga ] = useMutation(UPDATE_MANGA)
 
-  const onSave = async (formState:FormCreateManga) => {
+  const onSave = async (formState:FormManga) => {
     const { imgURL, month, number, price, serie, title, year, stock, incrementStock } = formState
     const monthPrefixed = Number(month) < 10 ? `0${Number(month)}` : month
     const published = `${year}/${monthPrefixed}/01`
@@ -49,7 +49,7 @@ const AdminUpdateManga:NextPage<Props> = ({series, manga}) => {
     <AppLayout title="Actualizar manga" maxWidth='md'>
       <div className='px-2'>
         <h1 className='title'>Actualizar manga</h1>
-        <FormCreateManga series={series} onSubmit={onSave} manga={manga} resetOnSubmit={false}/>
+        <FormManga series={series} onSubmit={onSave} manga={manga} resetOnSubmit={false}/>
       </div>
     </AppLayout>
   )
