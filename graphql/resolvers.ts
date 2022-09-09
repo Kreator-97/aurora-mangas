@@ -4,7 +4,7 @@ import prisma from '../lib/prisma'
 
 import { calcCartTotal } from '../database/dbMangas'
 import { dbMangas, dbUsers } from '../database'
-import { getPaypalBearerToken } from '../util/paypal'
+import { getPaypalSubscription, getPaypalBearerToken } from '../util/paypal'
 import { suggestSlug } from '../util'
 import { User } from '../interfaces'
 
@@ -413,6 +413,54 @@ export const resolvers = {
           message: 'El pago no pudo ser confirmado',
           ok: false,
           error: null,
+        }
+      }
+    },
+    async createSubscription(root: any, args: any, ctx: {session:Session} )
+    {
+      const { paypalSubscriptionID, serieId } = args
+
+      const { session } = ctx
+      if( !session ) {
+        return {
+          message: 'Este usuario no puede confirmar la suscripción',
+          error: null,
+          ok: false
+        }
+      }
+
+      const subscription = await getPaypalSubscription(paypalSubscriptionID)
+
+      if( !subscription || subscription.status !== 'ACTIVE' ) {
+        return {
+          message: 'La orden no pudo ser confirmada',
+          error: null,
+          ok: false
+        }
+      }
+
+      try {
+        await prisma.subscription.create({
+          data: {
+            userId: session.user.id,
+            paypalSuscriptionId: subscription.id,
+            serieId,
+            status: subscription.status,
+          }
+        })
+
+        return {
+          message: 'Se ha creado la suscripción',
+          ok: true,
+          error: null
+        }
+        
+      } catch (error: any) {
+        console.log(error)
+        return {
+          message: 'Ocurrió un error al intentar realizar la suscripción',
+          ok: false,
+          error,
         }
       }
     }

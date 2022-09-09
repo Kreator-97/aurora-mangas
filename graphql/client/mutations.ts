@@ -78,3 +78,13 @@ export const CONFIRM_PAYPAL_ORDERID = gql`
       }
   }
 `
+
+export const CREATE_SUBSCRIPTION = gql`
+  mutation CreateSubscription( $paypalSubscriptionID: String!,  $serieId: String!) {
+      createSubscription( paypalSubscriptionID: $paypalSubscriptionID, serieId: $serieId ) {
+          error
+          message
+          ok
+      }
+  }
+`

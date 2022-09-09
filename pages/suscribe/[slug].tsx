@@ -1,10 +1,16 @@
 import { NextPage, GetServerSideProps } from 'next'
 import Image from 'next/image'
-import { FaCcPaypal } from 'react-icons/fa'
+import { useRouter } from 'next/router'
+import { PayPalButtons } from '@paypal/react-paypal-js'
+import { useMutation } from '@apollo/client'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { AppLayout } from '../../layouts'
+import { CREATE_SUBSCRIPTION } from '../../graphql/client'
+import { CustomRow } from '../../components'
 import { dbSeries } from '../../database'
 import { formatPrice } from '../../util'
+import { Response } from '../../interfaces/graphql'
 import { Serie } from '../../interfaces'
 
 interface Props {
@@ -12,6 +18,33 @@ interface Props {
 }
 
 const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
+  const [ createSubscription ] = useMutation(CREATE_SUBSCRIPTION)
+  const router = useRouter()
+
+  const onSuscriptionCompleted = async (subscriptionID: string) => {
+    try {
+      const { data } = await createSubscription({
+        variables: {
+          paypalSubscriptionID: subscriptionID,
+          serieId: serie.id,
+        }
+      })
+
+      const { ok, message, error } = data.createSubscription as Response
+      if( !ok ) {
+        console.error(error)
+        throw new Error(message)
+      }
+
+      toast.success(message)
+      setTimeout(() => {
+        // TODO: redireccionar a la página de suscripciones
+        router.push('/')
+      }, 2000)
+    } catch (error:any) {
+      toast.error(error.message)
+    }
+  }
 
   return (
     <AppLayout title={ `${serie.name} | subscripción` } maxWidth='lg'>
@@ -31,45 +64,45 @@ const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
       </p>
       <h2 className='text-xl text-center mt-4 mb-2'>Información</h2>
       <div className='px-4'>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
-          <p className='border border-strokeLight border-solid px-2'>Nombre</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.name}</p>
-        </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
-          <p className='border border-strokeLight border-solid px-2'>Author</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.author.name}</p>
-        </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
-          <p className='border border-strokeLight border-solid px-2'>Volumenes</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.volumes.length}</p>
-        </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
-          <p className='border border-strokeLight border-solid px-2'>Periodicidad</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.periodicy}</p>
-        </div>
-        <div className='grid grid-cols-2 mb-2 hover:bg-accent'>
-          <p className='border border-strokeLight border-solid px-2'>Géneros</p>
-          <p className='border border-strokeLight border-solid px-2'>{serie.genre}</p>
-        </div>
+        <CustomRow name={'Nombre'} value={serie.name}/>
+        <CustomRow name={'Autor'} value={serie.author.name}/>
+        <CustomRow name={'Periodicidad'} value={serie.periodicy} />
+        <CustomRow name={'Géneros'} value={serie.genre} />
+        <CustomRow name={'Volumenes totales'} value={serie.totalVolumes}/>
+        <CustomRow name={'Estado de la obra'} value={serie.finished ? 'Finalizado' : 'En progreso'}/>
       </div>
       
       <section className='p-4 flex flex-col gap-y-2 items-center max-w-screen-sm mx-auto'>
-        <h2 className='text-center text-2xl text-success'>Suscripción</h2>
         <p className='text-base text-success text-center'>
           Suscríbete y obtén todos los volúmenes en su fecha de publicación sin costo por envío
         </p>
-        <button
-          className='btn bg-success-gradient w-full text-lg'
-        >
-          { 
-            serie.volumes[0]
-              ? `Suscribete por ${formatPrice(serie.volumes[0].price)}`
-              : 'Suscribete proximamente'
-          }
-        </button>
-        <p>Cargo recurrente {serie.periodicy.toLowerCase()}</p>
-        <p className='text-center'>Pago seguro procesado a través de:</p>
-        <FaCcPaypal size={64}/>
+        { 
+          serie.unitPrice
+            ? `Suscribete por ${formatPrice(serie.unitPrice)}`
+            : 'Suscribete proximamente'
+        }
+        {
+          (serie.paypalPlanId !== undefined) && (
+            <PayPalButtons
+              style={{
+                shape: 'rect',
+                color: 'blue',
+                layout: 'vertical',
+                label: 'subscribe'
+              }}
+              createSubscription={ function(data, actions) {
+                return actions.subscription.create({
+                  // Creates the subscription
+                  plan_id: serie.paypalPlanId!,
+                })
+              }}
+              onApprove={ async function(data, actions) {
+                onSuscriptionCompleted(data.subscriptionID!)
+              }}
+            />
+          )
+        }
+        <Toaster position='top-center' />
       </section>
     </AppLayout>
   )
