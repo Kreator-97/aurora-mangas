@@ -177,5 +177,7 @@ export const typeDefs = gql`
     confirmPaypalOrder(paypalOrderId: String!, orderId: String!) :Response
 
     createSubscription(paypalSubscriptionID: String!, serieId: String!): Response
+
+    cancelSubscription(subscriptionID: String!): Response
   }
 `

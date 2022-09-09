@@ -47,7 +47,7 @@ const MangaPage:FC<Props> = ({manga}) => {
           <CustomRow name='Publicado en' value={manga.published} />
           <CustomRow name='Stock' value={manga.stock > 20 ? 'Disponible' : manga.stock } />
           {
-            manga.stock <= 20 && (
+            (manga.stock <= 20 && manga.stock !== 0) && (
               <div className='mb-2'>
                 <p className='text-alert text-center'>Quedan pocas unidades!</p>
                 <p className='text-alert text-center'>Aprovecha y realiza tu compra ahora</p>

@@ -1,4 +1,5 @@
 export * from './author'
+export * from './graphql'
 export * from './manga'
 export * from './orders'
 export * from './paypal'

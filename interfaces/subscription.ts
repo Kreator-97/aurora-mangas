@@ -10,4 +10,4 @@ export interface Subscription {
   date    : String
 }
 
-type SubscriptionStatus = 'ACTIVE' | 'PAUSED' | 'CANCELLED'
+export type SubscriptionStatus = 'ACTIVE' | 'PAUSED' | 'CANCELLED'

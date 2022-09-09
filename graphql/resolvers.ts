@@ -4,7 +4,7 @@ import prisma from '../lib/prisma'
 
 import { calcCartTotal } from '../database/dbMangas'
 import { dbMangas, dbUsers } from '../database'
-import { getPaypalSubscription, getPaypalBearerToken } from '../util/paypal'
+import { getPaypalSubscription, getPaypalBearerToken, cancelPaypalSubscription } from '../util/paypal'
 import { suggestSlug } from '../util'
 import { User } from '../interfaces'
 
@@ -456,9 +456,80 @@ export const resolvers = {
         }
         
       } catch (error: any) {
-        console.log(error)
+        console.error(error)
         return {
           message: 'Ocurrió un error al intentar realizar la suscripción',
+          ok: false,
+          error,
+        }
+      }
+    },
+    async cancelSubscription(root: any, args: any, ctx: {session: Session}) {
+      const { session } = ctx
+      if( !session ) {
+        return {
+          message: 'El usuario no está autenticado',
+          ok: false,
+          error: null,
+        }
+      }
+
+      const { subscriptionID } = args
+
+      const subscription = await prisma.subscription.findUnique({
+        where: { id: subscriptionID }
+      })
+
+      if( !subscription ) {
+        return {
+          message: 'No existe una suscripción con el id proporcionado',
+          ok: false,
+          error: null,
+        }
+      }
+
+      if( subscription.status === 'CANCELLED' ) {
+        return {
+          message: 'La suscripción ha sido cancelada previamente',
+          ok: false,
+          error: null,
+        }
+      }
+
+      if( subscription.userId !== session.user.id ) {
+        return {
+          message: 'Este usuario no puede cancelar la suscripción',
+          ok: false,
+          error: null,
+        }
+      }
+
+      try {
+        const res = await cancelPaypalSubscription(subscription.paypalSuscriptionId)
+        if( !res ) {
+          return {
+            message: 'Error en la petición hacia paypal',
+            ok: false,
+            error: null,
+          }
+        }
+
+        await prisma.subscription.update({
+          where: { id: subscriptionID },
+          data: {
+            status: 'CANCELLED',
+          }
+        })
+
+        return {
+          message: 'La suscripción ha sido cancelada',
+          ok: true,
+          error: null,
+        }
+      } catch (error) {
+        console.error(error)
+        return {
+          message: 'Ocurrió un error al intentar cancelar la subscripción',
           ok: false,
           error,
         }

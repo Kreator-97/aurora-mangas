@@ -38,8 +38,7 @@ const SuscribeSeriePage: NextPage<Props> = ({serie}) => {
 
       toast.success(message)
       setTimeout(() => {
-        // TODO: redireccionar a la página de suscripciones
-        router.push('/')
+        router.push('/subscriptions')
       }, 2000)
     } catch (error:any) {
       toast.error(error.message)

@@ -19,7 +19,7 @@ module.exports = {
       success: '#21C728',
       successDark: '#118A16',
       alert: '#ff922b',
-      error: '#ff3300',
+      error: '#e03131',
       dark: '#333',
       darkTransparent: '#333333AA',
       light: '#eee',

@@ -88,3 +88,13 @@ export const CREATE_SUBSCRIPTION = gql`
       }
   }
 `
+
+export const CANCEL_SUBSCRIPTION = gql`
+  mutation CancelSubscription( $subscriptionID: String! ) {
+      cancelSubscription( subscriptionID: $subscriptionID ) {
+          error
+          message
+          ok
+      }
+  }
+`
