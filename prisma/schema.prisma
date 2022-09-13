@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// users
 model User {
   id            String   @id @default(uuid())
   email         String   @unique
@@ -63,6 +64,7 @@ enum Role {
   USER
 }
 
+// authors and series
 model Author {
   id        String @id @default(uuid())
   name      String
@@ -98,14 +100,16 @@ model Manga {
   published String
   title     String
   item      Item[]
-  stock     Int     @default(0)
+  stock     Int
 }
 
 enum Periodicy {
   MENSUAL
   BIMESTRAL
+  SEMESTRAL
 }
 
+// orders
 model Order {
   id            String    @id @default(uuid())
   items         Item[]
