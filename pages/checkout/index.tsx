@@ -97,6 +97,7 @@ const CheckoutPage:NextPage<Props> = ({user}) => {
                   layout="fixed"
                   width={100}
                   height={150}
+                  alt={ item.product.title }
                 />
                 <div>
                   <h2 className='text-xl '>{title}</h2>

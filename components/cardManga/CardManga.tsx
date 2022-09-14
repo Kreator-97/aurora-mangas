@@ -37,6 +37,7 @@ export const CardManga:FC<Props> = ({manga}) => {
         height={ 255 }
         className="object-contain cursor-pointer rounded-t"
         onClick={ () => router.push(`/serie/${manga.serie.slug}/${manga.number}`) }
+        alt={ manga.title }
       />
       <div className='p-2 flex flex-col items-center'>
         <Link passHref href={`/serie/${manga.serie.slug}`}>

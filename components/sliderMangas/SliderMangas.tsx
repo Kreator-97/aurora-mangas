@@ -45,7 +45,7 @@ export const SliderMangas: FC<Props> = ({mangas}) => {
   useEffect(() => {
     computePosition()
     computeShowArrows()
-  }, [mangas])
+  }, [mangas]) // eslint-disable-line
 
   useEffect(() => {
     const resizeEvent = () => {
@@ -57,7 +57,7 @@ export const SliderMangas: FC<Props> = ({mangas}) => {
     return () => {
       window.removeEventListener('resize', resizeEvent)
     }
-  }, [])
+  }, []) // eslint-disable-line
 
   return (
     <section className='px-4 relative justify-center'>
