@@ -35,30 +35,20 @@ yarn install
 ```
 
 Recuerda antes declarar las variables de entorno que se encuentran en el archivo `.env.example`, cuales deben de estar en los siguientes archivos
-- .env.development: para desarrollo
+- .env
 - .env.test: para test
 
-Para producción utiliza un archivo `.env`
 
-Para iniciar el servidor de desarrollo ejecuta (asegura tener las variables de entorno):
+Para crear la base de datos usando docker ejecuta:
 ```bash
-yarn dev
+docker compose up -d
 ```
 
-Para iniciar ejecutar las pruebas ejecuta
-```bash
-yarn test
-```
+### Carga schema en la base de datos
 
 Para hacer una migración o inicialización del `schema.prisma` a la base de datos ejecuta:
 ```
-yarn migrate --name <message>
-```
-
-El script anterior realiza una migración del schema a la base de datos. Es muy importante que coloques el mensaje con el argumento `--name <message>` para indicar cuales fueron los cambios. Ese script ejecuta el siguiente comando:
-
-```bash
-dotenv -e .env.development -- npx prisma migrate dev --name <mensaje>
+yarn migrate
 ```
 
 Para realizar un seed a la base de datos utilizamos:
@@ -66,4 +56,14 @@ Para realizar un seed a la base de datos utilizamos:
 npx prisma db seed
 ```
 
-Esto carga unos datos de prueba para comenzar a trabajar. Verifica este archivo en `/prisma.seed.ts`.
+Esto carga unos datos de prueba para comenzar a trabajar. Verifica este archivo en `/prisma.seed.ts`. Si en caso de fallo reintentar con el mismo comando.
+
+Para iniciar el servidor de desarrollo ejecuta:
+```bash
+yarn dev
+```
+
+Para iniciar ejecutar las pruebas ejecuta
+```
+yarn test
+```

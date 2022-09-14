@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env.development next dev",
-    "migrate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "dev": "next dev",
+    "migrate":"npx prisma migrate dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "dotenv -e .env.test -- jest --watch"
   },
   "prisma": {
-    "seed": "dotenv -e .env.development -- ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
