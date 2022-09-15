@@ -5,6 +5,6 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ./sql-data/db:/var/lib/mysql
+      - /var/lib/app/aurora-manga/sql-data/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password

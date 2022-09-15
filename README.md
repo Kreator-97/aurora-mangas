@@ -51,7 +51,7 @@ Para hacer una migración o inicialización del `schema.prisma` a la base de dat
 yarn migrate
 ```
 
-Para realizar un seed a la base de datos utilizamos:
+Si por alguna razón los datos de prueba no han sido sembrados en DB puedes ejecutar el siguiente comando:
 ```bash
 npx prisma db seed
 ```
