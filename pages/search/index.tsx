@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const [mangaResults, serieResults ] = await Promise.all([
     await dbMangas.searchMangas(q?.includes('no.') ? q : ''),
-    await dbSeries.searchSeries(q || ''),
+    await dbSeries.searchSeriesByName(q || ''),
   ])
 
   return {

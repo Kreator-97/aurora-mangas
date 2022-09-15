@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const serieName = ctx.query.slug?.toString()
   const number = ctx.query.number?.toString()
 
-  const manga = await dbMangas.getMangaBySerieAndNumber(serieName || '', number || '')
+  const manga = await dbMangas.getMangaBySerieSlugAndNumber(serieName || '', number || '')
 
   if( !manga ) {
     return {

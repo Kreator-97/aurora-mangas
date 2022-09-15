@@ -44,7 +44,7 @@ export const getSerieBySlug = async (slug:string) => {
   return serie
 }
 
-export const searchSeries = async (query:string) => {
+export const searchSeriesByName = async (query:string) => {
   if (query === '') return []
 
   const results = await prisma.serie.findMany({

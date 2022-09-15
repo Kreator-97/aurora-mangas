@@ -46,6 +46,7 @@ exports[`test on shoppingCart component should to match with snapshot 1`] = `
           style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 100px; height: 100px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
         >
           <img
+            alt="One punch man no.12"
             class="object-contain"
             data-nimg="fixed"
             data-testid="cart-item"

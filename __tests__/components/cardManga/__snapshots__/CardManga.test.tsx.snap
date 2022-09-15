@@ -13,6 +13,7 @@ exports[`tests on CardManga component should to match with snapshot 1`] = `
         style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
       />
       <img
+        alt="One punch man no.12"
         class="object-contain cursor-pointer rounded-t"
         data-nimg="responsive"
         decoding="async"

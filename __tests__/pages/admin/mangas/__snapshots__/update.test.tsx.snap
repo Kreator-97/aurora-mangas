@@ -451,6 +451,7 @@ exports[`tests on AdminUpdateManga page should to match with snapshot 1`] = `
         style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 32px; height: 32px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
       >
         <img
+          alt="facebook"
           data-nimg="fixed"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -462,6 +463,7 @@ exports[`tests on AdminUpdateManga page should to match with snapshot 1`] = `
         style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 36px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
       >
         <img
+          alt="twitter"
           data-nimg="fixed"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
