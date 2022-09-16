@@ -39,7 +39,7 @@ export const getOrderById = async (orderId:string): Promise<Order | null> => {
   return JSON.parse(JSON.stringify(order))
 }
 
-export const getAllOrders = async () => {
+export const getAllOrders = async ():Promise<Order[]> => {
   const orders = await prisma.order.findMany({include: { user: true, items: true }})
 
   return JSON.parse( JSON.stringify(orders) )
