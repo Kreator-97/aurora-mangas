@@ -27,3 +27,43 @@ Utilizamos paypal como agente de pagos para procesar y verificar tus compras de 
 - Redux Toolkit
 
 También con mucho 🧡 y 🔥.
+
+## Iniciar proyecto
+Para descargar las dependencias ejecuta
+```bash
+yarn install
+```
+
+Recuerda antes declarar las variables de entorno que se encuentran en el archivo `.env.example`, cuales deben de estar en los siguientes archivos
+- .env
+- .env.test: para test
+
+
+Para crear la base de datos usando docker ejecuta:
+```bash
+docker compose up -d
+```
+
+### Carga schema en la base de datos
+
+Para hacer una migración o inicialización del `schema.prisma` a la base de datos ejecuta:
+```
+yarn migrate
+```
+
+Si por alguna razón los datos de prueba no han sido sembrados en DB puedes ejecutar el siguiente comando:
+```bash
+npx prisma db seed
+```
+
+Esto carga unos datos de prueba para comenzar a trabajar. Verifica este archivo en `/prisma.seed.ts`. Si en caso de fallo reintentar con el mismo comando.
+
+Para iniciar el servidor de desarrollo ejecuta:
+```bash
+yarn dev
+```
+
+Para iniciar ejecutar las pruebas ejecuta
+```
+yarn test
+```

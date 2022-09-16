@@ -55,6 +55,7 @@ const UserPage: NextPage<Props> = ({user}) => {
                   width={48}
                   height={48}
                   className='rounded-full'
+                  alt={ user.fullname }
                 />
               </div>
             )

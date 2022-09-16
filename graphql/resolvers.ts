@@ -124,23 +124,21 @@ export const resolvers = {
         }
       }
 
-      const mangaInput = {
-        imgURL, number, price, published, title
-      }
-
-      const serie = await prisma.serie.update({
-        where: {
-          id: serieId
-        },
+      const newManga = await prisma.manga.create({
         data: {
-          volumes: {
-            create: mangaInput
-          }
-        }, include: { author: true }})
+          imgURL,
+          number,
+          price,
+          published,
+          stock: 0,
+          title,
+          serieId,
+        }, include: { serie: true }
+      })
 
       return {
         ok: true,
-        message: 'Manga agregado a la serie ' + serie.name
+        message: 'Manga agregado a la serie ' + newManga.serie.name
       }
     },
     async createUser(parent: any, args: any) {

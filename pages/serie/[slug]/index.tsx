@@ -21,6 +21,7 @@ const SeriePage: NextPage<Props> = ({serie}) => {
         height={180}
         layout="responsive"
         className='object-cover'
+        alt={serie.name}
       />
       <h2 className='text-xl text-center mt-4'>Sinopsis</h2>
       <p className='text-lg m-4'>

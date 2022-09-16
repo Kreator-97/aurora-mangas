@@ -33,7 +33,7 @@ export const registerUser = async ({fullname, password, email}:RegisterUserProps
   }
 }
 
-export const authenticateUserWithEmailPassword = async (email: string, password:string ) => {
+export const authenticateUserWithEmailPassword = async (email: string, password:string ):Promise<User | null> => {
   const user = await prisma.user.findUnique({where: { email }})
   if ( !user ) return null
 

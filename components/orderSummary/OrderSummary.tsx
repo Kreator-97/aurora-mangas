@@ -28,7 +28,7 @@ export const OrderSummary:FC<Props> = ({order}) => {
               }}
             >
               <div className='flex flex-col items-center'>
-                <Image src={ product.imgURL } layout='fixed' width={150} height={225} />
+                <Image src={ product.imgURL } layout='fixed' width={150} height={225} alt={ product.title } />
               </div>
               <div>
                 <CustomRow name={'Nombre'} value={`${product.serie.name } #${product.number}`}/>

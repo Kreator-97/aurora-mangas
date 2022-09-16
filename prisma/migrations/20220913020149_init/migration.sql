@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Manga` ALTER COLUMN `stock` DROP DEFAULT;

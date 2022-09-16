@@ -15,12 +15,14 @@ export const Footer = () => {
           width={32}
           height={32}
           layout="fixed"
+          alt='facebook'
         />
         <Image
           src="/images/social/twitter.svg"
           width={36}
           height={36}
           layout="fixed"
+          alt='twitter'
         />
       </div>
     </footer>

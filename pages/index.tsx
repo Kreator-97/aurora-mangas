@@ -46,7 +46,7 @@ const Home: NextPage<Props> = ({series, mangasInfo, orderCancelled}) => {
         dispatch( setShoppingCart(newCart) )
       }
     }
-  }, [])
+  }, []) // eslint-disable-line
 
   return (
     <AppLayout title='Aurora Mangas | Página de inicio'>

@@ -45,9 +45,9 @@ export const getAllMangasPublished = async (limit=12, page=1):Promise<MangasWith
   }
 }
 
-export const getMangaBySerieAndNumber = async (serieName: string, number: string ) => {
+export const getMangaBySerieSlugAndNumber = async (serieSlug: string, number: string ) => {
   const manga = await prisma.manga.findFirst({ where: {
-    serie: {slug: serieName}, AND: { number }
+    serie: {slug: serieSlug}, AND: { number }
   },
   include: {
     serie: {
@@ -101,7 +101,7 @@ export const calcCartTotal = async (items: Items[], expectedTotal: number):Promi
 
   const validMangas = ( mangas.filter((manga) => manga !== null) as Manga[])
 
-  if( validMangas.length === 0 ) return 'items in cart are not valid'
+  if( validMangas.length === 0 ) return 'No hay items válidos'
   
   const mangaWithAmount = validMangas.map( (manga, i) => {
     return {...manga, amount: items[i].amount}
@@ -113,7 +113,7 @@ export const calcCartTotal = async (items: Items[], expectedTotal: number):Promi
   } ,0)
   
   if( total !== expectedTotal ) {
-    return 'No se pudo completar el pago'
+    return 'El total esperado no coincide con el total calculado'
   }
   
   return total

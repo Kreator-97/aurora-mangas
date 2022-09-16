@@ -25,7 +25,7 @@ const MangaDetailsPage:NextPage<Props> = ({manga}) => {
             maxWidth: '600px',
           }}>
           <div>
-            <Image src={manga.imgURL} layout="fixed" width={200} height={300} />
+            <Image src={manga.imgURL} layout="fixed" width={200} height={300} alt={manga.title} />
           </div>
           <div>
             <CustomRow name={'Titulo'} value={manga.title} />

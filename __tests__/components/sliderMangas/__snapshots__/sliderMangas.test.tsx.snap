@@ -26,6 +26,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.12"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -82,6 +83,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="one punch man no.8"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -138,6 +140,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.5"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -194,6 +197,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.2"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -250,6 +254,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.1"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -306,6 +311,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.10"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -362,6 +368,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.7"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -418,6 +425,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.4"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -474,6 +482,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.11"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -530,6 +539,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.9"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -586,6 +596,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.3"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"
@@ -642,6 +653,7 @@ exports[`test on SliderMangas component should to match with snapshot 1`] = `
             style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 150% 0px 0px 0px;"
           />
           <img
+            alt="One punch man no.6"
             class="object-contain cursor-pointer rounded-t"
             data-nimg="responsive"
             decoding="async"

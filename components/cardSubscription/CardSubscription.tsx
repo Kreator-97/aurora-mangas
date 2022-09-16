@@ -18,6 +18,7 @@ export const CardSubscription: FC<Props> = ({subscription, onDeleteSuscription})
         width={320}
         height={180}
         className="rounded-t object-cover"
+        alt={ subscription.serie.name }
       />
       <div className='rounded p-2'>
         <h2 className='text-center text-xl mb-2'>Suscripción</h2>

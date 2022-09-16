@@ -68,6 +68,7 @@ export const ShoppingCart = () => {
                       height={ 100 }
                       className="object-contain"
                       data-testid="cart-item"
+                      alt={item.product.title}
                     />
                     <div className='px-2 w-52'>
                       <h2>{title}</h2>
