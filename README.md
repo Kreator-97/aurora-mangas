@@ -63,7 +63,18 @@ Para iniciar el servidor de desarrollo ejecuta:
 yarn dev
 ```
 
-Para iniciar ejecutar las pruebas ejecuta
+## Testing
+Para ejecutar las pruebas primero inicializa la base de datos de prueba con el siguiente comando:
+```
+yarn migrate-test
+```
+
+Para correr las pruebas primero inicia el servidor de desarrollo con el siguiente comando:
+```
+yarn server-test
+```
+
+Para ejecutar las pruebas ejecuta:
 ```
 yarn test
 ```
