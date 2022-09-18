@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { Table } from '../../../components/table/Table'
 
@@ -11,7 +12,7 @@ describe('Tests on table components', () => {
   })
 
   test('should to render children prop', () => {
-    render(<Table columns={columns} children={
+    render(<Table columns={columns}>
       <tr>
         <td data-testid="cell">Uno</td>
         <td data-testid="cell">Dos</td>
@@ -19,7 +20,7 @@ describe('Tests on table components', () => {
         <td data-testid="cell">Cuarto</td>
         <td data-testid="cell">Cinco</td>
       </tr>
-    } />)
+    </Table>)
 
     const cells = screen.getAllByTestId('cell')
     expect(cells.length).toBe(5)

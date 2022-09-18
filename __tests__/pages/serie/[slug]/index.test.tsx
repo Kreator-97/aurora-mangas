@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { useSession } from 'next-auth/react'
 import { Provider } from 'react-redux'
@@ -25,7 +26,7 @@ describe('tests on Serie page', () => {
       </Provider>
     )
     expect(container).toMatchSnapshot()
-    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument
-    expect(screen.getByText( series[0].sinopsis! )).toBeInTheDocument
+    expect(screen.getByRole('heading', { level: 1 }))
+    expect(screen.getByText( series[0].sinopsis! ))
   })
 })

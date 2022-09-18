@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { SelectAmount } from '../../../components/selectAmount/SelectAmount'
 
@@ -8,8 +9,8 @@ describe('tests on SelectAmount component', () => {
     const amount = screen.getByText('1')
 
     expect(container).toMatchSnapshot()
-    expect(title).toBeInTheDocument
-    expect(amount).toBeInTheDocument
+    expect(title)
+    expect(amount)
   })
 
   test('should to call onChangeAmount event', () => {

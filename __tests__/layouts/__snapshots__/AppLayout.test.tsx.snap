@@ -48,6 +48,7 @@ exports[`tests on AppLayout component should to match with snapshot 1`] = `
         <svg
           color="white"
           cursor="pointer"
+          data-testid="shopping-cart-menu"
           fill="none"
           height="32"
           stroke="currentColor"
@@ -76,6 +77,7 @@ exports[`tests on AppLayout component should to match with snapshot 1`] = `
       >
         <input
           class="w-full rounded border-cyan-400 border p-1 text-sm text-dark"
+          data-testid="search-input"
           placeholder="Encuentra tu manga favorito. Ejemplo: one punch man #1"
           type="search"
           value=""
@@ -84,6 +86,7 @@ exports[`tests on AppLayout component should to match with snapshot 1`] = `
       <svg
         color="white"
         cursor="pointer"
+        data-testid="search-icon"
         fill="none"
         height="32"
         stroke="currentColor"

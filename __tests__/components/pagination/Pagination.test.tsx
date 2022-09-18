@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Pagination } from '../../../components/pagination'
 

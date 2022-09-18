@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
@@ -63,8 +64,7 @@ describe('tests on Checkout Page', () => {
         </Provider>
       </MockedProvider>
     )
-    const message = screen.getByText('No tienes elementos en el carrito de compras')
-    expect(message).toBeInTheDocument
+    screen.getByText('No tienes elementos en el carrito de compras')
   })
 
   test('should to show login button when user is not authenticated', () => {
@@ -80,7 +80,7 @@ describe('tests on Checkout Page', () => {
       </MockedProvider>
     )
     
-    expect( screen.getByText('Iniciar sesión') ).toBeInTheDocument
+    expect( screen.getByText('Iniciar sesión') )
   })
 
   test('"Confirmar pedido" button should to be active when user is logged and exists items on cart', () => {

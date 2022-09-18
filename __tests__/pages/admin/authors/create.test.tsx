@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { MockedProvider } from '@apollo/client/testing'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
@@ -44,7 +45,7 @@ describe('tests on AdminCreateAuthor page', () => {
     )
 
     expect(container).toMatchSnapshot()
-    expect(screen.getByLabelText('Nombre del autor')).toBeInTheDocument
+    expect(screen.getByLabelText('Nombre del autor'))
   })
 
   test('should to show error when no passing a valid author name', () => {

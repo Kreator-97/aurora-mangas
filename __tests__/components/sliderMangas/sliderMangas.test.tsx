@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
@@ -25,7 +26,7 @@ describe('test on SliderMangas component', () => {
     )
 
     expect( container ).toMatchSnapshot()
-    expect( screen.getByText(`${mangas.length} Mangas`)).toBeInTheDocument
+    expect( screen.getByText(`${mangas.length} Mangas`))
     expect( screen.getAllByTestId('card-manga').length ).toBe(mangas.length)
   })
 

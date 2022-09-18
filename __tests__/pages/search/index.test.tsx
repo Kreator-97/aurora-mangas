@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { default as SearchPage } from '../../../pages/search/index'
 import { mangas } from '../../fixtures/db'
@@ -37,7 +38,7 @@ describe('tests on Search page', () => {
     )
 
     expect( container ).toMatchSnapshot()
-    expect( screen.getByText(`Resultados para "${query}"`)).toBeInTheDocument
+    expect( screen.getByText(`Resultados para "${query}"`))
   })
 })
 

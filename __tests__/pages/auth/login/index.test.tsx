@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { default as LoginPage } from '../../../../pages/auth/login/index'
 
@@ -9,9 +10,9 @@ describe('tests on LoginPage', () => {
   test('should to match with snapshot', () => {
     const { container } = render(<LoginPage />)
     expect(container).toMatchSnapshot()
-    expect(screen.getByRole('heading', { name: 'Iniciar sesión' })).toBeInTheDocument
-    expect(screen.getByText('Ingresa tu correo electrónico:')).toBeInTheDocument
-    expect(screen.getByText('Ingresa tu contraseña:')).toBeInTheDocument
+    expect(screen.getByRole('heading', { name: 'Iniciar sesión' }))
+    expect(screen.getByText('Ingresa tu correo electrónico:'))
+    expect(screen.getByText('Ingresa tu contraseña:'))
   })
 
   test('should to call signIn()', () => {

@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { shoppingCartSlice, addItem, removeItem, setAmount, setShoppingCart } from '../../../app/slices/shoppingCartSlice'
 import { mangas } from '../../fixtures/db'
 

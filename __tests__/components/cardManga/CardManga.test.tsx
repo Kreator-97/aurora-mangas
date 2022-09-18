@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
@@ -32,7 +33,7 @@ describe('tests on CardManga component', () => {
     )
 
     expect(component.container).toMatchSnapshot()
-    expect(screen.getByTestId('card-manga')).toBeInTheDocument
+    expect(screen.getByTestId('card-manga'))
     expect(screen.getByText(`${manga.serie.name} #${manga.number}`))
   })
 
@@ -43,7 +44,7 @@ describe('tests on CardManga component', () => {
       </Provider>
     )
 
-    expect(screen.getByTestId('card-manga')).toBeInTheDocument
+    expect(screen.getByTestId('card-manga'))
     expect(screen.getByText('Sin stock disponible'))
   })
 
@@ -56,7 +57,7 @@ describe('tests on CardManga component', () => {
 
     const button = screen.getByText('Agregar al carrito')
 
-    expect(button).toBeInTheDocument
+    expect(button)
     fireEvent.click( button )
     expect(dispatch).toHaveBeenCalled()
     expect(dispatch).toHaveBeenCalledWith({

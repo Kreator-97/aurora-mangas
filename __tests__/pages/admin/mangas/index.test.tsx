@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { useSession } from 'next-auth/react'
 import { Provider } from 'react-redux'
@@ -26,8 +27,8 @@ describe('tests on AdminManga page', () => {
     )
 
     expect(container).toMatchSnapshot()
-    expect(screen.getByText('Mangas')).toBeInTheDocument
-    expect(screen.getByText('Agregar manga')).toBeInTheDocument
+    expect(screen.getByText('Mangas'))
+    expect(screen.getByText('Agregar manga'))
   })
 
   test('should to show a message when there are not mangas', () => {

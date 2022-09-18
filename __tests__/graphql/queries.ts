@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { User } from '@prisma/client'
 import prisma from '../../lib/prisma'
 import { Serie } from '../../interfaces'

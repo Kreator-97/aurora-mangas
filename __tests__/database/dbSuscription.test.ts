@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { User } from '@prisma/client'
 import { getAllSubscriptions, getSubscriptionsByUserId } from '../../database/dbSubscriptions'
 import prisma from '../../lib/prisma'

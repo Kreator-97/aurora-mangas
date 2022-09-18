@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render } from '@testing-library/react'
 import { default as AdminUpdateManga } from '../../../../pages/admin/mangas/update'
 import { mangas, series } from '../../../fixtures/db'

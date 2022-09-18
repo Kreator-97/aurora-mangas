@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { MockedProvider } from '@apollo/client/testing'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { default as RegisterPage } from '../../../../pages/auth/register'
@@ -25,7 +26,7 @@ describe('tests on RegisterPage', () => {
     )
 
     expect(container).toMatchSnapshot()
-    expect(screen.getByRole('heading',{name: 'Crear cuenta'})).toBeInTheDocument
+    expect(screen.getByRole('heading',{name: 'Crear cuenta'}))
   })
 
   test('should to call signIn() on submit', async () => {

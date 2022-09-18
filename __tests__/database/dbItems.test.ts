@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { getSoldUnitsByMangaId } from '../../database/dbItems'
 import prisma from '../../lib/prisma'
 
