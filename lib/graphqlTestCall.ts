@@ -17,7 +17,6 @@ interface Response<T> {
   data: T;
 }
 
-
 type testEndpoint = <T = any>(query: string, options?: Options) => Promise<Response<T>>
 
 export const testEndpoint:testEndpoint = async (query: string, options?: Options ) => {
@@ -40,7 +39,7 @@ export const testEndpoint:testEndpoint = async (query: string, options?: Options
       headers,
       body: JSON.stringify({
         query,
-        variables: options?.variables,
+        variables: options?.variables || {},
       }),
       redirect: 'follow'
     })

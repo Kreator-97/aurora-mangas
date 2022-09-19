@@ -35,29 +35,68 @@ export const resolvers = {
       })
       return mangas
     },
-    users: async() => {
-      const users = await prisma.user.findMany({
-        include: {
-          address: true
+    users: async(_:any, args:any, ctx: {session: Session}) => {
+      if( !ctx.session ) {
+        return {
+          users: [],
+          message: 'token is mandatory',
+          error: 'Authentication failed',
+          ok: false
         }
-      })
-      return users.map((user) => ({...user, password: null}))
-    },
-    orders: async () => {
-      const orders = await prisma.order.findMany({
-        include: {
-          items: {
-            include: {
-              product: true,
-            }
-          }, 
-          user: true
+      }
+
+      if( ctx.session.user.role !== 'ADMIN' ) {
+        return {
+          users: [],
+          message: 'This user cannot perform this query',
+          error: 'Authorization failed',
+          ok: false
         }
-      })
-      return orders
+      }
+
+      try {
+        const users = await prisma.user.findMany({
+          include: {
+            address: true
+          }
+        })
+  
+        return {
+          users: users.map((user) => ({...user, password: null})),
+          message: 'Users found',
+          error: null,
+          ok: true,
+        }
+      } catch (error) {
+        console.error(error)
+        return {
+          users: [],
+          message: 'Ocurrió un error al realizar la query',
+          error,
+          ok: false
+        }
+      }
     },
-    ordersByUser: async (parent:any, args: any) => {
+    ordersByUser: async (parent:any, args: any, ctx: {session:Session}) => {
+      if( !ctx.session ) {
+        return {
+          orders: [],
+          message: 'token is mandatory',
+          error: 'Authentication failed',
+          ok: false
+        }
+      }
       const { userId } = args
+
+      if( ctx.session.user.id !== userId ) {
+        return {
+          orders: [],
+          message: 'This user cannot get these orders',
+          error: 'Authentication failed',
+          ok: false
+        }
+      }
+
       const orders = await prisma.order.findMany({
         where: {
           userId
@@ -71,8 +110,13 @@ export const resolvers = {
           }
         }
       })
-      if( orders.length === 0 ) return null
-      return orders
+
+      return {
+        orders,
+        message: 'Orders found',
+        error: null,
+        ok: true
+      }
     }
   },
   Mutation: {
