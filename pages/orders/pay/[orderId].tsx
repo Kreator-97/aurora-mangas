@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useMutation } from '@apollo/client'
-import { PayPalButtons } from '@paypal/react-paypal-js'
+import { PayPalButtons,  } from '@paypal/react-paypal-js'
 import { OrderResponseBody } from '@paypal/paypal-js'
 
 import { Address, Order } from '../../../interfaces'
@@ -148,28 +148,30 @@ const PayOrderPage:NextPage<Props> = ({order}) => {
           {
             addressState 
               ? (
-                <PayPalButtons
-                  style={{ layout: 'vertical', color: 'white', tagline: false, label: 'buynow' }}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [{
+                <>
+                  <PayPalButtons
+                    style={{ layout: 'vertical', color: 'white', tagline: false, label: 'buynow' }}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [{
       
-                        amount: {
-                          currency_code: 'MXN',
-                          value: order.total.toString(),
-                        }
-                      }]
-                    })
-                      .then((orderId) => {
-                        return orderId
+                          amount: {
+                            currency_code: 'MXN',
+                            value: order.total.toString(),
+                          }
+                        }]
                       })
-                  }}
-                  onApprove={(data, actions) => {
-                    return actions.order!.capture().then((details) => {
-                      onOrderCompleted(details)
-                    })
-                  }}
-                />
+                        .then((orderId) => {
+                          return orderId
+                        })
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order!.capture().then((details) => {
+                        onOrderCompleted(details)
+                      })
+                    }}
+                  />
+                </>
               ) 
               : (
                 <p className='text-center'>Agrega una dirección válida antes de realizar tu compra</p>

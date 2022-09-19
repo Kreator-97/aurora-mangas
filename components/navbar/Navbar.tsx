@@ -47,6 +47,7 @@ export const Navbar = () => {
         <Image
           src="/images/logo.png"
           alt="Aurora Mangas Logo"
+          data-testid="app-logo"
           width={150}
           height={30}
           layout="fixed"
@@ -62,6 +63,7 @@ export const Navbar = () => {
             color='white'
             size={32}
             cursor="pointer"
+            data-testid='shopping-cart-menu'
           />
           <span className='w-6 h-6 text-center font-semibold bg-accentDark bg-opacity-95 rounded-full absolute -top-2 -right-2'>{items.length}</span>
         </div>
@@ -76,12 +78,15 @@ export const Navbar = () => {
             className='w-full rounded border-cyan-400 border p-1 text-sm text-dark'
             value={ searchInput }
             onChange={ (e) => setSearchInput(e.target.value) }
+            data-testid="search-input"
           />
         </form>
         <HiOutlineSearchCircle
           color='white'
           size={32}
           cursor="pointer"
+          data-testid="search-icon"
+          onClick={ () => navigateTo(`/search?q=${searchInput.replace('#', 'no.')}`) }
         />
       </div>
     </nav>

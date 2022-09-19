@@ -74,7 +74,19 @@ Para correr las pruebas primero inicia el servidor de desarrollo con el siguient
 yarn server-test
 ```
 
-Para ejecutar las pruebas ejecuta:
+Para ejecutar las pruebas unitarias ejecuta:
 ```
 yarn test
 ```
+
+Para ejecutar las pruebas de integración usando chrome ejecuta:
+'''
+yarn test:cypress
+'''
+
+Para ejecutar las pruebas de integración desde CLI ejecuta
+```
+yarn test:e2e
+```
+
+

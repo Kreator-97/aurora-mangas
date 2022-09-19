@@ -22,7 +22,7 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className={`min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform ${ isSidebarOpen ? '' : '-translate-x-full'}`}>
+    <div className={`min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform ${ isSidebarOpen ? '' : '-translate-x-full'} z-[1000]`}>
       <div className='flex justify-between items-center mb-2'>
         <div className='w-8'></div>
         <h2 className='text-2xl'>{ user?.fullname ? user.fullname : 'Bienvenido' }</h2>
