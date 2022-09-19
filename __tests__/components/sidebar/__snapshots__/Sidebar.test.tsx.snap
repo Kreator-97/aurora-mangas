@@ -3,7 +3,7 @@
 exports[`tests on Sidebar component should to match with snapshot 1`] = `
 <div>
   <div
-    class="min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform "
+    class="min-h-screen max-w-[360px] bg-dark fixed top-0 left-0 w-full z-50 p-4 transition-transform  z-[1000]"
   >
     <div
       class="flex justify-between items-center mb-2"
