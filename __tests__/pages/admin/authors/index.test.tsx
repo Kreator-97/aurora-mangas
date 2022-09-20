@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
@@ -27,8 +28,8 @@ describe('tests on AdminAuthor page', () => {
     )
 
     expect(container).toMatchSnapshot()
-    expect(screen.getByText('Autores')).toBeInTheDocument
-    expect(screen.getByText('Agregar autor')).toBeInTheDocument
+    expect(screen.getByText('Autores'))
+    expect(screen.getByText('Agregar autor'))
   })
 
   test('should to show message when there are not authors', () => {

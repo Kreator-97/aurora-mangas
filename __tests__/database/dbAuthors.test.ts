@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { getAuthors } from '../../database/dbAuthors'
 
 describe('tests on dbAuthors file', () => {

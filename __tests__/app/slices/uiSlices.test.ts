@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { uiSlice, openSidebar, openShoppingCart, closeShoppingCart, closeSidebar } from '../../../app/slices/uiSlice'
 
 const initialState = {

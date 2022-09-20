@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import prisma from '../../lib/prisma'
 import { getSeries, getAllSlugs, getNewReleaseSeries, getSerieBySlug, searchSeriesByName } from '../../database/dbSeries'
 

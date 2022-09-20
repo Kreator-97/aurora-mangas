@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { suggestSlug } from '../../util'
 
 describe('tests on suggestSlug()', () => {

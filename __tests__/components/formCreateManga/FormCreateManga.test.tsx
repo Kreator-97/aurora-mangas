@@ -1,6 +1,7 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { series } from '../../fixtures/db'
-import { FormManga } from '../../../components/'
+import { FormManga } from '../../../components'
 
 const onSubmit = jest.fn()
 
@@ -25,25 +26,16 @@ describe('Tests on FormManga component', () => {
         series={ series }
       />
     )
-    const selectSerieLabel = screen.getByLabelText('Seleccionar serie')
-    const numberLabel = screen.getByLabelText('Escribe el número de volumen')
-    const unitPriceLabel = screen.getByLabelText('Escribe el precio unitario')
-    const imgURLLabel = screen.getByLabelText('Coloca la URL de la serie (cloudinary)')
-    const titleLabel = screen.getByLabelText('Escribe un título')
-    const monthLabel = screen.getByLabelText('Mes de publicación')
-    const yearLabel = screen.getByLabelText('Año de publicación')
-    const stockLabel = screen.getByLabelText('Stock actual')
-    const incrementStockLabel = screen.getByLabelText('Incrementar Stock')
+    screen.getByLabelText('Seleccionar serie')
+    screen.getByLabelText('Escribe el número de volumen')
+    screen.getByLabelText('Escribe el precio unitario')
+    screen.getByLabelText('Coloca la URL de la serie (cloudinary)')
+    screen.getByLabelText('Escribe un título')
+    screen.getByLabelText('Mes de publicación')
+    screen.getByLabelText('Año de publicación')
+    screen.getByLabelText('Stock actual')
+    screen.getByLabelText('Incrementar Stock')
 
-    expect(selectSerieLabel).toBeInTheDocument
-    expect(numberLabel).toBeInTheDocument
-    expect(unitPriceLabel).toBeInTheDocument
-    expect(imgURLLabel).toBeInTheDocument
-    expect(titleLabel).toBeInTheDocument
-    expect(monthLabel).toBeInTheDocument
-    expect(yearLabel).toBeInTheDocument
-    expect(stockLabel).toBeInTheDocument
-    expect(incrementStockLabel).toBeInTheDocument
   })
 
   test('should to call onSubmit callback', async () => {

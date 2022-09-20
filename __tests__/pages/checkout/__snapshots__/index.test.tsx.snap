@@ -35,6 +35,7 @@ exports[`tests on Checkout Page should to match with snapshot 1`] = `
           alt="Aurora Mangas Logo"
           class="cursor-pointer"
           data-nimg="fixed"
+          data-testid="app-logo"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
@@ -48,6 +49,7 @@ exports[`tests on Checkout Page should to match with snapshot 1`] = `
         <svg
           color="white"
           cursor="pointer"
+          data-testid="shopping-cart-menu"
           fill="none"
           height="32"
           stroke="currentColor"
@@ -76,6 +78,7 @@ exports[`tests on Checkout Page should to match with snapshot 1`] = `
       >
         <input
           class="w-full rounded border-cyan-400 border p-1 text-sm text-dark"
+          data-testid="search-input"
           placeholder="Encuentra tu manga favorito. Ejemplo: one punch man #1"
           type="search"
           value=""
@@ -84,6 +87,7 @@ exports[`tests on Checkout Page should to match with snapshot 1`] = `
       <svg
         color="white"
         cursor="pointer"
+        data-testid="search-icon"
         fill="none"
         height="32"
         stroke="currentColor"

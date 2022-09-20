@@ -63,7 +63,30 @@ Para iniciar el servidor de desarrollo ejecuta:
 yarn dev
 ```
 
-Para iniciar ejecutar las pruebas ejecuta
+## Testing
+Para ejecutar las pruebas primero inicializa la base de datos de prueba con el siguiente comando:
+```
+yarn migrate-test
+```
+
+Para correr las pruebas primero inicia el servidor de desarrollo con el siguiente comando:
+```
+yarn server-test
+```
+
+Para ejecutar las pruebas unitarias ejecuta:
 ```
 yarn test
 ```
+
+Para ejecutar las pruebas de integración usando chrome ejecuta:
+'''
+yarn test:cypress
+'''
+
+Para ejecutar las pruebas de integración desde CLI ejecuta
+```
+yarn test:e2e
+```
+
+

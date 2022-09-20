@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { store } from '../../../app/store'
@@ -24,10 +25,10 @@ describe('tests on Sidebar component', () => {
       </Provider>
     )
     expect(container).toMatchSnapshot()
-    expect(screen.getByText('Bienvenido')).toBeInTheDocument
-    expect(screen.getByText('Ingresa para gestionar tu cuenta')).toBeInTheDocument
-    expect(screen.getByText('Ingresar')).toBeInTheDocument
-    expect(screen.getByText('Crear cuenta')).toBeInTheDocument
+    expect(screen.getByText('Bienvenido'))
+    expect(screen.getByText('Ingresa para gestionar tu cuenta'))
+    expect(screen.getByText('Ingresar'))
+    expect(screen.getByText('Crear cuenta'))
   })
   
   test('should to show username on sidebar when is authenticated', () => {
@@ -42,7 +43,7 @@ describe('tests on Sidebar component', () => {
       </Provider>
     )
 
-    expect(screen.getByText(fullname)).toBeInTheDocument
+    expect(screen.getByText(fullname))
   })
 
   test('should to dispatch closeSideBar()', () => {

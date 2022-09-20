@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { default as SuscribeSeriePage } from '../../../pages/suscribe/[slug]'
 import { mangas, series } from '../../fixtures/db'
@@ -41,7 +42,7 @@ describe('tests on SuscribeSerie page', () => {
       </MockedProvider>
     )
 
-    expect( screen.getByText(/Suscribete por/) ).toBeInTheDocument
+    expect( screen.getByText(/Suscribete por/) )
   })
 })
 

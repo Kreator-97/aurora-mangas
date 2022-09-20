@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
@@ -46,9 +47,9 @@ describe('test on shoppingCart component', () => {
       </Provider>
     )
     expect(container).toMatchSnapshot()
-    expect(screen.getByText('Carrito de compra')).toBeInTheDocument
-    expect(screen.getByText(/Total global/)).toBeInTheDocument
-    expect(screen.getByText('Ir al resumen')).toBeInTheDocument
+    expect(screen.getByText('Carrito de compra'))
+    expect(screen.getByText(/Total global/))
+    expect(screen.getByText('Ir al resumen'))
   })
 
   test('onRemove function should to be called', () => {

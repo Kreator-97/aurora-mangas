@@ -1,5 +1,6 @@
 import { authSlice, login } from '../../../app/slices/authSlice'
 import { users } from '../../fixtures/db'
+import { expect } from '@jest/globals'
 
 const initialState = {
   isLogged: false,

@@ -103,13 +103,27 @@ export const typeDefs = gql`
     orderId: String
   }
 
+  type OrdersResponse {
+    ok: Boolean!
+    error: String
+    message: String!
+    orders: [Order!]
+  }
+
   type UserResponse {
     user: User
     ok: Boolean!
     error: String
     message: String!
   }
-  
+
+  type UsersResponse {
+    users: [User!]
+    ok: Boolean!
+    error: String
+    message: String!
+  }
+
   type MangaResponse {
     manga: Manga
     ok: Boolean!
@@ -131,16 +145,15 @@ export const typeDefs = gql`
     id: String
     total: Int!
     items: [Item!]
-    user: User!
+    user: User
   }
 
   type Query {
     series: [Serie!]
     authors: [Author!]
     volumes(serieId: String): [Manga!]
-    users: [User!]
-    orders: [Order!]
-    ordersByUser(userId: String!): [Order!]
+    users: UsersResponse
+    ordersByUser(userId: String!): OrdersResponse
   }
 
   type Mutation {

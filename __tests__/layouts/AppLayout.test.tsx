@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { AppLayout } from '../../layouts/AppLayout'
 import { useSession } from 'next-auth/react'
@@ -20,7 +21,9 @@ describe('tests on AppLayout component', () => {
   test('should to match with snapshot', () => {
     const { container } = render(
       <Provider store={store}>
-        <AppLayout title='testing' children={<></>} />
+        <AppLayout title='testing'>
+          <></>
+        </AppLayout>
       </Provider>
     )
 
@@ -30,13 +33,14 @@ describe('tests on AppLayout component', () => {
   test('should to render children prop', () => {
     render(
       <Provider store={store}>
-        <AppLayout title='testing' children={
+        <AppLayout title='testing'>
           <section data-testid="content">
             <h2>Content</h2>
-          </section>} />
+          </section>
+        </AppLayout>
       </Provider>
     )
 
-    expect(screen.getByTestId('content')).toBeInTheDocument
+    expect(screen.getByTestId('content'))
   })
 })
