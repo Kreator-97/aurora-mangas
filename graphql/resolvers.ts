@@ -120,7 +120,17 @@ export const resolvers = {
     }
   },
   Mutation: {
-    createSerie: async (root:any, args:any ) => {
+    createSerie: async (root:any, args:any, ctx: {session: Session } ) => {
+      if( !ctx.session ) {
+        return null
+      }
+      
+      const user = ctx.session.user
+      
+      if( user.role !== 'ADMIN' ) {
+        return null
+      }
+
       const { genre, imgURL, finished, name, sinopsis,periodicy, author } = args.serie
 
       // we generate a slug automatically
@@ -147,7 +157,17 @@ export const resolvers = {
         return null
       }
     },
-    createAuthor: async(parent:any, args:any) => {
+    createAuthor: async(parent:any, args:any, ctx: {session: Session}) => {
+      if( !ctx.session ) {
+        return null
+      }
+      
+      const user = ctx.session.user
+      
+      if( user.role !== 'ADMIN' ) {
+        return null
+      }
+
       const { name } = args
       try {
         const result = await prisma.author.create({ data: { name }, include: { serie: true }})
@@ -156,7 +176,25 @@ export const resolvers = {
         return null
       }
     },
-    createManga: async(parent: any, args: any) => {
+    createManga: async(parent: any, args: any, ctx: {session: Session}) => {
+      if( !ctx.session ) {
+        return {
+          message: 'Token not send',
+          error: 'Authentication failed',
+          ok: false,
+        }
+      }
+      
+      const user = ctx.session.user
+      
+      if( user.role !== 'ADMIN' ) {
+        return {
+          message: 'This user cannot perform this operation',
+          error: 'Authorization failed',
+          ok: false,
+        }
+      }
+
       const { serieId, number, price, imgURL, published, title } = args
 
       const isValidDate = new Date(published)
@@ -208,7 +246,25 @@ export const resolvers = {
         }
       }
     },
-    async updateManga(parent: any, args: any) {
+    async updateManga(parent: any, args: any, ctx: {session: Session}) {
+      if( !ctx.session ) {
+        return {
+          message: 'Token not send',
+          error: 'Authentication failed',
+          ok: false,
+        }
+      }
+      
+      const user = ctx.session.user
+      
+      if( user.role !== 'ADMIN' ) {
+        return {
+          message: 'This user cannot perform this operation',
+          error: 'Authorization failed',
+          ok: false,
+        }
+      }
+
       const { mangaId } = args
       const { serieId, number, price, imgURL, published, title, stock } = args.manga
 
@@ -286,13 +342,21 @@ export const resolvers = {
           error: null,
           ok: true,
           orderId: order.id,
-        } 
+        }
       } catch (error) {
         console.error(error)
         return 'Error al intentar realizar la orden'
       }
     },
-    async createAndUpdateDirection(root:any, args:any) {
+    async createAndUpdateDirection(root:any, args:any, ctx: {session: Session}) {
+      if( !ctx.session ) {
+        return {
+          message: 'Token not send',
+          error: 'Authentication failed',
+          ok: false,
+        }
+      }
+
       // este resolver se encarga tanto de crear como de actualizar una dirección
       const userId = args.userId
       const address = args.address
@@ -301,7 +365,14 @@ export const resolvers = {
         where: { id: userId },
         include: { address: true }
       })
-
+      if( ctx.session.user.id !== user?.id ) {
+        return {
+          message: 'This user cannot perform this operation',
+          error: 'Authorization failed',
+          ok: false
+        }
+      }
+        
       // si la dirección existe entonces realizamos una actualización
       if( user?.address ) {
         try {
