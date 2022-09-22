@@ -18,7 +18,7 @@
       "never"
     ],
     "eol-last": [
-      "error",
+      "warn",
       "always"
     ]
   }

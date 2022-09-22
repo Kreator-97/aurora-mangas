@@ -14,43 +14,6 @@ describe('test graphql queries', () => {
     })
   })
 
-  // test('test on query all users', async () => {
-
-  //   const res = await testEndpoint(`{
-  //     users {
-  //       id
-  //       createdAt
-  //       email
-  //       fullname
-  //       imgURL
-  //       password
-  //       role
-  //       updatedAt
-  //       address {
-  //         city
-  //         col
-  //         cp
-  //         number
-  //         state
-  //       }
-  //     }
-  //   }`)
-
-  //   const users = res?.data.users
-
-  //   expect(users instanceof Array).toBe(true)
-  //   expect(users.length).toBe(2)
-  //   expect(users[0]).toMatchObject({
-  //     id        : expect.any( String ),
-  //     createdAt : expect.any( String ),
-  //     email     : expect.any( String ),
-  //     fullname  : expect.any( String ),
-  //     role      : expect.any( String ),
-  //     updatedAt : expect.any( String ),
-  //     password  : null,
-  //   })
-  // })
-
   test('test on query authors', async () => {
     const res = await testEndpoint(`
       query {
@@ -107,52 +70,10 @@ describe('test graphql queries', () => {
     })
   })
 
-  // test('query orders by a userId', async () => {
-
-  //   await prisma.order.create({
-  //     data: {
-  //       total: 99,
-  //       userId: userTest?.id || '',
-  //     }
-  //   })
-
-  //   const res = await testEndpoint(`
-  //     query order($userId: String!) {
-  //       ordersByUser( userId: $userId) {
-  //         items {
-  //           product {
-  //             price
-  //           }
-  //           amount
-  //         }
-  //         total
-  //         user {
-  //           fullname
-  //           id
-  //         }
-  //       }
-  //     }
-  //   `, {
-  //     variables: {
-  //       userId: userTest!.id
-  //     }
-  //   })
-
-  //   const orders = res.data.ordersByUser
-
-  //   expect(orders instanceof Array).toBe(true)
-  //   expect(orders.length).toBe(1)
-  //   expect(orders[0]).toMatchObject({
-  //     items: expect.any(Array),
-  //     total: expect.any(Number),
-  //     user: expect.any(Object),
-  //   })
-  // })
-
-  test('test on query volumes', async () => {
+  test('test on query mangas', async () => {
     const res = await testEndpoint(`
     {
-      volumes {
+      mangas {
         price
         id
         serie {
@@ -167,10 +88,10 @@ describe('test graphql queries', () => {
     }
     `)
 
-    const volumes = res.data.volumes
-    expect( volumes instanceof Array ).toBe(true)
-    expect( volumes.length).toBe(12)
-    expect( volumes[0] ).toMatchObject({
+    const mangas = res.data.mangas
+    expect( mangas instanceof Array ).toBe(true)
+    expect( mangas.length).toBe(12)
+    expect( mangas[0] ).toMatchObject({
       price: expect.any( Number ),
       id: expect.any( String ),
       serie: expect.any( Object ),

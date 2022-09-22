@@ -15,26 +15,19 @@ describe('test on private graphql query', () => {
       body: JSON.stringify({
         query: `
         {
-          users {
-            error
+          allUsers {
             message
             ok
+            error
             users {
               id
-              createdAt
-              email
               fullname
-              imgURL
+              email
               password
+              imgURL
               role
+              createdAt
               updatedAt
-              address {
-                city
-                col
-                cp
-                number
-                state
-              }
             }
           }
         }`,
@@ -45,7 +38,7 @@ describe('test on private graphql query', () => {
       },
     })
       .then((res) => {
-        const users = res.body.data.users.users
+        const users = res.body.data.allUsers.users
         expect(users).length(2)
       })
   })

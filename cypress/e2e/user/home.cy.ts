@@ -33,11 +33,13 @@ describe('test integration on home page', () => {
     cy.get('input[name="cp"]').type('30505')
     cy.contains('Guardar dirección').click()
     cy.get('[data-testid="app-logo"]').click()
+    cy.wait(3000) // eslint-disable-line
     cy.get('[data-testid="menu"]').click()
     cy.contains('Cerrar sesión').click()
   })
-
+  
   it('User should to create a new account correctly', () => {
+    cy.wait(1000) // eslint-disable-line
     cy.get('[data-testid="menu"]').click()
     cy.contains('Crear cuenta').click()
     cy.get('input[name="name"]').type('Adrian flores')
