@@ -87,6 +87,7 @@ describe('test on dbOrders file', () => {
 
 
   afterAll( async () => {
+    await prisma.item.deleteMany()
     await prisma.order.deleteMany()
   })
 })

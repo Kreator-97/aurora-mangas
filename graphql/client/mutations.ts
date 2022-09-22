@@ -29,11 +29,16 @@ export const CREATE_MANGA = gql`
 `
 
 export const CREATE_USER = gql`
-  mutation CreateUser($email: String!, $fullname: String!, $password: String!) {
-    createUser(email: $email, fullname: $fullname, password: $password) {
+  mutation CreateUser( $user: UserInput! ) {
+    createUser(user: $user) {
+      message
       ok
       error
-      message
+      user {
+        fullname
+        email
+        id
+      }
     }
   }
 `
@@ -49,24 +54,24 @@ export const UPDATE_MANGA = gql`
 `
 
 export const CREATE_ORDER = gql`
-  mutation CreateOrder($total: Int!, $items: [ItemsInput!]) {
+  mutation CreateOrder($total: Int!, $items: [ItemsInput!]!) {
     createOrder(total: $total, items: $items) {
       error
       message
       ok
       orderId
-    }
   }
+}
 `
 
 export const CREATE_OR_UPDATE_DIRECTION = gql`
-  mutation CreateAndUpdateDirection($userId: String, $address: AddressInput) {
-    createAndUpdateDirection(userId: $userId, address: $address) {
-      ok
-      error
-      message
-    }
+  mutation CreateAndUpdateDirection($userId: String!, $address: AddressInput! ) {
+  createAndUpdateDirection(userId: $userId,  address: $address) {
+    message
+    ok
+    error
   }
+}
 `
 
 export const CONFIRM_PAYPAL_ORDERID = gql`
@@ -80,13 +85,13 @@ export const CONFIRM_PAYPAL_ORDERID = gql`
 `
 
 export const CREATE_SUBSCRIPTION = gql`
-  mutation CreateSubscription( $paypalSubscriptionID: String!,  $serieId: String!) {
-      createSubscription( paypalSubscriptionID: $paypalSubscriptionID, serieId: $serieId ) {
-          error
-          message
-          ok
-      }
-  }
+  mutation CreateSubscription( $paypalSubscriptionID: String!, $serieId: String!) {
+    createSubscription( paypalSubscriptionID: $paypalSubscriptionID, serieId: $serieId ) {
+      error
+      message
+      ok
+    }
+}
 `
 
 export const CANCEL_SUBSCRIPTION = gql`

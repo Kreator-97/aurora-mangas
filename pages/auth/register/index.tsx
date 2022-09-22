@@ -55,8 +55,13 @@ const RegisterPage = () => {
 
     try {
       const { data } = await createUser({ variables: {
-        email, password, fullname: name,
+        user: {
+          email, password, fullname: name,
+        }
       }})
+      
+      console.log({data})
+      const { message, error, ok, user } = data.createUser
 
       if( !data.createUser.ok ) {
         throw new Error(data.createUser.message)

@@ -2,12 +2,13 @@ import prisma from '../lib/prisma'
 import bcrypt from 'bcrypt'
 
 async function main() {
-  await Promise.all([
-    prisma.user.deleteMany(),
-    prisma.author.deleteMany(),
-    prisma.serie.deleteMany(),
-    prisma.manga.deleteMany(),
-  ])
+
+  await prisma.address.deleteMany()
+  await prisma.item.deleteMany(),
+  await prisma.order.deleteMany(),
+  await prisma.user.deleteMany(),
+  await prisma.manga.deleteMany(),
+  await prisma.serie.deleteMany(),
 
   await prisma.user.createMany({
     data: [
@@ -73,6 +74,7 @@ async function main() {
         periodicy: 'MENSUAL',
         totalVolumes: 29,
         unitPrice: 139,
+        paypalPlanId: 'P-5V617341NT567532TMMNGARQ'
       },
       {
         authorId: EichiroOda!.id,
@@ -86,6 +88,7 @@ async function main() {
         periodicy: 'MENSUAL',
         totalVolumes: 103,
         unitPrice: 99,
+        paypalPlanId: 'P-0VV65606FG5750543MMNJJRY'
       },
     ]
   })

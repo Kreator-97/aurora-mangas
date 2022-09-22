@@ -115,7 +115,7 @@ const SubscriptionsPage: NextPage<Props> = ({subscriptions}) => {
           <p className='text-alert text-sm text-center mb-2'>Todavía podrás conseguir tus mangas por separados</p>
           <div className='flex flex-col'>
             <button
-              className='btn bg-success mb-2'
+              className='btn bg-accent mb-2'
               onClick={() => {
                 setOpenModal(false); setSubscriptionIdToCancel(null)}
               }

@@ -1,0 +1,6 @@
+export * from './User'
+export * from './Author'
+export * from './Manga'
+export * from './Serie'
+export * from './Order'
+export * from './Serie'
