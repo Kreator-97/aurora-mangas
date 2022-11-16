@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 import { fetch } from 'cross-fetch'
 
 const link = new HttpLink({
-  uri: 'http://localhost:3000/api/graphql',
+  uri: process.env.NODE_ENV === 'production' ? '/api/graphql' : 'http://localhost:3000/api/graphql',
   fetch
 })
 
