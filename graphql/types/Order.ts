@@ -5,6 +5,7 @@ import { itemResolver, orderResolver } from '../resolvers'
 import { calcCartTotal } from '../../database/dbMangas'
 import { getPaypalBearerToken } from '../../util/paypal'
 import { dbMangas } from '../../database'
+import { Order as OrderType } from '../../interfaces'
 
 export const Order = objectType({
   name: 'Order',
@@ -205,7 +206,7 @@ export const confirmPaypalOrder = extendType({
           }
 
           // mark order as paid
-          const orderUpdate = await ctx.prisma.order.update({
+          const orderUpdate: OrderType = await ctx.prisma.order.update({
             where: {
               id: orderId,
             },

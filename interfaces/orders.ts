@@ -10,6 +10,7 @@ export interface Order {
 }
 
 interface Item {
-  amount  : number;
-  product : Manga;
+  amount    : number;
+  product   : Manga;
+  productId : string;
 }
