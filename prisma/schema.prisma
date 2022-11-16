@@ -2,12 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider      = "mysql"
   url           = env("DATABASE_URL")
+  relationMode  = "prisma"
 }
 
 model User {
@@ -34,6 +35,8 @@ model Subscription {
   serieId             String
   date                DateTime          @default(now())
   paypalSuscriptionId String
+
+  @@index([userId, serieId])
 }
 
 enum SubscriptionStatus {
@@ -51,6 +54,8 @@ model Address {
   cp      String
   user    User   @relation(fields: [userId], references: [id])
   userId  String @unique
+
+  @@index([userId])
 }
 
 enum Provider {
@@ -87,6 +92,8 @@ model Serie {
   unitPrice     Int         @default(0)
   paypalPlanId  String?
   subscription   Subscription[]
+
+  @@index([authorId])
 }
 
 model Manga {
@@ -100,6 +107,8 @@ model Manga {
   title     String
   item      Item[]
   stock     Int
+
+  @@index([serieId])
 }
 
 enum Periodicy {
@@ -118,6 +127,8 @@ model Order {
   date          DateTime  @default(now())
   status        Status    @default(PENDING)
   transactionId String?
+
+  @@index([userId])
 }
 
 model Item {
@@ -127,6 +138,8 @@ model Item {
   amount    Int
   product   Manga   @relation(fields: [productId], references: [id])
   productId String
+
+  @@index([orderId, productId])
 }
 
 enum Status {
