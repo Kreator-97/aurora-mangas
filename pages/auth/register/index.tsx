@@ -60,15 +60,14 @@ const RegisterPage = () => {
         }
       }})
       
-      console.log({data})
-      const { message, error, ok, user } = data.createUser
-
       if( !data.createUser.ok ) {
         throw new Error(data.createUser.message)
       }
 
-      toast.success(data.createUser.message)
-      await signIn('credentials', { email, password } )
+      toast.success('Cuenta creada existosamente')
+
+      await signIn('credentials', { email, password, redirect: false } )
+      router.push('/')
     } catch(error) {
       console.error(error)
       toast.error((error as {message: string}).message)

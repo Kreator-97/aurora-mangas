@@ -15,7 +15,7 @@ export default NextAuth({
       async authorize(credentials) {
         const { email, password } = credentials!
         const user = await dbUsers.authenticateUserWithEmailPassword(email, password)
-       
+        
         return user
       }
     }),

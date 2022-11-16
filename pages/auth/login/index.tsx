@@ -2,9 +2,11 @@ import { FormEvent } from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+
 import { FcGoogle } from 'react-icons/fc'
 import { HiArrowSmLeft } from 'react-icons/hi'
 import { getSession, signIn } from 'next-auth/react'
+import { toast, Toaster } from 'react-hot-toast'
 
 import { useForm } from '../../../hooks'
 
@@ -23,12 +25,30 @@ const LoginPage = () => {
     }
   }
 
-  const onSubmit = (e:FormEvent) => {
+  const onSubmit = async (e:FormEvent) => {
     e.preventDefault()
     const required = [email, password]
     if( required.some( value => value.trim() === '' || !value) ) return
 
-    signIn('credentials', { email, password })
+    try {
+      const res = await signIn('credentials', { email, password, redirect: false })
+
+      if( !res?.ok ) {
+        toast.error('Error de credenciales. \n Verifica tu correo o contraseña', {
+          duration: 3000,
+          position: 'top-center'
+        })
+        return
+      }
+
+      toast.success('Inicio de sesión exitoso', {
+        duration: 3000,
+        position: 'top-center',
+      })
+      router.push('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -95,6 +115,7 @@ const LoginPage = () => {
           </a>
         </Link>
       </form>
+      <Toaster />
     </div>
   )
 }
