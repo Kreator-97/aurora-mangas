@@ -3,10 +3,10 @@
 exports[`tests on LoginPage should to match with snapshot 1`] = `
 <div>
   <div
-    class="mx-auto max-w-lg min-h-screen flex items-center md:w-1/2"
+    class="mx-auto max-w-lg min-h-screen flex items-center"
   >
     <form
-      class="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit"
+      class="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-[90vh] rounded"
       data-testid="form-login"
     >
       <div
@@ -38,39 +38,39 @@ exports[`tests on LoginPage should to match with snapshot 1`] = `
         />
       </div>
       <div
-        class="mb-2"
+        class="flex flex-col gap-y-2"
       >
         <label
           class="text-dark"
           for="email"
         >
           Ingresa tu correo electrónico:
-          <input
-            class="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-            name="email"
-            placeholder="Correo electrónico"
-            type="email"
-            value=""
-          />
         </label>
+        <input
+          class="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+          name="email"
+          placeholder="Correo electrónico"
+          type="email"
+          value=""
+        />
       </div>
       <div
-        class="mb-2"
+        class="flex flex-col gap-y-2"
       >
         <label
           class="text-dark"
           for="password"
         >
           Ingresa tu contraseña:
-          <input
-            class="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-            data-testid="password"
-            name="password"
-            placeholder="Contraseña"
-            type="password"
-            value=""
-          />
         </label>
+        <input
+          class="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+          data-testid="password"
+          name="password"
+          placeholder="Contraseña"
+          type="password"
+          value=""
+        />
       </div>
       <button
         class="btn bg-accent hover:bg-accentDark w-full mb-2"
@@ -131,6 +131,9 @@ exports[`tests on LoginPage should to match with snapshot 1`] = `
         ¿No tienes cuenta?, Registrate fácilmente
       </a>
     </form>
+    <div
+      style="position: fixed; z-index: 9999; top: 16px; left: 16px; right: 16px; bottom: 16px; pointer-events: none;"
+    />
   </div>
 </div>
 `;

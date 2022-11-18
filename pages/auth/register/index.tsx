@@ -75,67 +75,67 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-lg min-h-screen flex items-center md:w-1/2">
-
+    <div className="mx-auto max-w-lg min-h-screen flex items-center">
       <form
-        className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit"
+        className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-[90vh] rounded"
         onSubmit={ onSubmit}
         data-testid="form-register"
       >
-
         <div className='flex justify-between mb-2'>
-          <HiArrowSmLeft fill='#444' size={28} cursor="pointer" onClick={ () => router.back() }/>
+          <HiArrowSmLeft fill='#333' color='#333' size={28} cursor="pointer" onClick={ () => router.back() }/>
           <h1 className="text-2xl text-center text-dark">Crear cuenta</h1>
           <div className='w-7'></div>
         </div>
 
-        <div className='mb-2'>
+        <div className='mb-2 flex flex-col gap-y-2'>
           <label htmlFor="name" className="text-dark">
-          Ingresa tu nombre completo:
-            <input
-              className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-              placeholder="Nombre completo"
-              type="text"
-              name="name"
-              value={ name }
-              onChange={ onInputChange }
-              data-testid="input-name"
-
-            />
+            Ingresa tu nombre completo:
           </label>
-          { (errors.name && showErrors) && (<p className='text-error text-sm'>{errors.name}</p>)}
+
+          <input
+            className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+            placeholder="Nombre completo"
+            type="text"
+            name="name"
+            value={ name }
+            onChange={ onInputChange }
+            data-testid="input-name"
+
+          />
+          { (errors.name && showErrors) && (<p className='text-error text-sm'>{errors.name}</p>) }
         </div>
 
-        <div className='mb-2'>
+        <div className='mb-2 flex flex-col gap-y-2'>
           <label htmlFor="email" className="text-dark">
-          Ingresa tu correo electrónico:
-            <input
-              className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-              placeholder="Correo electrónico"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ onInputChange }
-              data-testid="input-email"
-
-            />
+            Ingresa tu correo electrónico:
           </label>
+
+          <input
+            className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+            placeholder="Correo electrónico"
+            type="email"
+            name="email"
+            value={ email }
+            onChange={ onInputChange }
+            data-testid="input-email"
+
+          />
           { (errors.email && showErrors)&& (<p className='text-error text-sm'>{errors.email}</p>)}
         </div>
 
-        <div className='mb-2'>
+        <div className='mb-2 flex flex-col gap-y-2'>
           <label htmlFor="password" className="text-dark">
-          Ingresa tu contraseña:
-            <input
-              className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-              placeholder="Contraseña"
-              type="password"
-              name="password"
-              value={ password }
-              onChange={ onInputChange }
-              data-testid="input-password"
-            />
+            Ingresa tu contraseña:
           </label>
+          <input
+            className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+            placeholder="Contraseña"
+            type="password"
+            name="password"
+            value={ password }
+            onChange={ onInputChange }
+            data-testid="input-password"
+          />
           { (errors.password && showErrors) && (<p className='text-error text-sm'>{errors.password}</p>)}
         </div>
         <button
@@ -156,8 +156,8 @@ const RegisterPage = () => {
         </div>
 
         <Link href={'/auth/login'} passHref>
-          <a className='block text-center btn bg-accent hover:bg-accentDark w-full ghost'>
-          ¿Ya tienes cuenta?, Inicia sesión
+          <a className='block text-center border border-accent bg-transparent text-accent hover:bg-accentDark hover:text-light w-full p-2 rounded transition-colors'>
+            ¿Ya tienes cuenta?, Inicia sesión
           </a>
         </Link>
         <Toaster position='top-center'/>

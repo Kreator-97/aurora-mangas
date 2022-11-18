@@ -1,7 +1,8 @@
 import { FormEvent, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { HiOutlineShoppingCart, HiOutlineSearchCircle, HiOutlineMenu } from 'react-icons/hi'
+import { HiOutlineSearchCircle, HiOutlineMenu } from 'react-icons/hi'
+import { MdOutlineShoppingCart } from 'react-icons/md'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { openSidebar, openShoppingCart } from '../../app/slices/uiSlice'
@@ -59,7 +60,7 @@ export const Navbar = () => {
           onClick={ () => openShoppingCartMenu() }
           data-testid='cart-menu'
         >
-          <HiOutlineShoppingCart
+          <MdOutlineShoppingCart
             color='white'
             size={32}
             cursor="pointer"

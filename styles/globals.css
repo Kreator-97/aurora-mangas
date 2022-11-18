@@ -50,7 +50,7 @@ html {
 }
 
 .btn {
-  @apply px-2 py-1 font-normal text-light rounded transition-colors border border-solid border-light;
+  @apply p-2 font-normal text-light rounded transition-colors border border-solid border-light;
 }
 
 .btn:disabled {
@@ -78,8 +78,4 @@ html {
   .main {
     padding: 0 .5rem;
   }
-}
-
-svg > path {
-  stroke-width: 1.5px;
 }

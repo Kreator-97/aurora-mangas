@@ -9,6 +9,13 @@ jest.mock('next-auth/react')
 
 import { toast }from 'react-hot-toast'
 
+jest.mock('next/router', () => {
+  return {
+    ...jest.requireActual('next/router'),
+    useRouter: () => ({push: () => {}})
+  }
+})
+
 jest.mock('react-hot-toast', () => ({
   ...jest.requireActual('react-hot-toast'),
   toast: ({
@@ -18,6 +25,18 @@ jest.mock('react-hot-toast', () => ({
 }))
 
 describe('tests on RegisterPage', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      value: jest.fn(() => {
+        return {
+          matches: true,
+          addListener: jest.fn(),
+          removeListener: jest.fn()
+        }
+      })
+    })
+  })
+
   test('should to match with snapshot', () => {
     const { container } = render(
       <MockedProvider>
@@ -39,14 +58,14 @@ describe('tests on RegisterPage', () => {
         request: {
           query: CREATE_USER,
           variables: {
-            email, password, fullname: name
+            user: { email, password, fullname: name },
           },
         },
         result: {
           data: {
             createUser: {
               user: {
-                fullname: name, email, password
+                fullname: name, email, password, id: '123'
               },
               ok: true,
               error: null,
@@ -58,7 +77,7 @@ describe('tests on RegisterPage', () => {
     ]
 
     render(
-      <MockedProvider mocks={mocks}>
+      <MockedProvider mocks={mocks} addTypename={false}>
         <RegisterPage />
       </MockedProvider>
     )
@@ -75,9 +94,10 @@ describe('tests on RegisterPage', () => {
     fireEvent.submit(form)
     
     await waitFor(() => {
-
-      expect(signIn).toHaveBeenCalledWith('credentials', {email, password})
-      expect(toast.success).toHaveBeenCalledWith('Usuario creado')
+      expect(signIn).toHaveBeenCalledWith('credentials', {
+        email, password, redirect: false
+      })
+      expect(toast.success).toHaveBeenCalledWith('Cuenta creada existosamente')
     })
   })
   test('should to call signIn() with google args', () => {

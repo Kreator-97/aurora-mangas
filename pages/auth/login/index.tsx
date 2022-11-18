@@ -52,10 +52,10 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-lg min-h-screen flex items-center md:w-1/2">
+    <div className="mx-auto max-w-lg min-h-screen flex items-center">
 
       <form
-        className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-fit" onSubmit={ onSubmit }
+        className="bg-light bg-opacity-90 w-full p-4 h-screen sm:h-[90vh] rounded" onSubmit={ onSubmit }
         data-testid="form-login"
       >
 
@@ -65,34 +65,34 @@ const LoginPage = () => {
           <div className='w-7'></div>
         </div>
 
-        <div className='mb-2'>
+        <div className='flex flex-col gap-y-2'>
           <label htmlFor="email" className="text-dark">
           Ingresa tu correo electrónico:
-            <input
-              className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-              placeholder="Correo electrónico"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ onInputChange }
-            />
           </label>
+          <input
+            className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+            placeholder="Correo electrónico"
+            type="email"
+            name="email"
+            value={ email }
+            onChange={ onInputChange }
+          />
         </div>
 
-        <div className='mb-2'>
+        <div className='flex flex-col gap-y-2'>
           <label htmlFor="password" className="text-dark">
-          Ingresa tu contraseña:
-            <input
-              className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
-              placeholder="Contraseña"
-              type="password"
-              name="password"
-              value={ password }
-              onChange={ onInputChange }
-              data-testid="password"
-
-            />
+            Ingresa tu contraseña:
           </label>
+          <input
+            className="w-full bg-light bg-opacity-80 px-4 py-2 text-dark border border-stroke border-solid focus:outline-none mb-2"
+            placeholder="Contraseña"
+            type="password"
+            name="password"
+            value={ password }
+            onChange={ onInputChange }
+            data-testid="password"
+
+          />
         </div>
         <button
           className='btn bg-accent hover:bg-accentDark w-full mb-2'

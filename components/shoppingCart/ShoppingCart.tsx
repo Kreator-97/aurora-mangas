@@ -40,7 +40,7 @@ export const ShoppingCart = () => {
         style={{ height: headerHeight }}
       >
         <HiX
-          size={28}
+          size={32}
           onClick={ () => onClose()}
           cursor="pointer"
           data-testid="close-shopping-cart-icon"
