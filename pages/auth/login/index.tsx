@@ -110,8 +110,8 @@ const LoginPage = () => {
         </div>
 
         <Link href={'/auth/register'} passHref>
-          <a className='block text-center btn bg-accent hover:bg-accentDark w-full ghost'>
-          ¿No tienes cuenta?, Registrate fácilmente
+          <a className='block text-center border border-accent bg-transparent text-accent hover:bg-accentDark hover:text-light w-full p-2 rounded transition-colors'>
+            ¿No tienes cuenta?, Registrate fácilmente
           </a>
         </Link>
       </form>
