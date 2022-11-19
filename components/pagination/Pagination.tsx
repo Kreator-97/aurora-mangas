@@ -1,42 +1,29 @@
 import { FC, useState } from 'react'
 
 interface Props {
-  totalPages: number;
-  initialPage?: number;
-  onPageChange?: (page:number) => void;
+  totalPages    : number;
+  initialPage  ?: number;
+  onPageChange ?: (page:number) => void;
 }
 
+const maxPagesToShow = 9
+const offset = 4
+
 export const Pagination: FC<Props> = ({totalPages, initialPage, onPageChange}) => {
-  const [ currentPage, setCurrentPage] = useState<number>(initialPage || 1)
-  // page init to 1
+  const [ currentPage, setCurrentPage ] = useState<number>(initialPage || 1)
+  const minPageToShow = Math.max(currentPage - offset, 1)
 
-  let minPage = 1
-  const maxPages = 9
-  // we show 9 elements
+  let diffToAddPages = 0
 
-  let initialOffset = 4
-  // this show pages computing its offset. Example:
-  // current page = 10
-  // minpage = 10 - 4 = 6
-  // maxpage = minpage + (offset * 2) = 14
-  // define the previous and next pages that will be displayed
-
-  let diff = 0
-  // diff is the result of totalpages - currentpage. Example
-  // 20 - 18 = -2
-  // we add ABS(-2) to previous pages (min page) to show always 9 pages in pagination
-
-  if( (totalPages - currentPage) < initialOffset ) {
-    diff = Math.abs((totalPages - (currentPage + initialOffset)))
+  if ( currentPage + offset > totalPages ) {
+    diffToAddPages = ( currentPage - totalPages ) + offset
   }
 
-  if( currentPage > initialOffset ) {
-    minPage = (currentPage - initialOffset) - diff
-  }
+  const newInitialPageToShow = Math.max( minPageToShow - diffToAddPages, 1 )
 
-  const pages = []
-  for( let i = minPage; i <= totalPages; i++ ) {
-    if( pages.length >= maxPages) continue
+  const pages: number[] = []
+  for(let i = newInitialPageToShow; i <= totalPages; i++ ) {
+    if( pages.length >= maxPagesToShow ) break
     pages.push(i)
   }
 
@@ -50,9 +37,8 @@ export const Pagination: FC<Props> = ({totalPages, initialPage, onPageChange}) =
     <div className='mx-auto my-2 flex gap-2 justify-center'>
       {
         pages.map((p, index) => {
-          const page = index === 0 ? 1 : minPage
-          if( page > totalPages) return <></>
-          minPage++
+          const page = index === 0 ? 1 : p
+
           return (
             <button
               className={`text-xl py-1 rounded bg-accent ${p === currentPage ? 'active' : ''}`}
