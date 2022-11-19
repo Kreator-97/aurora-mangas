@@ -17,7 +17,7 @@ export function useForm<T> (initialValue: T, formValidations:FormValidationType 
   
   useEffect(() => {
     createValidators()
-  }, [formState])
+  }, [formState]) // eslint-disable-line
 
   const onInputChange = ({target}:ChangeEvent<HTMLInputElement | HTMLSelectElement  >) => {
     const {name, value} = target

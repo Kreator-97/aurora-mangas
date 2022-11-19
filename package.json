@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "yarn eslint .",
     "migrate": "dotenv -e .env.development -- npx prisma migrate dev",
     "test": "dotenv -e .env.test -- jest --watch",
     "test:cypress": "yarn cypress open",

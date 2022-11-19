@@ -24,7 +24,7 @@ export const Modal:FC<Props> = ({title, children, isOpen, onClose}) => {
       <div className='flex justify-end absolute top-1 right-1'>
         <IoIosCloseCircle color='var(--dark)' size={24} cursor="pointer" onClick={() => onCloseEvent()}/>
       </div>
-      <h2 className="text-center text-xl text-dark">{title}</h2>
+      <h2 className="text-center text-2xl text-dark">{title}</h2>
       {
         children
       }
