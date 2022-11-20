@@ -6,12 +6,12 @@ Consigue tus títulos de Mangas favoritos de forma rápida y segura:
 Contamos con titulos muy populares:
 - Hunter x Hunter 
 - One piece
-- Berserk
-- Saint seiya
 - Inuyasha
 - Akira
 
-Entre muchos otros
+Entre muchos otros.
+
+[https://aurora-mangas.vercel.app/](https://aurora-mangas.vercel.app/)
 
 ## Pagos rápidos y seguros
 Utilizamos paypal como agente de pagos para procesar y verificar tus compras de forma rápida y segura.
